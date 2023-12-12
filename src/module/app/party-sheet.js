@@ -1,74 +1,233 @@
 /* eslint-disable no-undef */
+import { DND5E } from "../systems/dnd5e.js";
+import { extractPropertyByString } from "../utils.js";
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
+
+const NEWLINE_ELEMENTS = ["{newline}", "{nl}", ";"];
 
 export class PartySheetForm extends FormApplication {
   constructor() {
     super();
   }
 
-  getPlayerData() {
+  getCustomPlayerData(data) {
     const showOnlyOnlineUsers = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
-    const actorList = showOnlyOnlineUsers
+    const hiddenCharacters = game.settings.get("theater-of-the-mind", "hiddenCharacters");
+
+    let actorList = showOnlyOnlineUsers
       ? game.users.filter((user) => user.active && user.character).map((user) => user.character)
       : game.actors.filter((actor) => actor.type !== "npc");
 
+    if (!showOnlyOnlineUsers) {
+      actorList = actorList.filter((player) => !hiddenCharacters.includes(player.uuid));
+    }
+
     try {
-      return actorList
+      var finalActorList = actorList
         .map((character) => {
           const userChar = character;
-          const userSys = userChar.system;
-          const stats = userSys.abilities;
+          // const userSys = userChar.system;
 
-          const ac = userSys.attributes.ac.value;
+          var row_data = [];
+          // for (const row_obj, of data.rows) {
+          data.rows.map((row_obj) => {
+            var customData = {};
+            row_obj.forEach((colobj) => {
+              var colname = colobj.name;
+              if (colobj.coltype === "skip") {
+                colname = `~${colname}~`;
+              }
+              customData[colname] = this.getCustomData(userChar, colobj.type, colobj.value);
+            });
+            row_data.push(customData);
+          });
+          // var row_data = [];
+          // for (const colobj of row_obj) {
+          //   row_data.push(this.getCustomData(userChar, colobj.type, colobj.value));
+          // }
+          // customData[row_obj.name] = row;
 
-          const passives = {
-            prc: userSys.skills.prc.passive,
-            inv: userSys.skills.inv.passive,
-            ins: userSys.skills.ins.passive,
-          };
+          // for (const colobj of data) {
+          //   customData[colobj.name] = this.getCustomData(userChar, colobj.type, colobj.value);
+          // }
 
-          const classNamesAndLevels = Object.values(userChar.classes).map((c) => `${c.name} ${c.system.levels}`);
+          // const stats = userSys.abilities;
 
-          const charToken = userChar.prototypeToken;
+          // const ac = userSys.attributes.ac.value;
 
-          const charSenses = [];
-          if (userSys.attributes.senses.darkvision) {
-            charSenses.push(`Darkvision ${userSys.attributes.senses.darkvision} ${userSys.attributes.senses.units}`);
-          }
-          if (userSys.attributes.senses.blindsight) {
-            charSenses.push(`Blindsight ${userSys.attributes.senses.blindsight} ${userSys.attributes.senses.units}`);
-          }
-          if (userSys.attributes.senses.tremorsense) {
-            charSenses.push(`Tremorsense ${userSys.attributes.senses.tremorsense} ${userSys.attributes.senses.units}`);
-          }
-          if (userSys.attributes.senses.truesight) {
-            charSenses.push(`Truesight ${userSys.attributes.senses.truesight} ${userSys.attributes.senses.units}`);
-          }
-          if (userSys.attributes.senses.special) {
-            charSenses.push(userSys.attributes.senses.special);
-          }
+          // const passives = {
+          //   prc: userSys.skills.prc.passive,
+          //   inv: userSys.skills.inv.passive,
+          //   ins: userSys.skills.ins.passive,
+          // };
 
-          return {
-            name: userChar.name,
-            race: userChar.system.details.race,
-            uuid: userChar.uuid,
-            img: `<input type="image" name="totm-actorimage" data-actorid="${
-              character.uuid
-            }" class="token-image" src="${charToken.texture.src}" title="${
-              charToken.name
-            }" width="36" height="36" style="transform: rotate(${charToken.rotation ?? 0}deg);"/>`,
-            senses: charSenses.join(", "),
-            classNames: classNamesAndLevels.join(" - ") || "",
-            stats,
-            ac,
-            passives,
-          };
+          // const classNamesAndLevels = Object.values(userChar.classes).map((c) => `${c.name} ${c.system.levels}`);
+
+          // const charToken = userChar.prototypeToken;
+
+          // const charSenses = [];
+          // if (userSys.attributes.senses.darkvision) {
+          //   charSenses.push(`Darkvision ${userSys.attributes.senses.darkvision} ${userSys.attributes.senses.units}`);
+          // }
+          // if (userSys.attributes.senses.blindsight) {
+          //   charSenses.push(`Blindsight ${userSys.attributes.senses.blindsight} ${userSys.attributes.senses.units}`);
+          // }
+          // if (userSys.attributes.senses.tremorsense) {
+          //   charSenses.push(`Tremorsense ${userSys.attributes.senses.tremorsense} ${userSys.attributes.senses.units}`);
+          // }
+          // if (userSys.attributes.senses.truesight) {
+          //   charSenses.push(`Truesight ${userSys.attributes.senses.truesight} ${userSys.attributes.senses.units}`);
+          // }
+          // if (userSys.attributes.senses.special) {
+          //   charSenses.push(userSys.attributes.senses.special);
+          // }
+          //outData[userChar.name] = row_data;
+          //return outData;
+          // return [row_data];
+          return row_data;
+          // return {
+          //   uuid: userChar.uuid,
+          //   name: userChar.name,
+          //   race: userChar.system.details.race,
+          //   img: `<input type="image" name="totm-actorimage" data-actorid="${
+          //     character.uuid
+          //   }" class="token-image" src="${charToken.texture.src}" title="${
+          //     charToken.name
+          //   }" width="36" height="36" style="transform: rotate(${charToken.rotation ?? 0}deg);"/>`,
+          //   senses: charSenses.join(", "),
+          //   classNames: classNamesAndLevels.join(" - ") || "",
+          //   stats,
+          //   ac,
+          //   passives,
+          // };
         })
         .filter((player) => player);
+      return { players: finalActorList, rowcount: data.rows.length };
     } catch (ex) {
       console.log(ex);
     }
     return [];
+  }
+
+  getCustomData(character, type, value) {
+    var objName = "";
+    var outstr = "";
+    var objData = {};
+
+    switch (type) {
+      case "direct":
+        var isSafeStringNeeded = false;
+
+        //Parse out normal data
+        for (const m of value.split(" ")) {
+          var fvalue = extractPropertyByString(character, m);
+          if (fvalue !== undefined) {
+            value = value.replace(m, fvalue);
+          }
+        }
+
+        //Parse out newline elements
+        for (const item of NEWLINE_ELEMENTS) {
+          if (value.indexOf(item) > -1) {
+            console.log("Replacing", item, "with <br/> -", value);
+            isSafeStringNeeded = true;
+            value = value.replace(item, "<br/>");
+            console.log(value);
+          }
+        }
+
+        //Parse out complex elements (that might contain newline elements we don't want to convert, like ; marks)
+        if (value.indexOf("{charactersheet}") > -1) {
+          isSafeStringNeeded = true;
+          value = value.replace(
+            "{charactersheet}",
+            `<input type="image" name="totm-actorimage" data-actorid="${character.uuid}" class="token-image" src="${
+              character.prototypeToken.texture.src
+            }" title="${character.prototypeToken.name}" width="36" height="36" style="transform: rotate(${
+              character.prototypeToken.rotation ?? 0
+            }deg);"/>`,
+          );
+          value = "<div class='flex-tc'>" + value + "</div>";
+        }
+
+        //Finally detect if a safe string cast is needed.
+        if (isSafeStringNeeded) {
+          return new Handlebars.SafeString(value);
+        }
+        return value;
+      case "direct-complex":
+        var outputText = "";
+        for (const item of value) {
+          if (item.type === "exists") {
+            var evalue = extractPropertyByString(character, item.value.trim());
+            if (evalue) {
+              item.text = item.text.replace(item.value.trim(), evalue);
+              outputText += item.text;
+            }
+          }
+        }
+        return outputText;
+      //regex match properties as [a-z][A-Z].*?
+      case "charactersheet":
+        return new Handlebars.SafeString(
+          `<input type="image" name="totm-actorimage" data-actorid="${character.uuid}" class="token-image" src="${
+            character.prototypeToken.texture.src
+          }" title="${character.prototypeToken.name}" width="36" height="36" style="transform: rotate(${
+            character.prototypeToken.rotation ?? 0
+          }deg);"/>`,
+        );
+      // case "keyarray-string-builder":
+      //   objName = value.split("=>")[0].trim();
+      //   outstr = value.split("=>")[1].trim();
+      //   objData = extractPropertyByString(character, objName);
+
+      //   if (!Array.isArray(objData)) {
+      //     objData = Object.keys(objData).map((key) => {
+      //       return objData[key];
+      //     });
+      //   }
+
+      //   var regValue = /(?:\*\.|[\w.]+)+/g;
+      //   var reg = new RegExp(regValue);
+      //   var allmatches = Array.from(outstr.matchAll(reg), (match) => match[0]);
+
+      //   for (const objSubData of objData) {
+      //     for (const m of allmatches) {
+      //       var fvalue = extractPropertyByString(objSubData, m);
+      //       outstr = outstr.replace(m, fvalue);
+      //     }
+      //   }
+      //   console.log(outstr);
+      //   return outstr === value ? "" : outstr;
+      case "array-string-builder":
+        objName = value.split("=>")[0].trim();
+        outstr = value.split("=>")[1].trim();
+        objData = extractPropertyByString(character, objName);
+        console.log(objData);
+
+        if (!Array.isArray(objData)) {
+          objData = Object.keys(objData).map((key) => {
+            return objData[key];
+          });
+        }
+        console.log(objData);
+
+        var regValue = /(?:\*\.|[\w.]+)+/g;
+        var reg = new RegExp(regValue);
+        var allmatches = Array.from(outstr.matchAll(reg), (match) => match[0]);
+
+        for (const objSubData of objData) {
+          for (const m of allmatches) {
+            outstr = outstr.replace(m, extractPropertyByString(objSubData, m));
+          }
+        }
+        console.log(outstr);
+        return outstr === value ? "" : outstr;
+      case "string":
+        return value;
+      default:
+        return "";
+    }
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -79,15 +238,11 @@ export class PartySheetForm extends FormApplication {
   getData(options) {
     const hiddenCharacters = game.settings.get("theater-of-the-mind", "hiddenCharacters");
     const enableOnlyOnline = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
-    let players = this.getPlayerData();
-
-    if (!enableOnlyOnline) {
-      players = players.filter((player) => !hiddenCharacters.includes(player.uuid));
-    }
-
+    let { players, rowcount } = this.getCustomPlayerData(DND5E);
     return mergeObject(super.getData(options), {
       hiddenCharacters,
       enableOnlyOnline,
+      rowcount,
       players,
       overrides: this.overrides,
     });

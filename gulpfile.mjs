@@ -17,9 +17,9 @@ import rollupStream from "@rollup/stream";
 
 import rollupConfig from "./rollup.config.mjs";
 
-/** ******************/
+/********************/
 /*  CONFIGURATION   */
-/** ******************/
+/********************/
 
 const packageId = "theater-of-the-mind";
 const sourceDirectory = "./src";
@@ -27,24 +27,17 @@ const distDirectory = "./dist";
 const stylesDirectory = `${sourceDirectory}/styles`;
 const stylesExtension = "scss";
 const sourceFileExtension = "js";
-const staticFiles = [
-  "assets",
-  "fonts",
-  "lang",
-  "packs",
-  "templates",
-  "module.json",
-];
+const staticFiles = ["assets", "fonts", "lang", "packs", "templates", "module.json"];
 
-/** ******************/
+//*******************/
 /*      BUILD       */
-/** ******************/
+//*******************/
 
 let cache;
 
 /**
  * Build the distributable JavaScript code
- * @returns {NodeJS.ReadWriteStream}
+ * @returns {NodeJS.ReadWriteStream} The built JavaScript code
  */
 function buildCode() {
   return rollupStream({ ...rollupConfig(), cache })
@@ -60,7 +53,7 @@ function buildCode() {
 
 /**
  * Build style sheets
- * @returns {NodeJS.ReadWriteStream}
+ * @returns {NodeJS.ReadWriteStream} The build style sheets
  */
 function buildStyles() {
   return gulp
@@ -84,16 +77,8 @@ async function copyFiles() {
  * Watch for changes for each build step
  */
 export function watch() {
-  gulp.watch(
-    `${sourceDirectory}/**/*.${sourceFileExtension}`,
-    { ignoreInitial: false },
-    buildCode,
-  );
-  gulp.watch(
-    `${stylesDirectory}/**/*.${stylesExtension}`,
-    { ignoreInitial: false },
-    buildStyles,
-  );
+  gulp.watch(`${sourceDirectory}/**/*.${sourceFileExtension}`, { ignoreInitial: false }, buildCode);
+  gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, { ignoreInitial: false }, buildStyles);
   gulp.watch(
     staticFiles.map((file) => `${sourceDirectory}/${file}`),
     { ignoreInitial: false },
@@ -101,14 +86,11 @@ export function watch() {
   );
 }
 
-export const build = gulp.series(
-  clean,
-  gulp.parallel(buildCode, buildStyles, copyFiles),
-);
+export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, copyFiles));
 
-/** ******************/
+/********************/
 /*      CLEAN       */
-/** ******************/
+/********************/
 
 /**
  * Remove built files from `dist` folder while ignoring source files
@@ -128,13 +110,13 @@ export async function clean() {
   }
 }
 
-/** ******************/
+/********************/
 /*       LINK       */
-/** ******************/
+/********************/
 
 /**
  * Get the data paths of Foundry VTT based on what is configured in `foundryconfig.json`
- * @returns {string[]}
+ * @returns {string[]} The Foundry VTT data path
  */
 function getDataPaths() {
   const config = fs.readJSONSync("foundryconfig.json");
@@ -150,9 +132,7 @@ function getDataPaths() {
         );
       }
       if (!fs.existsSync(path.resolve(dataPath))) {
-        throw new Error(
-          `The dataPath ${dataPath} does not exist on the file system`,
-        );
+        throw new Error(`The dataPath ${dataPath} does not exist on the file system`);
       }
       return path.resolve(dataPath);
     });

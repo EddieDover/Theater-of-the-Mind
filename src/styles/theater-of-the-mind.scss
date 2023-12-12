@@ -37,6 +37,26 @@
 #totm-ps-table {
     text-align:center;
 
+    th {
+      padding: 0.3em;
+    }
+
+    tr {
+      background-color: none;
+    }
+
+    tr.dark {
+      background-color: rgba(0,0,0,0.25);
+    }
+
+    tr.light {
+      background-color: rgba(0,0,0,0.1);
+    }
+
+    .flex-tc {
+      display: inline-flex;
+    }
+
     .namerace {
         padding-left:10px;
         display:flex;
@@ -46,7 +66,13 @@
     }
 
     td {
-        border: 1px solid darkgray;
+      border: 1px solid darkgray;
+  }
+
+    tbody {
+      td {
+          padding: .25em;
+      }
     }
 
     .totm-senses {

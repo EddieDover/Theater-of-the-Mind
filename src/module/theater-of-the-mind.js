@@ -2,10 +2,15 @@
 import { THEATER_SOUNDS } from "./sounds.js";
 import { registerSettings } from "./app/settings.js";
 import { PartySheetForm } from "./app/party-sheet.js";
+import { toProperCase } from "./utils.js";
 
 let isSyrinscapeInstalled = false;
 let isMidiQoLInstalled = false;
 
+/**
+ *
+ * @param {...any} message The message to send to console.log
+ */
 function log(...message) {
   console.log("Theater of the Mind | ", message);
 }
@@ -23,6 +28,39 @@ Handlebars.registerHelper("hcifgte", function (v1, v2, options) {
   return options.inverse(this);
 });
 
+Handlebars.registerHelper("hciflte", function (v1, v2, options) {
+  if (v1 <= v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+Handlebars.registerHelper("checkIndex", function (index, options) {
+  if (index % 2 == 0) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+Handlebars.registerHelper("hcifhidden", function (v1, options) {
+  if (v1.startsWith("~") && v1.endsWith("~")) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+Handlebars.registerHelper("hcifcolspan", function (row, options) {
+  console.log(row);
+  if (row.colspan) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+Handlebars.registerHelper("getColSpan", function (row, options) {
+  return options.fn(row.colspan);
+});
+
 Handlebars.registerHelper("eachInMap", function (map, block) {
   var out = "";
   Object.keys(map).map(function (prop) {
@@ -31,12 +69,33 @@ Handlebars.registerHelper("eachInMap", function (map, block) {
   return out;
 });
 
+Handlebars.registerHelper("debug", function (data) {
+  console.log(data);
+  return "";
+});
+
+Handlebars.registerHelper("getKeys", function (obj, options) {
+  const keys = Object.keys(obj);
+  let result = "";
+  for (let i = 0; i < keys.length; i++) {
+    result += options.fn(keys[i]);
+  }
+  return result;
+});
+
+Handlebars.registerHelper("getData", function (obj, key) {
+  return obj[key];
+});
+
 Handlebars.registerHelper("toUpperCase", function (str) {
-  return str.toUpperCase();
+  return toProperCase(str);
 });
 
 let currentPartySheet = null;
 
+/**
+ *
+ */
 function togglePartySheet() {
   if (currentPartySheet?.rendered) {
     currentPartySheet.close();
@@ -46,6 +105,13 @@ function togglePartySheet() {
   }
 }
 
+/**
+ *
+ * @param {string} weapon The weapon type
+ * @param {boolean} crit If the hit was a crit
+ * @param {boolean} hitmiss If the action was a hit or miss
+ * @param {object} override Setting overrides
+ */
 async function playSound(weapon, crit, hitmiss, override = null) {
   if (!isSyrinscapeInstalled || !isMidiQoLInstalled) {
     return;
