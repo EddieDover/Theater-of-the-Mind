@@ -54,15 +54,6 @@
         {
           "id": "fvtt-syrin-control", "type":"module"
         }
-      ],
-      "systems": [
-        {
-          "id": "dnd5e",
-          "type": "system",
-          "compatibility": {
-            "minimum": "2.0.0"
-          }
-        }
       ]
     }
   }
