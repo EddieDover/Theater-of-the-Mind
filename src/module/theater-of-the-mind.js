@@ -15,12 +15,16 @@ function log(...message) {
   console.log("Theater of the Mind | ", message);
 }
 
+// @ts-ignore
 Handlebars.registerHelper("hccontains", function (needle, haystack, options) {
+  // @ts-ignore
   needle = Handlebars.escapeExpression(needle);
+  // @ts-ignore
   haystack = game.settings.get("theater-of-the-mind", "hiddenCharacters") ?? [];
   return haystack.indexOf(needle) > -1 ? options.fn(this) : options.inverse(this);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("hcifgte", function (v1, v2, options) {
   if (v1 >= v2) {
     return options.fn(this);
@@ -28,6 +32,7 @@ Handlebars.registerHelper("hcifgte", function (v1, v2, options) {
   return options.inverse(this);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("hciflte", function (v1, v2, options) {
   if (v1 <= v2) {
     return options.fn(this);
@@ -35,6 +40,7 @@ Handlebars.registerHelper("hciflte", function (v1, v2, options) {
   return options.inverse(this);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("checkIndex", function (index, options) {
   if (index % 2 == 0) {
     return options.fn(this);
@@ -42,6 +48,7 @@ Handlebars.registerHelper("checkIndex", function (index, options) {
   return options.inverse(this);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("hcifhidden", function (v1, options) {
   if (v1.startsWith("~") && v1.endsWith("~")) {
     return options.fn(this);
@@ -49,6 +56,7 @@ Handlebars.registerHelper("hcifhidden", function (v1, options) {
   return options.inverse(this);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("hcifcolspan", function (row, options) {
   console.log(row);
   if (row.colspan) {
@@ -57,10 +65,12 @@ Handlebars.registerHelper("hcifcolspan", function (row, options) {
   return options.inverse(this);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("getColSpan", function (row, options) {
   return options.fn(row.colspan);
 });
 
+// @ts-ignore
 Handlebars.registerHelper("eachInMap", function (map, block) {
   var out = "";
   Object.keys(map).map(function (prop) {
@@ -69,11 +79,13 @@ Handlebars.registerHelper("eachInMap", function (map, block) {
   return out;
 });
 
+// @ts-ignore
 Handlebars.registerHelper("debug", function (data) {
   console.log(data);
   return "";
 });
 
+// @ts-ignore
 Handlebars.registerHelper("getKeys", function (obj, options) {
   const keys = Object.keys(obj);
   let result = "";
@@ -83,10 +95,12 @@ Handlebars.registerHelper("getKeys", function (obj, options) {
   return result;
 });
 
+// @ts-ignore
 Handlebars.registerHelper("getData", function (obj, key) {
   return obj[key];
 });
 
+// @ts-ignore
 Handlebars.registerHelper("toUpperCase", function (str) {
   return toProperCase(str);
 });
@@ -101,6 +115,7 @@ function togglePartySheet() {
     currentPartySheet.close();
   } else {
     currentPartySheet = new PartySheetForm();
+    // @ts-ignore
     currentPartySheet.render(true);
   }
 }
@@ -119,6 +134,7 @@ async function playSound(weapon, crit, hitmiss, override = null) {
 
   const hitmisscrit = override ? "any" : crit ? "critical" : hitmiss ? "hit" : "miss";
 
+  // @ts-ignore
   if (!game.settings.get("theater-of-the-mind", "enableSounds")) {
     return;
   }
@@ -137,11 +153,13 @@ async function playSound(weapon, crit, hitmiss, override = null) {
   if (!soundid) {
     log(`Key found: [${weapon.toLowerCase()}], No sound sub-type found [${subsound}].`);
   } else {
+    // @ts-ignore
     game.syrinscape.playElement(soundid);
   }
 }
 /* Hooks */
 
+// @ts-ignore
 Hooks.on("init", () => {
   log("Initializing");
 
@@ -149,6 +167,7 @@ Hooks.on("init", () => {
 });
 
 //
+// @ts-ignore
 Hooks.on("midi-qol.AttackRollComplete", async (roll) => {
   const weapon = roll.item.name;
   const roll_results = roll.attackTotal;
@@ -161,6 +180,7 @@ Hooks.on("midi-qol.AttackRollComplete", async (roll) => {
   }
 });
 
+// @ts-ignore
 Hooks.on("midi-qol.preambleComplete", async (roll) => {
   if (roll?.item?.type != "spell") {
     return;
@@ -168,12 +188,15 @@ Hooks.on("midi-qol.preambleComplete", async (roll) => {
   playSound(roll.item.name, false, false, "any");
 });
 
+// @ts-ignore
 Hooks.on("ready", async () => {
   log("Ready");
 
+  // @ts-ignore
   isSyrinscapeInstalled = game.modules.get("fvtt-syrin-control")?.active || false;
   log(`Syrinscape is installed: ${isSyrinscapeInstalled}`);
 
+  // @ts-ignore
   isMidiQoLInstalled = game.modules.get("midi-qol")?.active || false;
   log(`Midi-QoL is installed: ${isMidiQoLInstalled}`);
 
@@ -181,21 +204,27 @@ Hooks.on("ready", async () => {
   log(`Sounds enabled: ${soundsReady}`);
 });
 
+// @ts-ignore
 Hooks.on("renderPlayerList", () => {
+  // @ts-ignore
   const showOnlyOnlineUsers = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
 
+  // @ts-ignore
   if (!game.user.isGM || !showOnlyOnlineUsers) {
     return;
   }
-  if (currentPartySheet.rendered) {
+  if (currentPartySheet?.rendered) {
     // PartySheetDialog.data.content = convertPlayerDataToTable();
     currentPartySheet.render(true);
   }
 });
 
+// @ts-ignore
 Hooks.on("renderSceneControls", () => {
+  // @ts-ignore
   const showButton = game.user.isGM;
 
+  // @ts-ignore
   const button = $(`<li class="control-tool "
             data-tool="PartySheet"
             aria-label="Show Party Sheet"
@@ -204,6 +233,7 @@ Hooks.on("renderSceneControls", () => {
             <i class="fas fa-users"></i>
         </li>`);
   button.click(() => togglePartySheet());
+  // @ts-ignore
   const controls = $("#tools-panel-token");
 
   if (showButton && controls.find(".control-tool[data-tool='PartySheet']")) {

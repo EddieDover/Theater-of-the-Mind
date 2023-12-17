@@ -1,6 +1,7 @@
 import { HiddenCharactersSettings } from "./hidden-characters-settings";
 
 export const registerSettings = () => {
+  // @ts-ignore
   game.settings.register("theater-of-the-mind", "hiddenCharacters", {
     "scope": "world",
     "config": false,
@@ -8,6 +9,7 @@ export const registerSettings = () => {
     "type": Array,
   });
 
+  // @ts-ignore
   game.settings.register("theater-of-the-mind", "enableOnlyOnline", {
     "name": "theater-of-the-mind.settings.enable-only-online.name",
     "hint": "theater-of-the-mind.settings.enable-only-online.hint",
@@ -17,6 +19,17 @@ export const registerSettings = () => {
     "type": Boolean,
   });
 
+  // @ts-ignore
+  game.settings.register("theater-of-the-mind", "customPartySheetData", {
+    "name": "theater-of-the-mind.settings.custom-party-sheet.name",
+    "hint": "theater-of-the-mind.settings.custom-party-sheet.hint",
+    "scope": "world",
+    "config": false,
+    "default": null,
+    "type": Object,
+  });
+
+  // @ts-ignore
   game.settings.registerMenu("theater-of-the-mind", "configureHiddenCharacters", {
     "name": "",
     "label": "theater-of-the-mind.hide-sheet.button",
@@ -26,6 +39,7 @@ export const registerSettings = () => {
     "type": HiddenCharactersSettings,
   });
 
+  // @ts-ignore
   game.settings.register("theater-of-the-mind", "enableDarkMode", {
     "name": "theater-of-the-mind.settings.enable-dark-mode.name",
     "hint": "theater-of-the-mind.settings.enable-dark-mode.hint",
@@ -38,6 +52,7 @@ export const registerSettings = () => {
     },
   });
 
+  // @ts-ignore
   game.settings.register("theater-of-the-mind", "enableSounds", {
     "name": "theater-of-the-mind.settings.enable-sounds.name",
     "hint": "theater-of-the-mind.settings.enable-sounds.hint",

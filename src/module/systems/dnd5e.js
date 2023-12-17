@@ -1,4 +1,5 @@
-export const DND5E = {
+export /** @type {SystemData} */
+const DND5E = {
   rows: [
     [
       // {
@@ -19,49 +20,42 @@ export const DND5E = {
         "coltype": "show",
         "value": "system.abilities.str.value",
       },
-
       {
         "name": "DEX",
         "type": "direct",
         "coltype": "show",
         "value": "system.abilities.dex.value",
       },
-
       {
         "name": "CON",
         "type": "direct",
         "coltype": "show",
         "value": "system.abilities.con.value",
       },
-
       {
         "name": "INT",
         "type": "direct",
         "coltype": "show",
         "value": "system.abilities.int.value",
       },
-
       {
         "name": "WIS",
         "type": "direct",
         "coltype": "show",
         "value": "system.abilities.wis.value",
       },
-
       {
         "name": "CHA",
         "type": "direct",
         "coltype": "show",
         "value": "system.abilities.cha.value",
       },
-
       {
         "name": "AC",
         "type": "direct",
         "coltype": "show",
         "value": "system.attributes.ac.value",
       },
-
       {
         "name": "Inv",
         "type": "direct",
@@ -82,12 +76,13 @@ export const DND5E = {
         "coltype": "show",
         "value": "classes => name - system.levels",
       },
-      {
-        "name": "",
-        "type": "span",
-        "coltype": "show",
-        "value": "",
-      },
+      // Empty Column
+      // {
+      //   "name": "",
+      //   "type": "span",
+      //   "coltype": "show",
+      //   "value": "",
+      // },
       {
         "name": "STR Mod",
         "type": "direct",

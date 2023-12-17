@@ -1,22 +1,57 @@
 /* eslint-disable no-undef */
 import { DND5E } from "../systems/dnd5e.js";
+import { dragonbane } from "../systems/dragonbane.js";
+import { twdu } from "../systems/twdu.js";
 import { extractPropertyByString } from "../utils.js";
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
 
 const NEWLINE_ELEMENTS = ["{newline}", "{nl}", ";"];
 
+// @ts-ignore
 export class PartySheetForm extends FormApplication {
   constructor() {
     super();
   }
 
+  /**
+   * @typedef { 'direct' | 'math' | 'direct-complex' | 'string' | 'array-string-builder' } SystemDataColumnType
+   * @typedef { 'show' | 'hide' | 'skip' } SystemDataColumnColType
+   */
+
+  /**
+   * @typedef SystemDataColumn
+   * @property {string} name - The name of the column
+   * @property {SystemDataColumnType} type - The type of data to display. See below for details.
+   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column
+   * @property {string} value - The value to display. See below for details.
+   */
+
+  /**
+   * @typedef SystemData
+   * @property { Array<Array<SystemDataColumn>> } rows - The rows of data to display. See below for details.
+   */
+
+  /**
+   * @typedef { {players: any, rowcount: number} } CustomPlayerData
+   */
+
+  /**
+   * Get the custom player data.
+   * @param { SystemData } data - The system data
+   * @returns { CustomPlayerData } The custom player data
+   * @memberof PartySheetForm
+   */
   getCustomPlayerData(data) {
+    // @ts-ignore
     const showOnlyOnlineUsers = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
+    // @ts-ignore
     const hiddenCharacters = game.settings.get("theater-of-the-mind", "hiddenCharacters");
 
     let actorList = showOnlyOnlineUsers
-      ? game.users.filter((user) => user.active && user.character).map((user) => user.character)
-      : game.actors.filter((actor) => actor.type !== "npc");
+      ? // @ts-ignore
+        game.users.filter((user) => user.active && user.character).map((user) => user.character)
+      : // @ts-ignore
+        game.actors.filter((actor) => actor.type !== "npc");
 
     if (!showOnlyOnlineUsers) {
       actorList = actorList.filter((player) => !hiddenCharacters.includes(player.uuid));
@@ -106,12 +141,14 @@ export class PartySheetForm extends FormApplication {
     } catch (ex) {
       console.log(ex);
     }
-    return [];
+    return { players: [], rowcount: 0 };
   }
 
   getCustomData(character, type, value) {
     var objName = "";
     var outstr = "";
+
+    /** @type {any} */
     var objData = {};
 
     switch (type) {
@@ -150,8 +187,34 @@ export class PartySheetForm extends FormApplication {
           value = "<div class='flex-tc'>" + value + "</div>";
         }
 
+        while (value.indexOf("{+}") > -1) {
+          console.log("checking", value);
+          var index = value.indexOf("{+}");
+          var lastPreviousSpace = value.substring(0, index - 1).lastIndexOf(" ");
+          lastPreviousSpace = lastPreviousSpace == -1 ? 0 : lastPreviousSpace + 1;
+          var previousSection =
+            lastPreviousSpace == -1 ? value.substring(0, index) : value.substring(lastPreviousSpace, index - 1);
+
+          var nextSectionBreak = value.indexOf(" ", index + 4);
+
+          nextSectionBreak = nextSectionBreak != -1 ? value.indexOf(" ", index + 4) : value.substring(index + 4);
+
+          var nextSection = value.substring(index + 4, nextSectionBreak);
+
+          var result = parseInt(previousSection) + parseInt(nextSection);
+
+          var beforeIndex = value.indexOf(previousSection);
+
+          var afterIndex = value.indexOf(nextSection, beforeIndex);
+
+          var stringToReplace = value.substring(beforeIndex, afterIndex + nextSection.length);
+          value = value.replace(stringToReplace, result);
+        }
+        console.log("v", value);
+
         //Finally detect if a safe string cast is needed.
         if (isSafeStringNeeded) {
+          // @ts-ignore
           return new Handlebars.SafeString(value);
         }
         return value;
@@ -169,6 +232,7 @@ export class PartySheetForm extends FormApplication {
         return outputText;
       //regex match properties as [a-z][A-Z].*?
       case "charactersheet":
+        // @ts-ignore
         return new Handlebars.SafeString(
           `<input type="image" name="totm-actorimage" data-actorid="${character.uuid}" class="token-image" src="${
             character.prototypeToken.texture.src
@@ -236,19 +300,47 @@ export class PartySheetForm extends FormApplication {
   }
 
   getData(options) {
+    // @ts-ignore
     const hiddenCharacters = game.settings.get("theater-of-the-mind", "hiddenCharacters");
+    // @ts-ignore
     const enableOnlyOnline = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
-    let { players, rowcount } = this.getCustomPlayerData(DND5E);
+    // @ts-ignore
+    var customPlayerData = game.settings.get("theater-of-the-mind", "customPartySheetData");
+    if (!customPlayerData) {
+      // current system
+      // @ts-ignore
+      const system = game.system.id;
+      switch (system) {
+        case "dragonbane":
+          customPlayerData = dragonbane;
+          break;
+        case "twdu":
+          customPlayerData = twdu;
+          break;
+        case "dnd5e":
+          customPlayerData = DND5E;
+          break;
+        default:
+          console.log("System not supported ", system);
+          break;
+      }
+    }
+    console.log(customPlayerData);
+    let { players, rowcount } = this.getCustomPlayerData(customPlayerData);
+    console.log(players, rowcount);
+    // @ts-ignore
     return mergeObject(super.getData(options), {
       hiddenCharacters,
       enableOnlyOnline,
       rowcount,
       players,
+      // @ts-ignore
       overrides: this.overrides,
     });
   }
 
   static get defaultOptions() {
+    // @ts-ignore
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "totm-party-sheet",
       classes: ["form"],
@@ -286,29 +378,36 @@ export class PartySheetForm extends FormApplication {
       onexit: () => {
         // this.close();
         setTimeout(() => {
+          // @ts-ignore
           this.render(true);
         }, 350);
       },
     };
     const hcs = new HiddenCharactersSettings(overrides);
+    // @ts-ignore
     hcs.render(true);
   }
 
   closeWindow() {
+    // @ts-ignore
     this.close();
   }
 
   openActorSheet(event) {
     event.preventDefault();
     const actorId = event.currentTarget.dataset.actorid;
+    // @ts-ignore
     const actor = game.actors.get(actorId.replace("Actor.", ""));
     actor.sheet.render(true);
   }
 
   activateListeners(html) {
     super.activateListeners(html);
+    // @ts-ignore
     $('button[name="totm-options"]', html).click(this.openOptions.bind(this));
+    // @ts-ignore
     $('button[name="totm-close"]', html).click(this.closeWindow.bind(this));
+    // @ts-ignore
     $('input[name="totm-actorimage"]', html).click(this.openActorSheet.bind(this));
     // $('button[name="submit"]', html).click(this.saveHiddenCharacters.bind(this));
     // $('button[name="reset"]', html).click(this.resetEffects.bind(this));
