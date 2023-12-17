@@ -1,3 +1,5 @@
+import { DND5E } from "./systems/dnd5e";
+
 /**
  * Converts a string to proper case.
  * @param {string} inputString - The input string to convert.
@@ -9,6 +11,41 @@ export function toProperCase(inputString) {
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+}
+
+var customSystems = [DND5E];
+export var selectedSystem = null;
+
+/**
+ * Updates the selected system.
+ * @param {*} system - The system to select.
+ */
+export function updateSelectedSystem(system) {
+  selectedSystem = system;
+}
+
+/**
+ * Retrieves the selected system.
+ * @returns {*} - The selected system.
+ */
+export function getSelectedSystem() {
+  return selectedSystem;
+}
+
+/**
+ * Adds a custom system to the list of systems.
+ * @param {*} system - The custom system to add.
+ */
+export function addCustomSystem(system) {
+  customSystems.push(system);
+}
+
+/**
+ * Retrieves the list of custom systems.
+ * @returns {*} - The list of custom systems.
+ */
+export function getCustomSystems() {
+  return customSystems;
 }
 
 /**

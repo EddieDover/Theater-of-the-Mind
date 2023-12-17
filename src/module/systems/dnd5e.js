@@ -1,5 +1,8 @@
 export /** @type {SystemData} */
 const DND5E = {
+  name: "dnd5e",
+  author: "Built-In",
+  system: "dnd5e",
   rows: [
     [
       // {

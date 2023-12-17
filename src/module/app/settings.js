@@ -20,16 +20,6 @@ export const registerSettings = () => {
   });
 
   // @ts-ignore
-  game.settings.register("theater-of-the-mind", "customPartySheetData", {
-    "name": "theater-of-the-mind.settings.custom-party-sheet.name",
-    "hint": "theater-of-the-mind.settings.custom-party-sheet.hint",
-    "scope": "world",
-    "config": false,
-    "default": null,
-    "type": Object,
-  });
-
-  // @ts-ignore
   game.settings.registerMenu("theater-of-the-mind", "configureHiddenCharacters", {
     "name": "",
     "label": "theater-of-the-mind.hide-sheet.button",

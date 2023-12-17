@@ -2,16 +2,16 @@
 import { THEATER_SOUNDS } from "./sounds.js";
 import { registerSettings } from "./app/settings.js";
 import { PartySheetForm } from "./app/party-sheet.js";
-import { toProperCase } from "./utils.js";
+import { addCustomSystem, toProperCase } from "./utils.js";
 
 let isSyrinscapeInstalled = false;
 let isMidiQoLInstalled = false;
 
 /**
  *
- * @param {...any} message The message to send to console.log
+ * @param {any} message The message to send to console.log
  */
-function log(...message) {
+function log(message) {
   console.log("Theater of the Mind | ", message);
 }
 
@@ -58,7 +58,6 @@ Handlebars.registerHelper("hcifhidden", function (v1, options) {
 
 // @ts-ignore
 Handlebars.registerHelper("hcifcolspan", function (row, options) {
-  console.log(row);
   if (row.colspan) {
     return options.fn(this);
   }
@@ -105,6 +104,34 @@ Handlebars.registerHelper("toUpperCase", function (str) {
   return toProperCase(str);
 });
 
+// @ts-ignore
+Handlebars.registerHelper("ifCond", function (v1, operator, v2, options) {
+  switch (operator) {
+    case "==":
+      return v1 == v2 ? options.fn(this) : options.inverse(this);
+    case "===":
+      return v1 === v2 ? options.fn(this) : options.inverse(this);
+    case "!=":
+      return v1 != v2 ? options.fn(this) : options.inverse(this);
+    case "!==":
+      return v1 !== v2 ? options.fn(this) : options.inverse(this);
+    case "<":
+      return v1 < v2 ? options.fn(this) : options.inverse(this);
+    case "<=":
+      return v1 <= v2 ? options.fn(this) : options.inverse(this);
+    case ">":
+      return v1 > v2 ? options.fn(this) : options.inverse(this);
+    case ">=":
+      return v1 >= v2 ? options.fn(this) : options.inverse(this);
+    case "&&":
+      return v1 && v2 ? options.fn(this) : options.inverse(this);
+    case "||":
+      return v1 || v2 ? options.fn(this) : options.inverse(this);
+    default:
+      return options.inverse(this);
+  }
+});
+
 let currentPartySheet = null;
 
 /**
@@ -118,6 +145,46 @@ function togglePartySheet() {
     // @ts-ignore
     currentPartySheet.render(true);
   }
+}
+
+/**
+ * Load all the user-provided templates for systems
+ * @param {string} path The path to the template
+ * @returns {Promise<void>} A promise that resolves when the template is loaded
+ */
+async function loadSystemTemplate(path) {
+  const templateName = path.split("/").pop().split(".")[0];
+  log(`Loading template: ${templateName}`);
+  const template = JSON.parse(await fetch(path).then((r) => r.text()));
+  if (template.name && template.author && template.system && template.rows) {
+    console.log(`${path} - Good Template`);
+    addCustomSystem(template);
+  } else {
+    console.log(`${path} - Bad Template`);
+  }
+}
+
+async function loadSystemTemplates() {
+  // Look inside the "totm" folder. Any JSON file inside should be loaded
+  const templatePaths = [];
+  // @ts-ignore
+  const templateFiles = await FilePicker.browse("data", "totm"); // `modules/${MODULE_NAME}/templates`);
+  console.log(templateFiles.files);
+
+  templateFiles.files.forEach((file) => {
+    if (file.endsWith(".json")) {
+      templatePaths.push(file);
+    }
+  });
+
+  templatePaths.forEach(async (path) => {
+    await loadSystemTemplate(path);
+  });
+  // for (const file of templateFiles.files) {
+  //   if (file.endsWith(".html")) {
+  //     templatePaths.push(file);
+  //   }
+  // }
 }
 
 /**
@@ -202,6 +269,9 @@ Hooks.on("ready", async () => {
 
   const soundsReady = isSyrinscapeInstalled && isMidiQoLInstalled;
   log(`Sounds enabled: ${soundsReady}`);
+
+  log("Loading templates");
+  await loadSystemTemplates();
 });
 
 // @ts-ignore

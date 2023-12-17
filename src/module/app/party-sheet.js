@@ -1,12 +1,8 @@
 /* eslint-disable no-undef */
-import { DND5E } from "../systems/dnd5e.js";
-import { dragonbane } from "../systems/dragonbane.js";
-import { twdu } from "../systems/twdu.js";
-import { extractPropertyByString } from "../utils.js";
+import { extractPropertyByString, getCustomSystems, getSelectedSystem, updateSelectedSystem } from "../utils.js";
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
 
 const NEWLINE_ELEMENTS = ["{newline}", "{nl}", ";"];
-
 // @ts-ignore
 export class PartySheetForm extends FormApplication {
   constructor() {
@@ -28,11 +24,14 @@ export class PartySheetForm extends FormApplication {
 
   /**
    * @typedef SystemData
+   * @property { string } system - The system this data is for
+   * @property { string } author - The author of this data
+   * @property { string } name - The name of this data
    * @property { Array<Array<SystemDataColumn>> } rows - The rows of data to display. See below for details.
    */
 
   /**
-   * @typedef { {players: any, rowcount: number} } CustomPlayerData
+   * @typedef { {name: string, author: string, players: any, rowcount: number} } CustomPlayerData
    */
 
   /**
@@ -42,6 +41,9 @@ export class PartySheetForm extends FormApplication {
    * @memberof PartySheetForm
    */
   getCustomPlayerData(data) {
+    if (!data) {
+      return { name: "", author: "", players: [], rowcount: 0 };
+    }
     // @ts-ignore
     const showOnlyOnlineUsers = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
     // @ts-ignore
@@ -137,11 +139,11 @@ export class PartySheetForm extends FormApplication {
           // };
         })
         .filter((player) => player);
-      return { players: finalActorList, rowcount: data.rows.length };
+      return { name: data.name, author: data.author, players: finalActorList, rowcount: data.rows.length };
     } catch (ex) {
       console.log(ex);
     }
-    return { players: [], rowcount: 0 };
+    return { name: "", author: "", players: [], rowcount: 0 };
   }
 
   getCustomData(character, type, value) {
@@ -188,9 +190,9 @@ export class PartySheetForm extends FormApplication {
         }
 
         while (value.indexOf("{+}") > -1) {
-          console.log("checking", value);
           var index = value.indexOf("{+}");
           var lastPreviousSpace = value.substring(0, index - 1).lastIndexOf(" ");
+
           lastPreviousSpace = lastPreviousSpace == -1 ? 0 : lastPreviousSpace + 1;
           var previousSection =
             lastPreviousSpace == -1 ? value.substring(0, index) : value.substring(lastPreviousSpace, index - 1);
@@ -210,7 +212,6 @@ export class PartySheetForm extends FormApplication {
           var stringToReplace = value.substring(beforeIndex, afterIndex + nextSection.length);
           value = value.replace(stringToReplace, result);
         }
-        console.log("v", value);
 
         //Finally detect if a safe string cast is needed.
         if (isSafeStringNeeded) {
@@ -305,35 +306,47 @@ export class PartySheetForm extends FormApplication {
     // @ts-ignore
     const enableOnlyOnline = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
     // @ts-ignore
-    var customPlayerData = game.settings.get("theater-of-the-mind", "customPartySheetData");
-    if (!customPlayerData) {
-      // current system
-      // @ts-ignore
-      const system = game.system.id;
-      switch (system) {
-        case "dragonbane":
-          customPlayerData = dragonbane;
-          break;
-        case "twdu":
-          customPlayerData = twdu;
-          break;
-        case "dnd5e":
-          customPlayerData = DND5E;
-          break;
-        default:
-          console.log("System not supported ", system);
-          break;
-      }
+    var customSystems = getCustomSystems();
+    // @ts-ignore
+    const applicableSystems = customSystems.filter((data) => data.system === game.system.id);
+    let selectedIdx = getSelectedSystem() ? customSystems.findIndex((data) => data === getSelectedSystem()) : 0;
+
+    if (applicableSystems.length === 1) {
+      selectedIdx = customSystems.findIndex((data) => data === applicableSystems[0]);
     }
-    console.log(customPlayerData);
-    let { players, rowcount } = this.getCustomPlayerData(customPlayerData);
-    console.log(players, rowcount);
+
+    // const system = game.system.id;
+    // if (!customPlayerData) {
+    //   // current system
+    //   // @ts-ignore
+    //   const system = game.system.id;
+    //   switch (system) {
+    //     case "dragonbane":
+    //       customPlayerData = dragonbane;
+    //       break;
+    //     case "twdu":
+    //       // customPlayerData = twdu;
+    //       break;
+    //     case "dnd5e":
+    //       customPlayerData = DND5E;
+    //       break;
+    //     default:
+    //       console.log("System not supported ", system);
+    //       break;
+    //   }
+    // }
+    // console.log(customPlayerData);
+    updateSelectedSystem(customSystems[selectedIdx]);
+    let { name: sysName, author: sysAuthor, players, rowcount } = this.getCustomPlayerData(getSelectedSystem());
     // @ts-ignore
     return mergeObject(super.getData(options), {
       hiddenCharacters,
       enableOnlyOnline,
       rowcount,
       players,
+      applicableSystems,
+      selectedName: sysName,
+      selectedAuthor: sysAuthor,
       // @ts-ignore
       overrides: this.overrides,
     });
@@ -401,6 +414,27 @@ export class PartySheetForm extends FormApplication {
     actor.sheet.render(true);
   }
 
+  // updateCurrentSystem(index) {
+  //   // @ts-ignore
+  //   game.settings.set("theater-of-the-mind", "currentSystem", index);
+  //   // @ts-ignore
+  //   this.render(true);
+  // }
+
+  changeSystem(event) {
+    var selectedSystemName = event.currentTarget.value.split("___")[0];
+    var selectedSystemAuthor = event.currentTarget.value.split("___")[1];
+    var selectedIndex =
+      getCustomSystems().findIndex(
+        (data) => data.name === selectedSystemName && data.author === selectedSystemAuthor,
+      ) ?? -1;
+    if (selectedIndex != -1) {
+      updateSelectedSystem(getCustomSystems()[selectedIndex]);
+    }
+    // @ts-ignore
+    this.render(true);
+  }
+
   activateListeners(html) {
     super.activateListeners(html);
     // @ts-ignore
@@ -409,6 +443,8 @@ export class PartySheetForm extends FormApplication {
     $('button[name="totm-close"]', html).click(this.closeWindow.bind(this));
     // @ts-ignore
     $('input[name="totm-actorimage"]', html).click(this.openActorSheet.bind(this));
+    // @ts-ignore
+    $('select[name="totm-system"]', html).change(this.changeSystem.bind(this));
     // $('button[name="submit"]', html).click(this.saveHiddenCharacters.bind(this));
     // $('button[name="reset"]', html).click(this.resetEffects.bind(this));
   }
