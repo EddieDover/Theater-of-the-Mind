@@ -168,10 +168,8 @@ export class PartySheetForm extends FormApplication {
         //Parse out newline elements
         for (const item of NEWLINE_ELEMENTS) {
           if (value.indexOf(item) > -1) {
-            console.log("Replacing", item, "with <br/> -", value);
             isSafeStringNeeded = true;
             value = value.replace(item, "<br/>");
-            console.log(value);
           }
         }
 
@@ -268,14 +266,12 @@ export class PartySheetForm extends FormApplication {
         objName = value.split("=>")[0].trim();
         outstr = value.split("=>")[1].trim();
         objData = extractPropertyByString(character, objName);
-        console.log(objData);
 
         if (!Array.isArray(objData)) {
           objData = Object.keys(objData).map((key) => {
             return objData[key];
           });
         }
-        console.log(objData);
 
         var regValue = /(?:\*\.|[\w.]+)+/g;
         var reg = new RegExp(regValue);
@@ -286,7 +282,6 @@ export class PartySheetForm extends FormApplication {
             outstr = outstr.replace(m, extractPropertyByString(objSubData, m));
           }
         }
-        console.log(outstr);
         return outstr === value ? "" : outstr;
       case "string":
         return value;

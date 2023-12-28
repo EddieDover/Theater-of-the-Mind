@@ -169,7 +169,6 @@ async function loadSystemTemplates() {
   const templatePaths = [];
   // @ts-ignore
   const templateFiles = await FilePicker.browse("data", "totm"); // `modules/${MODULE_NAME}/templates`);
-  console.log(templateFiles.files);
 
   templateFiles.files.forEach((file) => {
     if (file.endsWith(".json")) {

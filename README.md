@@ -11,7 +11,10 @@ The original intent of this module was to provide a 'party view' feature that I 
 - Adds a 'Party Sheet' similar to that provided by Fantasy Grounds. Just click the Party Sheet icon on the Tokens Controls sub-menu.
 
   - The Party Sheet can be configured via the options to either display only currently connected players, or all non-npc characters. When using the all-characters display, there is a separate dialog to allow hiding of any characters the DM doesn't need to worry about.
+
   - Clicking a character portrait will open their sheet.
+
+  - The Party Sheet is no longer bound to simply the built-in dnd5e system. Additional systems can be supported by writing a JSON file following the guidelines in SYSTEMS.md and placing it in your <FOUNDRY_VTT/Data/totm/> folder.
 
 - Sound effects support if you have Syrinscape ([fvtt-syrin-control](https://github.com/frondeus/fvtt-syrin-control)) and Midi QOL ([midi-qol](https://gitlab.com/tposney/midi-qol/)) installed.
 
