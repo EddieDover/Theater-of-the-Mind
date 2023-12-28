@@ -1,6 +1,6 @@
 {
   "name": "theater-of-the-mind",
-  "version": "1.4.8-alpha",
+  "version": "1.4.8",
   "description": "A FoundryVTT module for DMs",
   "main": "index.js",
   "author": {
@@ -34,7 +34,7 @@
     "test:watch": "jest --watch",
     "test:ci": "jest --ci --reporters=default --reporters=jest-junit",
     "postinstall": "husky install",
-    "changelog2": "generate-changelog -u 'https://github.com/EddieDover/theater-of-the-mind'"
+    "changelog2": "generate-changelog -u https://github.com/EddieDover/theater-of-the-mind"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.1",
