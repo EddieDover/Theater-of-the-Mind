@@ -153,14 +153,19 @@ function togglePartySheet() {
  * @returns {Promise<void>} A promise that resolves when the template is loaded
  */
 async function loadSystemTemplate(path) {
-  const templateName = path.split("/").pop().split(".")[0];
-  log(`Loading template: ${templateName}`);
-  const template = JSON.parse(await fetch(path).then((r) => r.text()));
-  if (template.name && template.author && template.system && template.rows) {
-    console.log(`${path} - Good Template`);
-    addCustomSystem(template);
-  } else {
-    console.log(`${path} - Bad Template`);
+  try {
+    const templateName = path.split("/").pop().split(".")[0];
+    log(`Loading template: ${templateName}`);
+    const template = JSON.parse(await fetch(path).then((r) => r.text()));
+    if (template.name && template.author && template.system && template.rows) {
+      console.log(`${path} - Good Template`);
+      addCustomSystem(template);
+    } else {
+      console.log(`${path} - Bad Template`);
+    }
+  } catch (e) {
+    console.log(`${path} - Failed to Load. See error below.`);
+    console.error(e);
   }
 }
 

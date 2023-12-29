@@ -71,6 +71,10 @@ export function extractPropertyByString(obj, path) {
     }
   }
 
+  if (currentObject.hasOwnProperty("value")) {
+    return currentObject.value;
+  }
+
   return currentObject;
 }
 // export function getPropertyByString(obj, chain) {

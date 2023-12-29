@@ -15,7 +15,10 @@ export default () => ({
   plugins: [
     nodeResolve(),
     copy({
-      targets: [{ src: "CHANGELOG.md", dest: "dist" }],
+      targets: [
+        { src: "*.md", dest: "dist" },
+        { src: "example_templates/*", dest: "dist/example_templates" },
+      ],
     }),
   ],
 });

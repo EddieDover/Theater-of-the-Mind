@@ -110,7 +110,7 @@ In this example, the system will contain one column named Senses, but the column
 
 In this example, the following character only has one sense that exists, so it's the only one displayed:
 
-![Example Sense](example_templates/doc_images/senses1.png)
+![Example Sense](doc_images/senses1.png)
 
 ## Examples
 
@@ -137,4 +137,4 @@ Code:
 ```
 Result:
 
-![Basic Example](example_templates/ex1.png)
+![Basic Example](doc_images/ex1.png)

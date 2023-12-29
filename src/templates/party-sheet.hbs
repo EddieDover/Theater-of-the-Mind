@@ -15,7 +15,7 @@
   {{#if players}}
   <table id='totm-ps-table'>
     <thead>
-      {{#with players.[1] as |player_data|}}
+      {{#with players.[0] as |player_data|}}
         {{#each player_data as |row|}}
         <tr>
           {{#getKeys row}}
