@@ -101,6 +101,11 @@ Handlebars.registerHelper("getData", function (obj, key) {
 
 // @ts-ignore
 Handlebars.registerHelper("toUpperCase", function (str) {
+  return str.toUpperCase();
+});
+
+// @ts-ignore
+Handlebars.registerHelper("toProperCase", function (str) {
   return toProperCase(str);
 });
 

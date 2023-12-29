@@ -89,3 +89,46 @@ export function extractPropertyByString(obj, path) {
 //     return o[i]; // ?? mapple.size() > 0 ? getPropertyByString(mapple, i) : null;
 //   }, obj);
 // }
+
+/**
+ * Parses out plus sumbols and adds values together.
+ * @param {*} value - The value to parse.
+ * @returns {*} - The value with the pluses parsed out.
+ */
+export function parsePluses(value) {
+  // var index = value.indexOf("{+}");
+  // var lastPreviousSpace = value.substring(0, index - 1).lastIndexOf(" ");
+
+  // lastPreviousSpace = lastPreviousSpace == -1 ? 0 : lastPreviousSpace + 1;
+  // var previousSection =
+  //   lastPreviousSpace == -1 ? value.substring(0, index) : value.substring(lastPreviousSpace, index - 1);
+
+  // var nextSectionBreak = value.indexOf(" ", index + 4);
+
+  // nextSectionBreak = nextSectionBreak != -1 ? value.indexOf(" ", index + 4) : value.substring(index + 4).length;
+
+  // var nextSection = value.substring(index + 4, nextSectionBreak);
+
+  // var result = parseInt(previousSection) + parseInt(nextSection);
+
+  // var beforeIndex = value.indexOf(previousSection);
+
+  // var afterIndex = value.indexOf(nextSection, beforeIndex);
+
+  // var stringToReplace = value.substring(beforeIndex, afterIndex + nextSection.length);
+  // value = value.replace(stringToReplace, result);
+  // return value;
+  while (true) {
+    // Match patterns with optional spaces around {+}
+    const match = value.match(/(\d+)\s*\{\+\}\s*(\d+)|\d+\{\+\}\d+/);
+    if (!match) {
+      break; // No more matches found
+    }
+
+    const numbers = match[0].trim().split("{+}").map(Number);
+    const result = numbers[0] + numbers[1];
+    value = value.replace(match[0], result.toString());
+  }
+
+  return value;
+}

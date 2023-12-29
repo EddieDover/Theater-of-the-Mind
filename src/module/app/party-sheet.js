@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
-import { extractPropertyByString, getCustomSystems, getSelectedSystem, updateSelectedSystem } from "../utils.js";
+import {
+  extractPropertyByString,
+  getCustomSystems,
+  getSelectedSystem,
+  parsePluses,
+  updateSelectedSystem,
+} from "../utils.js";
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
 
 const NEWLINE_ELEMENTS = ["{newline}", "{nl}", ";"];
@@ -12,6 +18,7 @@ export class PartySheetForm extends FormApplication {
   /**
    * @typedef { 'direct' | 'math' | 'direct-complex' | 'string' | 'array-string-builder' } SystemDataColumnType
    * @typedef { 'show' | 'hide' | 'skip' } SystemDataColumnColType
+   * @typedef { 'left' | 'center' | 'right' } SystemDataColumnAlignType
    */
 
   /**
@@ -19,6 +26,7 @@ export class PartySheetForm extends FormApplication {
    * @property {string} name - The name of the column
    * @property {SystemDataColumnType} type - The type of data to display. See below for details.
    * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column
+   * @property {SystemDataColumnAlignType} align - The alignment of the column
    * @property {string} value - The value to display. See below for details.
    */
 
@@ -41,6 +49,8 @@ export class PartySheetForm extends FormApplication {
    * @memberof PartySheetForm
    */
   getCustomPlayerData(data) {
+    const excludeTypes = ["npc", "animal", "haven", "monster", "vehicle"];
+
     if (!data) {
       return { name: "", author: "", players: [], rowcount: 0 };
     }
@@ -53,7 +63,7 @@ export class PartySheetForm extends FormApplication {
       ? // @ts-ignore
         game.users.filter((user) => user.active && user.character).map((user) => user.character)
       : // @ts-ignore
-        game.actors.filter((actor) => actor.type !== "npc");
+        game.actors.filter((actor) => !excludeTypes.includes(actor.type));
 
     if (!showOnlyOnlineUsers) {
       actorList = actorList.filter((player) => !hiddenCharacters.includes(player.uuid));
@@ -187,29 +197,10 @@ export class PartySheetForm extends FormApplication {
           value = "<div class='flex-tc'>" + value + "</div>";
         }
 
-        while (value.indexOf("{+}") > -1) {
-          var index = value.indexOf("{+}");
-          var lastPreviousSpace = value.substring(0, index - 1).lastIndexOf(" ");
-
-          lastPreviousSpace = lastPreviousSpace == -1 ? 0 : lastPreviousSpace + 1;
-          var previousSection =
-            lastPreviousSpace == -1 ? value.substring(0, index) : value.substring(lastPreviousSpace, index - 1);
-
-          var nextSectionBreak = value.indexOf(" ", index + 4);
-
-          nextSectionBreak = nextSectionBreak != -1 ? value.indexOf(" ", index + 4) : value.substring(index + 4);
-
-          var nextSection = value.substring(index + 4, nextSectionBreak);
-
-          var result = parseInt(previousSection) + parseInt(nextSection);
-
-          var beforeIndex = value.indexOf(previousSection);
-
-          var afterIndex = value.indexOf(nextSection, beforeIndex);
-
-          var stringToReplace = value.substring(beforeIndex, afterIndex + nextSection.length);
-          value = value.replace(stringToReplace, result);
-        }
+        value = parsePluses(value);
+        // while (value.indexOf("{+}") > -1) {
+        //   value = parsePluses(value);
+        // }
 
         //Finally detect if a safe string cast is needed.
         if (isSafeStringNeeded) {
