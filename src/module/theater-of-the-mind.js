@@ -49,24 +49,27 @@ Handlebars.registerHelper("checkIndex", function (index, options) {
 });
 
 // @ts-ignore
-Handlebars.registerHelper("hcifhidden", function (v1, options) {
-  if (v1.startsWith("~") && v1.endsWith("~")) {
+Handlebars.registerHelper("hcifhidden", function (row, options) {
+  var key = options.hash["key"];
+  var myoptions = row[key]?.options ?? {};
+
+  if (myoptions?.coltype === "show") {
+    return options.inverse(this);
+  } else {
     return options.fn(this);
   }
-  return options.inverse(this);
 });
 
 // @ts-ignore
-Handlebars.registerHelper("hcifcolspan", function (row, options) {
-  if (row.colspan) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
+Handlebars.registerHelper("getAlignment", function (row, key) {
+  var myoptions = row[key]?.options ?? {};
+  return myoptions.align ?? "center";
 });
 
 // @ts-ignore
-Handlebars.registerHelper("getColSpan", function (row, options) {
-  return options.fn(row.colspan);
+Handlebars.registerHelper("getColSpan", function (row, key) {
+  var myoptions = row[key]?.options ?? {};
+  return myoptions?.colspan ?? 1;
 });
 
 // @ts-ignore
@@ -96,7 +99,7 @@ Handlebars.registerHelper("getKeys", function (obj, options) {
 
 // @ts-ignore
 Handlebars.registerHelper("getData", function (obj, key) {
-  return obj[key];
+  return obj[key].text;
 });
 
 // @ts-ignore

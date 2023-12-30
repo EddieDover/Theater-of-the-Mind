@@ -19,13 +19,11 @@
         {{#each player_data as |row|}}
         <tr>
           {{#getKeys row}}
-            {{#hcifhidden this}}
+            {{#hcifhidden row key=this}}
               <th></th>
             {{else}}
               <th
-                {{#hcifcolspan ../../this}}
-                  colspan="{{getcolspan ../../this}}"
-                {{/hcifcolspan}}
+                colspan="{{getColSpan row this}}"
               >{{this}}</th>
             {{/hcifhidden}}
           {{/getKeys}}
@@ -43,7 +41,11 @@
         {{/checkIndex}}
       >
         {{#getKeys player_row}}
-          <td>{{getData player_row this}}</td>
+          <td
+          style="text-align:{{getAlignment player_row this}};"
+          >
+            {{getData player_row this}}
+          </td>
         {{/getKeys}}
       </tr>
       {{/each}}

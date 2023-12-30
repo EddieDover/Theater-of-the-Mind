@@ -71,7 +71,7 @@ export function extractPropertyByString(obj, path) {
     }
   }
 
-  if (currentObject.hasOwnProperty("value")) {
+  if (currentObject && Object.prototype.hasOwnProperty.call(currentObject, "value")) {
     return currentObject.value;
   }
 

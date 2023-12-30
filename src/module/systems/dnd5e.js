@@ -15,6 +15,7 @@ const DND5E = {
         "name": "Name",
         "type": "direct",
         "coltype": "show",
+        "align": "left",
         "value": "{charactersheet} name {newline} system.details.race",
       },
       {

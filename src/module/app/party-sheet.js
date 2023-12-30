@@ -27,7 +27,15 @@ export class PartySheetForm extends FormApplication {
    * @property {SystemDataColumnType} type - The type of data to display. See below for details.
    * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column
    * @property {SystemDataColumnAlignType} align - The alignment of the column
+   * @property {number} colspan - The number of columns to span
    * @property {string} value - The value to display. See below for details.
+   */
+
+  /**
+   * @typedef ColOptions
+   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column
+   * @property {SystemDataColumnAlignType} align - The alignment of the column
+   * @property {number} colspan - The number of columns to span
    */
 
   /**
@@ -54,6 +62,7 @@ export class PartySheetForm extends FormApplication {
     if (!data) {
       return { name: "", author: "", players: [], rowcount: 0 };
     }
+
     // @ts-ignore
     const showOnlyOnlineUsers = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
     // @ts-ignore
@@ -76,15 +85,24 @@ export class PartySheetForm extends FormApplication {
           // const userSys = userChar.system;
 
           var row_data = [];
+
           // for (const row_obj, of data.rows) {
           data.rows.map((row_obj) => {
             var customData = {};
+
             row_obj.forEach((colobj) => {
               var colname = colobj.name;
-              if (colobj.coltype === "skip") {
-                colname = `~${colname}~`;
-              }
-              customData[colname] = this.getCustomData(userChar, colobj.type, colobj.value);
+              // if (colobj.coltype === "skip") {
+              //   colname = `~${colname}~`;
+              // }
+              customData[colname] = {
+                text: this.getCustomData(userChar, colobj.type, colobj.value),
+                options: {
+                  align: colobj.align,
+                  colspan: colobj.colspan,
+                  coltype: colobj.coltype,
+                },
+              };
             });
             row_data.push(customData);
           });
@@ -156,6 +174,14 @@ export class PartySheetForm extends FormApplication {
     return { name: "", author: "", players: [], rowcount: 0 };
   }
 
+  /**
+   * Get the custom data for a character.
+   * @param {*} character
+   * @param {*} type
+   * @param {*} value
+   * @returns {string} The text to render
+   * @memberof PartySheetForm
+   */
   getCustomData(character, type, value) {
     var objName = "";
     var outstr = "";
@@ -171,7 +197,7 @@ export class PartySheetForm extends FormApplication {
         for (const m of value.split(" ")) {
           var fvalue = extractPropertyByString(character, m);
           if (fvalue !== undefined) {
-            value = value.replace(m, fvalue);
+            value = value.replaceAll(m, fvalue);
           }
         }
 
@@ -179,14 +205,14 @@ export class PartySheetForm extends FormApplication {
         for (const item of NEWLINE_ELEMENTS) {
           if (value.indexOf(item) > -1) {
             isSafeStringNeeded = true;
-            value = value.replace(item, "<br/>");
+            value = value.replaceAll(item, "<br/>");
           }
         }
 
         //Parse out complex elements (that might contain newline elements we don't want to convert, like ; marks)
         if (value.indexOf("{charactersheet}") > -1) {
           isSafeStringNeeded = true;
-          value = value.replace(
+          value = value.replaceAll(
             "{charactersheet}",
             `<input type="image" name="totm-actorimage" data-actorid="${character.uuid}" class="token-image" src="${
               character.prototypeToken.texture.src
@@ -198,9 +224,6 @@ export class PartySheetForm extends FormApplication {
         }
 
         value = parsePluses(value);
-        // while (value.indexOf("{+}") > -1) {
-        //   value = parsePluses(value);
-        // }
 
         //Finally detect if a safe string cast is needed.
         if (isSafeStringNeeded) {
