@@ -5,6 +5,7 @@
 
 import fs from "fs-extra";
 import gulp from "gulp";
+import { deleteAsync } from "del";
 import sass from "gulp-dart-sass";
 import sourcemaps from "gulp-sourcemaps";
 import path from "node:path";
@@ -16,6 +17,7 @@ import { hideBin } from "yargs/helpers";
 import rollupStream from "@rollup/stream";
 
 import rollupConfig from "./rollup.config.mjs";
+import zip from "gulp-zip";
 
 /********************/
 /*  CONFIGURATION   */
@@ -74,6 +76,34 @@ async function copyFiles() {
 }
 
 /**
+ * Cleans the dist folder
+ * @returns {NodeJS.ReadWriteStream} The cleaned files
+ */
+async function cleanDist() {
+  return await deleteAsync([`${distDirectory}/**/*`, `${distDirectory}`]);
+}
+
+/**
+ * Copies the files ot the dist folder in prep for packaging
+ * @returns {NodeJS.ReadWriteStream} The copied files
+ */
+function copyDist() {
+  // Take everything inside the dist folder and zip it into a subfolder named totm.zip
+  return gulp.src(`${distDirectory}/**/*`).pipe(gulp.dest(`${distDirectory}/theater-of-them-mind`));
+}
+
+/**
+ * Packages the dist subfolderfolder into a zip file
+ * @returns {NodeJS.ReadWriteStream} The zipped files
+ */
+function zipDist() {
+  return gulp
+    .src(`${distDirectory}/theater-of-them-mind/**/*`, { base: `${distDirectory}` })
+    .pipe(zip(`${packageId}.zip`))
+    .pipe(gulp.dest(`${distDirectory}`));
+}
+
+/**
  * Watch for changes for each build step
  */
 export function watch() {
@@ -86,7 +116,13 @@ export function watch() {
   );
 }
 
-export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, copyFiles));
+export const build = gulp.series(clean, buildCode, buildStyles, copyFiles); //gulp.parallel(buildCode, buildStyles, copyFiles));
+
+/********************/
+/*    DEV EXPORT    */
+/********************/
+
+export const devexport = gulp.series(cleanDist, build, copyDist, zipDist);
 
 /********************/
 /*      CLEAN       */

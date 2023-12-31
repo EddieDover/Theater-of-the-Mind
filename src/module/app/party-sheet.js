@@ -175,6 +175,16 @@ export class PartySheetForm extends FormApplication {
   }
 
   /**
+   * Clean a string of html injection.
+   * @param {string} str - The string to clean
+   * @returns {string} The cleaned string
+   * @memberof PartySheetForm
+   */
+  cleanString(str) {
+    return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+  }
+
+  /**
    * Get the custom data for a character.
    * @param {*} character
    * @param {*} type
@@ -189,15 +199,18 @@ export class PartySheetForm extends FormApplication {
     /** @type {any} */
     var objData = {};
 
+    //Prevent html injections!
     switch (type) {
       case "direct":
         var isSafeStringNeeded = false;
+
+        value = this.cleanString(value);
 
         //Parse out normal data
         for (const m of value.split(" ")) {
           var fvalue = extractPropertyByString(character, m);
           if (fvalue !== undefined) {
-            value = value.replaceAll(m, fvalue);
+            value = value.replace(m, fvalue);
           }
         }
 
@@ -242,6 +255,7 @@ export class PartySheetForm extends FormApplication {
             }
           }
         }
+        outputText = this.cleanString(outputText);
         return outputText;
       //regex match properties as [a-z][A-Z].*?
       case "charactersheet":
@@ -296,6 +310,7 @@ export class PartySheetForm extends FormApplication {
             outstr = outstr.replace(m, extractPropertyByString(objSubData, m));
           }
         }
+        outstr = this.cleanString(outstr);
         return outstr === value ? "" : outstr;
       case "string":
         return value;
