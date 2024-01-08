@@ -84,17 +84,14 @@ export function extractPropertyByString(obj, path) {
  * @returns {*} - The value with the pluses parsed out.
  */
 export function parsePluses(value) {
-  while (true) {
-    // Match patterns with optional spaces around {+}
-    const match = value.match(/(\d+)\s*\{\+\}\s*(\d+)|\d+\{\+\}\d+/);
-    if (!match) {
-      break; // No more matches found
-    }
+  // Match patterns with optional spaces around {+}
+  let match = value.match(/(\d+)\s*\{\+\}\s*(\d+)|\d+\{\+\}\d+/);
 
+  do {
     const numbers = match[0].trim().split("{+}").map(Number);
     const result = numbers[0] + numbers[1];
     value = value.replace(match[0], result.toString());
-  }
+  } while ((match = value.match(/(\d+)\s*\{\+\}\s*(\d+)|\d+\{\+\}\d+/)));
 
   return value;
 }
