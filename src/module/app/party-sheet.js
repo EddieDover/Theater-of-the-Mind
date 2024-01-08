@@ -9,6 +9,7 @@ import {
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
 
 const NEWLINE_ELEMENTS = ["{newline}", "{nl}", ";"];
+const DEFAULT_EXCLUDES = ["npc"];
 // @ts-ignore
 export class PartySheetForm extends FormApplication {
   constructor() {
@@ -44,6 +45,7 @@ export class PartySheetForm extends FormApplication {
    * @property { string } author - The author of this data
    * @property { string } name - The name of this data
    * @property { Array<Array<SystemDataColumn>> } rows - The rows of data to display. See below for details.
+   * @property { Array<string> } offline_excludes - The types you want to exclude when showing offline players
    */
 
   /**
@@ -56,8 +58,9 @@ export class PartySheetForm extends FormApplication {
    * @returns { CustomPlayerData } The custom player data
    * @memberof PartySheetForm
    */
+
   getCustomPlayerData(data) {
-    const excludeTypes = ["npc", "animal", "haven", "monster", "vehicle"];
+    const excludeTypes = data.offline_excludes ?? DEFAULT_EXCLUDES;
 
     if (!data) {
       return { name: "", author: "", players: [], rowcount: 0 };
@@ -251,6 +254,12 @@ export class PartySheetForm extends FormApplication {
             var evalue = extractPropertyByString(character, item.value.trim());
             if (evalue) {
               item.text = item.text.replace(item.value.trim(), evalue);
+              outputText += item.text;
+            }
+          } else if (item.type === "match") {
+            var mvalue = extractPropertyByString(character, item.value.trim());
+            if (mvalue === item.match) {
+              item.text = item.text.replace(item.value.trim(), mvalue);
               outputText += item.text;
             }
           }

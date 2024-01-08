@@ -10,6 +10,7 @@ Place templates in the <FOUNDRY_VTT/Data/totm/> folder.
   "name": <YOUR_TEMPLATE_NAME>,
   "system": <YOUR_TEMPLATE_SYSTEM>,
   "author": <YOUR_NAME>,
+  "offline_excludes": ['npc'], // This is an array of types that will be ignored when displaying offline players
   "rows": [] // See Below Section For Details
 }
 ```
@@ -67,7 +68,9 @@ There are a few special keywords that must be surrounded by { } marks, to allow 
 The direct complex object was originally created to show values for attributes but only if they existed. It was originally used for the DND5E Senses display.
 
 A direct complex object has three properties:
-* type - The type of object. At the moment this only supports **exists**, ergo does the value exist or not.
+* type - The type of object. Currently accepted values are:
+    - "exists" - Does the **value** exist or not.
+    - "match" - Checks for an additional **match** property. If the **value** matches the **match** property, then **text** is processed.
 * value - The attribute that you're checking against
 * text - The text to be displayed if the **type** check passes. It will be processed in the same manner as the **value** is processed on a standard **direct** column type.
 
@@ -111,6 +114,34 @@ In this example, the system will contain one column named Senses, but the column
 In this example, the following character only has one sense that exists, so it's the only one displayed:
 
 ![Example Sense](doc_images/senses1.png)
+
+
+Here's an example of how to use **match**:
+```json
+		{
+		 	"name": "Career",
+			"align": "center",
+			"type": "direct-complex",
+			"coltype": "hide",
+			"value": [
+				{
+					"type": "match",
+					"match": "1",
+					"value": "system.general.career",
+					"text": "Colonial Marine"
+				},
+				{
+					"type": "match",
+					"match": "8",
+					"value": "system.general.career",
+					"text": "Pilot"
+				}
+			]
+		},
+```
+
+In this example, the system will contain a column named Career, but the column name will be hidden (skipped). It will then loop through each item in the **value** field. In this system `Alien RPG`, the player's career is a number, stored in `system.general.career`. In this example, if the value in `system.general.career` matches `1` then the value `Colonial Marine` is output, otherwise, if the career matches `8` then the value `Pilot` is output. Any items who's **match** is the same as the contents of **value** will be displayed.
+
 
 ## Examples
 
