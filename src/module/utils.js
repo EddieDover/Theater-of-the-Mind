@@ -77,18 +77,6 @@ export function extractPropertyByString(obj, path) {
 
   return currentObject;
 }
-// export function getPropertyByString(obj, chain) {
-//   if (!obj) return null;
-//   return chain.split(".").reduce((o, i) => {
-//     // console.log(o, i);
-//     // var mapple = new Map(Object.entries(o));
-//     // console.log(mapple);
-//     // if (!o[i] && mapple?.size > 0) {
-//     //   console.log(getPropertyByString(mapple, i));
-//     // }
-//     return o[i]; // ?? mapple.size() > 0 ? getPropertyByString(mapple, i) : null;
-//   }, obj);
-// }
 
 /**
  * Parses out plus sumbols and adds values together.
@@ -96,28 +84,6 @@ export function extractPropertyByString(obj, path) {
  * @returns {*} - The value with the pluses parsed out.
  */
 export function parsePluses(value) {
-  // var index = value.indexOf("{+}");
-  // var lastPreviousSpace = value.substring(0, index - 1).lastIndexOf(" ");
-
-  // lastPreviousSpace = lastPreviousSpace == -1 ? 0 : lastPreviousSpace + 1;
-  // var previousSection =
-  //   lastPreviousSpace == -1 ? value.substring(0, index) : value.substring(lastPreviousSpace, index - 1);
-
-  // var nextSectionBreak = value.indexOf(" ", index + 4);
-
-  // nextSectionBreak = nextSectionBreak != -1 ? value.indexOf(" ", index + 4) : value.substring(index + 4).length;
-
-  // var nextSection = value.substring(index + 4, nextSectionBreak);
-
-  // var result = parseInt(previousSection) + parseInt(nextSection);
-
-  // var beforeIndex = value.indexOf(previousSection);
-
-  // var afterIndex = value.indexOf(nextSection, beforeIndex);
-
-  // var stringToReplace = value.substring(beforeIndex, afterIndex + nextSection.length);
-  // value = value.replace(stringToReplace, result);
-  // return value;
   while (true) {
     // Match patterns with optional spaces around {+}
     const match = value.match(/(\d+)\s*\{\+\}\s*(\d+)|\d+\{\+\}\d+/);

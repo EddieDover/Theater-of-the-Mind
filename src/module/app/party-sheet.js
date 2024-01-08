@@ -85,19 +85,14 @@ export class PartySheetForm extends FormApplication {
       var finalActorList = actorList
         .map((character) => {
           const userChar = character;
-          // const userSys = userChar.system;
 
           var row_data = [];
 
-          // for (const row_obj, of data.rows) {
           data.rows.map((row_obj) => {
             var customData = {};
 
             row_obj.forEach((colobj) => {
               var colname = colobj.name;
-              // if (colobj.coltype === "skip") {
-              //   colname = `~${colname}~`;
-              // }
               customData[colname] = {
                 text: this.getCustomData(userChar, colobj.type, colobj.value),
                 options: {
@@ -109,65 +104,8 @@ export class PartySheetForm extends FormApplication {
             });
             row_data.push(customData);
           });
-          // var row_data = [];
-          // for (const colobj of row_obj) {
-          //   row_data.push(this.getCustomData(userChar, colobj.type, colobj.value));
-          // }
-          // customData[row_obj.name] = row;
 
-          // for (const colobj of data) {
-          //   customData[colobj.name] = this.getCustomData(userChar, colobj.type, colobj.value);
-          // }
-
-          // const stats = userSys.abilities;
-
-          // const ac = userSys.attributes.ac.value;
-
-          // const passives = {
-          //   prc: userSys.skills.prc.passive,
-          //   inv: userSys.skills.inv.passive,
-          //   ins: userSys.skills.ins.passive,
-          // };
-
-          // const classNamesAndLevels = Object.values(userChar.classes).map((c) => `${c.name} ${c.system.levels}`);
-
-          // const charToken = userChar.prototypeToken;
-
-          // const charSenses = [];
-          // if (userSys.attributes.senses.darkvision) {
-          //   charSenses.push(`Darkvision ${userSys.attributes.senses.darkvision} ${userSys.attributes.senses.units}`);
-          // }
-          // if (userSys.attributes.senses.blindsight) {
-          //   charSenses.push(`Blindsight ${userSys.attributes.senses.blindsight} ${userSys.attributes.senses.units}`);
-          // }
-          // if (userSys.attributes.senses.tremorsense) {
-          //   charSenses.push(`Tremorsense ${userSys.attributes.senses.tremorsense} ${userSys.attributes.senses.units}`);
-          // }
-          // if (userSys.attributes.senses.truesight) {
-          //   charSenses.push(`Truesight ${userSys.attributes.senses.truesight} ${userSys.attributes.senses.units}`);
-          // }
-          // if (userSys.attributes.senses.special) {
-          //   charSenses.push(userSys.attributes.senses.special);
-          // }
-          //outData[userChar.name] = row_data;
-          //return outData;
-          // return [row_data];
           return row_data;
-          // return {
-          //   uuid: userChar.uuid,
-          //   name: userChar.name,
-          //   race: userChar.system.details.race,
-          //   img: `<input type="image" name="totm-actorimage" data-actorid="${
-          //     character.uuid
-          //   }" class="token-image" src="${charToken.texture.src}" title="${
-          //     charToken.name
-          //   }" width="36" height="36" style="transform: rotate(${charToken.rotation ?? 0}deg);"/>`,
-          //   senses: charSenses.join(", "),
-          //   classNames: classNamesAndLevels.join(" - ") || "",
-          //   stats,
-          //   ac,
-          //   passives,
-          // };
         })
         .filter((player) => player);
       return { name: data.name, author: data.author, players: finalActorList, rowcount: data.rows.length };
@@ -189,9 +127,9 @@ export class PartySheetForm extends FormApplication {
 
   /**
    * Get the custom data for a character.
-   * @param {*} character
-   * @param {*} type
-   * @param {*} value
+   * @param {*} character - The character to get the data for
+   * @param {*} type - The type of data to get
+   * @param {*} value - The value to get
    * @returns {string} The text to render
    * @memberof PartySheetForm
    */
@@ -276,29 +214,6 @@ export class PartySheetForm extends FormApplication {
             character.prototypeToken.rotation ?? 0
           }deg);"/>`,
         );
-      // case "keyarray-string-builder":
-      //   objName = value.split("=>")[0].trim();
-      //   outstr = value.split("=>")[1].trim();
-      //   objData = extractPropertyByString(character, objName);
-
-      //   if (!Array.isArray(objData)) {
-      //     objData = Object.keys(objData).map((key) => {
-      //       return objData[key];
-      //     });
-      //   }
-
-      //   var regValue = /(?:\*\.|[\w.]+)+/g;
-      //   var reg = new RegExp(regValue);
-      //   var allmatches = Array.from(outstr.matchAll(reg), (match) => match[0]);
-
-      //   for (const objSubData of objData) {
-      //     for (const m of allmatches) {
-      //       var fvalue = extractPropertyByString(objSubData, m);
-      //       outstr = outstr.replace(m, fvalue);
-      //     }
-      //   }
-      //   console.log(outstr);
-      //   return outstr === value ? "" : outstr;
       case "array-string-builder":
         objName = value.split("=>")[0].trim();
         outstr = value.split("=>")[1].trim();
@@ -348,27 +263,6 @@ export class PartySheetForm extends FormApplication {
       selectedIdx = customSystems.findIndex((data) => data === applicableSystems[0]);
     }
 
-    // const system = game.system.id;
-    // if (!customPlayerData) {
-    //   // current system
-    //   // @ts-ignore
-    //   const system = game.system.id;
-    //   switch (system) {
-    //     case "dragonbane":
-    //       customPlayerData = dragonbane;
-    //       break;
-    //     case "twdu":
-    //       // customPlayerData = twdu;
-    //       break;
-    //     case "dnd5e":
-    //       customPlayerData = DND5E;
-    //       break;
-    //     default:
-    //       console.log("System not supported ", system);
-    //       break;
-    //   }
-    // }
-    // console.log(customPlayerData);
     updateSelectedSystem(customSystems[selectedIdx]);
     let { name: sysName, author: sysAuthor, players, rowcount } = this.getCustomPlayerData(getSelectedSystem());
     // @ts-ignore
@@ -396,27 +290,6 @@ export class PartySheetForm extends FormApplication {
       height: "auto",
     });
   }
-
-  // saveHiddenCharacters() {
-  //   const hiddenCharacters = [];
-  //   for (const character of this.characterList) {
-  //     const checkbox = document.getElementById(`hidden-character-${character}`);
-  //     if (checkbox.checked) {
-  //       hiddenCharacters.push(character);
-  //     }
-  //   }
-  //   game.settings.set('theater-of-the-mind', 'hiddenCharacters', hiddenCharacters);
-  //   const closefunc = this.overrides?.onexit;
-  //   if (closefunc) {
-  //     closefunc();
-  //   }
-  //   super.close();
-  // }
-
-  // resetEffects() {
-  //   // this.effects = game.settings.settings.get('monks-little-details.additional-effects').default;
-  //   this.refresh();
-  // }
 
   openOptions(event) {
     event.preventDefault();
@@ -447,13 +320,6 @@ export class PartySheetForm extends FormApplication {
     actor.sheet.render(true);
   }
 
-  // updateCurrentSystem(index) {
-  //   // @ts-ignore
-  //   game.settings.set("theater-of-the-mind", "currentSystem", index);
-  //   // @ts-ignore
-  //   this.render(true);
-  // }
-
   changeSystem(event) {
     var selectedSystemName = event.currentTarget.value.split("___")[0];
     var selectedSystemAuthor = event.currentTarget.value.split("___")[1];
@@ -478,7 +344,5 @@ export class PartySheetForm extends FormApplication {
     $('input[name="totm-actorimage"]', html).click(this.openActorSheet.bind(this));
     // @ts-ignore
     $('select[name="totm-system"]', html).change(this.changeSystem.bind(this));
-    // $('button[name="submit"]', html).click(this.saveHiddenCharacters.bind(this));
-    // $('button[name="reset"]', html).click(this.resetEffects.bind(this));
   }
 }
