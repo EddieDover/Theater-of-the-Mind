@@ -193,6 +193,11 @@ export class PartySheetForm extends FormApplication {
             if (evalue) {
               item.text = item.text.replace(item.value.trim(), evalue);
               outputText += item.text;
+            } else {
+              if (item.else) {
+                item.text = item.text.replace(item.value.trim(), item.else);
+                outputText += item.text;
+              }
             }
           } else if (item.type === "match") {
             var mvalue = extractPropertyByString(character, item.value.trim());

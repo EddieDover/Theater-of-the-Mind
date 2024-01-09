@@ -69,7 +69,15 @@ The direct complex object was originally created to show values for attributes b
 
 A direct complex object has three properties:
 * type - The type of object. Currently accepted values are:
-    - "exists" - Does the **value** exist or not.
+    - "exists" - Does the **value** exist or not. If using **exists** it will look for an _OPTIONAL_ property named **else** and if the thing you're checking for doesn't exist, the value of **else** will be parsed. You may leave **else** out if not using it.
+    ```json
+        {
+          type: "exists",
+          value: "system.attribute.isplayersick",
+          text: "Player is sick with system.attribute.sickness"
+          else: "Healthy for system.attribute.daysSinceSick days"
+        },
+    ```
     - "match" - Checks for an additional **match** property. If the **value** matches the **match** property, then **text** is processed.
 * value - The attribute that you're checking against
 * text - The text to be displayed if the **type** check passes. It will be processed in the same manner as the **value** is processed on a standard **direct** column type.
