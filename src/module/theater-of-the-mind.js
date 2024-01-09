@@ -6,6 +6,7 @@ import { addCustomSystem, toProperCase } from "./utils.js";
 
 let isSyrinscapeInstalled = false;
 let isMidiQoLInstalled = false;
+let currentPartySheet = null;
 
 /**
  *
@@ -13,6 +14,19 @@ let isMidiQoLInstalled = false;
  */
 function log(message) {
   console.log("Theater of the Mind | ", message);
+}
+
+/**
+ * Checks if the current environment is ForgeVTT
+ * @returns {boolean} True if the current environment is ForgeVTT
+ */
+function isForgeVTT() {
+  // @ts-ignore
+  if (!(typeof ForgeVTT !== "undefined")) {
+    return false;
+  }
+  // @ts-ignore
+  return ForgeVTT.usingTheForge;
 }
 
 // @ts-ignore
@@ -140,8 +154,6 @@ Handlebars.registerHelper("ifCond", function (v1, operator, v2, options) {
   }
 });
 
-let currentPartySheet = null;
-
 /**
  *
  */
@@ -177,11 +189,31 @@ async function loadSystemTemplate(path) {
   }
 }
 
+/**
+ * Load all the user-provided templates for systems
+ */
 async function loadSystemTemplates() {
   // Look inside the "totm" folder. Any JSON file inside should be loaded
   const templatePaths = [];
   // @ts-ignore
-  const templateFiles = await FilePicker.browse("data", "totm"); // `modules/${MODULE_NAME}/templates`);
+
+  var assetPrefix = "data";
+
+  if (isForgeVTT()) {
+    console.log("Detected ForgeVTT");
+    // @ts-ignore
+    assetPrefix = ForgeVTT.ASSETS_LIBRARY_URL_PREFIX + (await ForgeAPI.getUserId()) + "/";
+  }
+
+  try {
+    // @ts-ignore
+    await FilePicker.createDirectory(assetPrefix, "totm"); //, { bucket: "public" }
+  } catch (e) {
+    console.log("Failed creating TOTM directory. It probably already exists.");
+  }
+
+  // @ts-ignore
+  var templateFiles = await FilePicker.browse(assetPrefix, "totm"); // `modules/${MODULE_NAME}/templates`);
 
   templateFiles.files.forEach((file) => {
     if (file.endsWith(".json")) {

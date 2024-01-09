@@ -1,5 +1,8 @@
 import { DND5E } from "./systems/dnd5e";
 
+var customSystems = [DND5E];
+export var selectedSystem = null;
+
 /**
  * Converts a string to proper case.
  * @param {string} inputString - The input string to convert.
@@ -12,9 +15,6 @@ export function toProperCase(inputString) {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
-
-var customSystems = [DND5E];
-export var selectedSystem = null;
 
 /**
  * Updates the selected system.
@@ -86,7 +86,9 @@ export function extractPropertyByString(obj, path) {
 export function parsePluses(value) {
   // Match patterns with optional spaces around {+}
   let match = value.match(/(\d+)\s*\{\+\}\s*(\d+)|\d+\{\+\}\d+/);
-
+  if (!match) {
+    return value;
+  }
   do {
     const numbers = match[0].trim().split("{+}").map(Number);
     const result = numbers[0] + numbers[1];

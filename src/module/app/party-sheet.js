@@ -255,16 +255,20 @@ export class PartySheetForm extends FormApplication {
     const enableOnlyOnline = game.settings.get("theater-of-the-mind", "enableOnlyOnline");
     // @ts-ignore
     var customSystems = getCustomSystems();
-    // @ts-ignore
-    const applicableSystems = customSystems.filter((data) => data.system === game.system.id);
-    let selectedIdx = getSelectedSystem() ? customSystems.findIndex((data) => data === getSelectedSystem()) : 0;
 
-    if (applicableSystems.length === 1) {
-      selectedIdx = customSystems.findIndex((data) => data === applicableSystems[0]);
-    }
+    const applicableSystems = customSystems.filter((data) => {
+      // @ts-ignore
+      return data.system === game.system.id;
+    });
+    let selectedIdx = getSelectedSystem() ? applicableSystems.findIndex((data) => data === getSelectedSystem()) : 0;
 
-    updateSelectedSystem(customSystems[selectedIdx]);
-    let { name: sysName, author: sysAuthor, players, rowcount } = this.getCustomPlayerData(getSelectedSystem());
+    // if (applicableSystems.length === 1) {
+    //   selectedIdx = customSystems.findIndex((data) => data === applicableSystems[0]);
+    // }
+
+    updateSelectedSystem(applicableSystems[selectedIdx]);
+    var selectedSystem = getSelectedSystem();
+    let { name: sysName, author: sysAuthor, players, rowcount } = this.getCustomPlayerData(selectedSystem);
     // @ts-ignore
     return mergeObject(super.getData(options), {
       hiddenCharacters,
