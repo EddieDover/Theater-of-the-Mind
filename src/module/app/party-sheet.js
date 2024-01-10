@@ -195,15 +195,19 @@ export class PartySheetForm extends FormApplication {
               outputText += item.text;
             } else {
               if (item.else) {
-                item.text = item.text.replace(item.value.trim(), item.else);
-                outputText += item.text;
+                var nvalue = extractPropertyByString(character, item.else.trim());
+                if (nvalue) {
+                  outputText += nvalue;
+                } else {
+                  outputText += item.else;
+                }
               }
             }
           } else if (item.type === "match") {
             var mvalue = extractPropertyByString(character, item.value.trim());
-            if (mvalue === item.match) {
-              item.text = item.text.replace(item.value.trim(), mvalue);
-              outputText += item.text;
+            var match_value = extractPropertyByString(character, item.match.trim()) ?? item.match;
+            if (mvalue === match_value) {
+              outputText += extractPropertyByString(character, item.text.trim()) ?? item.text;
             }
           }
         }
