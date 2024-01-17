@@ -3,19 +3,30 @@
 Examples can be found in the [example_templates](https://github.com/EddieDover/Theater-of-the-Mind/example_templates) folder.
 Place templates in the <FOUNDRY_VTT/Data/totm/> folder.
 
-## Required Top Level Structure
+## Required Minimal Top Level Structure
 
 ```json
 {
   "name": <YOUR_TEMPLATE_NAME>,
   "system": <YOUR_TEMPLATE_SYSTEM>,
   "author": <YOUR_NAME>,
-  "offline_excludes": ['npc'], // This is an array of types that will be ignored when displaying offline players
   "rows": [] // See Below Section For Details
 }
 ```
 
 ***Note**: Templates will be displayed to the user as 'YOUR_TEMPLATE_NAME - YOUR_NAME' and only if the system matches the current system in use.*
+
+### Optional Top Level Properties
+
+The following properties are also available at the top level of the system structure.
+
+  **offline_excludes_property** - string - This is optional and defaults to the actor.type. Only override if needed. All overrides are treated as if their parent object is the character.
+
+  **offline_excludes** - array - This is optional and defaults to ["npc"]. Any object inside the exclusion list that matches the value of the offline_excludes_property will be excluded from showing in the party list.
+
+  **offline_includes_property** - string - This is optional but required both it and **offline_includes** are required to work, if used.It has no default property. It will be treated as if its parent object is the character. If you use this, offline_excludes_property/offline_excludes will be ignored.
+
+  **offline_includes**: array - This is the same as **offline_excludes** but it is an inclusion list.
 
 ### Row Specific Structure
 
@@ -54,6 +65,10 @@ __Each item corresponds to a single column on the sheet. If you have multiple ro
   * **show** - Show the column as a **header** column.
   * **skip** - Do NOT Show the column as a **header** column.
 
+**maxwidth** - This _optional_ property controls the maximum width of the column. Value must be a number that represents the width in pixels. `"maxwidth": 200,`
+
+**minwidth** - This _optional_ property controls the minimum width of the column. Value must be a number that represents the width in pixels. `"minwidth": 100,`
+
 **value** - This property is either a **string** or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
 
 ### Value - Special Keywords
@@ -79,6 +94,7 @@ A direct complex object has three properties:
         },
     ```
     - "match" - Checks for an additional **match** property. If the **value** matches the **match** property, then **text** is processed.
+    - "match-all" - Same as match, but the **value** can be an array of properties to match against.
 * value - The attribute that you're checking against
 * text - The text to be displayed if the **type** check passes. It will be processed in the same manner as the **value** is processed on a standard **direct** column type.
 

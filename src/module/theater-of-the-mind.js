@@ -87,6 +87,18 @@ Handlebars.registerHelper("getColSpan", function (row, key) {
 });
 
 // @ts-ignore
+Handlebars.registerHelper("getMaxWidth", function (row, key) {
+  var myoptions = row[key]?.options ?? {};
+  return myoptions?.maxwidth ? `${myoptions?.maxwidth}px` : "auto";
+});
+
+// @ts-ignore
+Handlebars.registerHelper("getMinWidth", function (row, key) {
+  var myoptions = row[key]?.options ?? {};
+  return myoptions?.minwidth ? `${myoptions?.minwidth}px` : "auto";
+});
+
+// @ts-ignore
 Handlebars.registerHelper("eachInMap", function (map, block) {
   var out = "";
   Object.keys(map).map(function (prop) {

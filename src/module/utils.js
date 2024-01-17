@@ -51,13 +51,17 @@ export function getCustomSystems() {
 /**
  * Retrieves a nested property from an object using a string path.
  * @param {object} obj - The object from which to retrieve the property.
- * @param {string} path - A string path to the property, with each nested property separated by a dot.
+ * @param {string | boolean} path - A string path to the property, with each nested property separated by a dot.
  * @returns {*} - The value of the property at the end of the path, or `undefined` if any part of the path is undefined.
  * @example
  * // returns 2
  * extractPropertyByString({a: {b: 2}}, "a.b");
  */
 export function extractPropertyByString(obj, path) {
+  if (typeof path === "boolean") {
+    return path;
+  }
+
   const keys = path.split(".");
 
   let currentObject = obj;
@@ -76,6 +80,25 @@ export function extractPropertyByString(obj, path) {
   }
 
   return currentObject;
+}
+
+/**
+ * Takes a JSON object and trims the strings for value, else, and match.
+ * @param {*} item - The item to trim.
+ * @returns {*}  - The item with trimmed strings.
+ */
+export function trimIfString(item) {
+  if (item.value && typeof item.value === "string") {
+    item.value = item.value.trim();
+  }
+  if (item.else && typeof item.else === "string") {
+    item.else = item.else.trim();
+  }
+  if (item.match && typeof item.match === "string") {
+    item.match = item.match.trim();
+  }
+
+  return item;
 }
 
 /**

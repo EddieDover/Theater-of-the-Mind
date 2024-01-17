@@ -4,6 +4,7 @@ import {
   getCustomSystems,
   getSelectedSystem,
   parsePluses,
+  trimIfString,
   updateSelectedSystem,
 } from "../utils.js";
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
@@ -24,28 +25,35 @@ export class PartySheetForm extends FormApplication {
 
   /**
    * @typedef SystemDataColumn
-   * @property {string} name - The name of the column
+   * @property {string} name - The name of the column.
    * @property {SystemDataColumnType} type - The type of data to display. See below for details.
-   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column
-   * @property {SystemDataColumnAlignType} align - The alignment of the column
-   * @property {number} colspan - The number of columns to span
+   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column.
+   * @property {SystemDataColumnAlignType} align - The alignment of the column.
+   * @property {number} colspan - The number of columns to span.
+   * @property {number} maxwidth - The maximum width of the column in pixels.
+   * @property {number} minwidth - The minimum width of the column in pixels.
    * @property {string} value - The value to display. See below for details.
    */
 
   /**
    * @typedef ColOptions
-   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column
-   * @property {SystemDataColumnAlignType} align - The alignment of the column
-   * @property {number} colspan - The number of columns to span
+   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column.
+   * @property {SystemDataColumnAlignType} align - The alignment of the column.
+   * @property {number} colspan - The number of columns to span.
+   * @property {number} maxwidth - The maximum width of the column in pixels.
+   * @property {number} minwidth - The minimum width of the column in pixels.
    */
 
   /**
    * @typedef SystemData
-   * @property { string } system - The system this data is for
-   * @property { string } author - The author of this data
-   * @property { string } name - The name of this data
+   * @property { string } system - The system this data is for.
+   * @property { string } author - The author of this data.
+   * @property { string } name - The name of this data.
    * @property { Array<Array<SystemDataColumn>> } rows - The rows of data to display. See below for details.
-   * @property { Array<string> } offline_excludes - The types you want to exclude when showing offline players
+   * @property { string } offline_excludes_property - The property to use to exclude players. Note: This is optional and defaults to the actors.type property.
+   * @property { Array<string> } offline_excludes - The types you want to exclude when showing offline players.
+   * @property { string } offline_includes_property - The property to use to show players online.
+   * @property { Array<string> } offline_includes - The types you want to include when showing online players.
    */
 
   /**
@@ -60,7 +68,7 @@ export class PartySheetForm extends FormApplication {
    */
 
   getCustomPlayerData(data) {
-    const excludeTypes = data.offline_excludes ?? DEFAULT_EXCLUDES;
+    const excludeTypes = data?.offline_excludes ? data.offline_excludes : DEFAULT_EXCLUDES;
 
     if (!data) {
       return { name: "", author: "", players: [], rowcount: 0 };
@@ -75,7 +83,18 @@ export class PartySheetForm extends FormApplication {
       ? // @ts-ignore
         game.users.filter((user) => user.active && user.character).map((user) => user.character)
       : // @ts-ignore
-        game.actors.filter((actor) => !excludeTypes.includes(actor.type));
+        game.actors.filter((actor) => {
+          if (data.offline_includes_property && data.offline_includes) {
+            var propval = extractPropertyByString(actor, data.offline_includes_property);
+            return data.offline_includes.includes(propval);
+          } else if (data.offline_excludes) {
+            var incpropval = actor.type;
+            if (data.offline_excludes_property) {
+              incpropval = extractPropertyByString(actor, data.offline_excludes_property);
+            }
+            return !excludeTypes.includes(incpropval);
+          }
+        });
 
     if (!showOnlyOnlineUsers) {
       actorList = actorList.filter((player) => !hiddenCharacters.includes(player.uuid));
@@ -98,6 +117,8 @@ export class PartySheetForm extends FormApplication {
                 options: {
                   align: colobj.align,
                   colspan: colobj.colspan,
+                  maxwidth: colobj.maxwidth,
+                  minwidth: colobj.minwidth,
                   coltype: colobj.coltype,
                 },
               };
@@ -126,6 +147,52 @@ export class PartySheetForm extends FormApplication {
   }
 
   /**
+   * Parse a direct string.
+   * @param {*} character - The character to parse
+   * @param {*} value - The value to parse
+   * @returns {[boolean, string]} Whether a safe string is needed and the value
+   */
+  parseDirect(character, value) {
+    var isSafeStringNeeded = false;
+
+    value = this.cleanString(value);
+
+    //Parse out normal data
+    for (const m of value.split(" ")) {
+      var fvalue = extractPropertyByString(character, m);
+      if (fvalue !== undefined) {
+        value = value.replace(m, fvalue);
+      }
+    }
+
+    //Parse out newline elements
+    for (const item of NEWLINE_ELEMENTS) {
+      if (value.indexOf(item) > -1) {
+        isSafeStringNeeded = true;
+        value = value.replaceAll(item, "<br/>");
+      }
+    }
+
+    //Parse out complex elements (that might contain newline elements we don't want to convert, like ; marks)
+    if (value.indexOf("{charactersheet}") > -1) {
+      isSafeStringNeeded = true;
+      value = value.replaceAll(
+        "{charactersheet}",
+        `<input type="image" name="totm-actorimage" data-actorid="${character.uuid}" class="token-image" src="${
+          character.prototypeToken.texture.src
+        }" title="${character.prototypeToken.name}" width="36" height="36" style="transform: rotate(${
+          character.prototypeToken.rotation ?? 0
+        }deg);"/>`,
+      );
+      value = "<div class='flex-tc'>" + value + "</div>";
+    }
+
+    value = parsePluses(value);
+
+    return [isSafeStringNeeded, value];
+  }
+
+  /**
    * Get the custom data for a character.
    * @param {*} character - The character to get the data for
    * @param {*} type - The type of data to get
@@ -139,45 +206,12 @@ export class PartySheetForm extends FormApplication {
 
     /** @type {any} */
     var objData = {};
+    var isSafeStringNeeded = false;
 
     //Prevent html injections!
     switch (type) {
       case "direct":
-        var isSafeStringNeeded = false;
-
-        value = this.cleanString(value);
-
-        //Parse out normal data
-        for (const m of value.split(" ")) {
-          var fvalue = extractPropertyByString(character, m);
-          if (fvalue !== undefined) {
-            value = value.replace(m, fvalue);
-          }
-        }
-
-        //Parse out newline elements
-        for (const item of NEWLINE_ELEMENTS) {
-          if (value.indexOf(item) > -1) {
-            isSafeStringNeeded = true;
-            value = value.replaceAll(item, "<br/>");
-          }
-        }
-
-        //Parse out complex elements (that might contain newline elements we don't want to convert, like ; marks)
-        if (value.indexOf("{charactersheet}") > -1) {
-          isSafeStringNeeded = true;
-          value = value.replaceAll(
-            "{charactersheet}",
-            `<input type="image" name="totm-actorimage" data-actorid="${character.uuid}" class="token-image" src="${
-              character.prototypeToken.texture.src
-            }" title="${character.prototypeToken.name}" width="36" height="36" style="transform: rotate(${
-              character.prototypeToken.rotation ?? 0
-            }deg);"/>`,
-          );
-          value = "<div class='flex-tc'>" + value + "</div>";
-        }
-
-        value = parsePluses(value);
+        [isSafeStringNeeded, value] = this.parseDirect(character, value);
 
         //Finally detect if a safe string cast is needed.
         if (isSafeStringNeeded) {
@@ -186,16 +220,19 @@ export class PartySheetForm extends FormApplication {
         }
         return value;
       case "direct-complex":
+        // Call .trim() on item.value but only if it's a string
         var outputText = "";
-        for (const item of value) {
+        for (var item of value) {
+          item = trimIfString(item);
+
           if (item.type === "exists") {
-            var evalue = extractPropertyByString(character, item.value.trim());
+            var evalue = extractPropertyByString(character, item.value);
             if (evalue) {
-              item.text = item.text.replace(item.value.trim(), evalue);
+              item.text = item.text.replace(item.value, evalue);
               outputText += item.text;
             } else {
               if (item.else) {
-                var nvalue = extractPropertyByString(character, item.else.trim());
+                var nvalue = extractPropertyByString(character, item.else);
                 if (nvalue) {
                   outputText += nvalue;
                 } else {
@@ -204,15 +241,48 @@ export class PartySheetForm extends FormApplication {
               }
             }
           } else if (item.type === "match") {
-            var mvalue = extractPropertyByString(character, item.value.trim());
-            var match_value = extractPropertyByString(character, item.match.trim()) ?? item.match;
+            var mvalue = extractPropertyByString(character, item.value);
+            var match_value = extractPropertyByString(character, item.match) ?? item.match;
             if (mvalue === match_value) {
-              outputText += extractPropertyByString(character, item.text.trim()) ?? item.text;
+              outputText += extractPropertyByString(character, item.text) ?? item.text;
+            } else {
+              if (item.else) {
+                var mnvalue = extractPropertyByString(character, item.else);
+                if (mnvalue) {
+                  outputText += mnvalue;
+                } else {
+                  outputText += item.else;
+                }
+              }
+            }
+          } else if (item.type === "match-any") {
+            var mavalues = (Array.isArray(item.value) ? item.value : [item.value]).map((val) =>
+              extractPropertyByString(character, val),
+            );
+            var maatch_value = extractPropertyByString(character, item.match) ?? item.match;
+
+            for (const maval of mavalues) {
+              if (maval === maatch_value) {
+                outputText += extractPropertyByString(character, item.text) ?? item.text;
+              } else {
+                if (item.else) {
+                  var manvalue = extractPropertyByString(character, item.else);
+                  if (manvalue) {
+                    outputText += manvalue;
+                  } else {
+                    outputText += item.else;
+                  }
+                }
+              }
             }
           }
         }
-        outputText = this.cleanString(outputText);
-        return outputText;
+        // outputText = this.cleanString(outputText);
+        //return outputText;
+        [isSafeStringNeeded, outputText] = this.parseDirect(character, outputText);
+        // @ts-ignore
+        return isSafeStringNeeded ? new Handlebars.SafeString(outputText) : outputText;
+
       //regex match properties as [a-z][A-Z].*?
       case "charactersheet":
         // @ts-ignore
@@ -224,8 +294,9 @@ export class PartySheetForm extends FormApplication {
           }deg);"/>`,
         );
       case "array-string-builder":
-        objName = value.split("=>")[0].trim();
+        objName = value.split("=>")[0].trim;
         outstr = value.split("=>")[1].trim();
+
         objData = extractPropertyByString(character, objName);
 
         if (!Array.isArray(objData)) {
@@ -298,9 +369,11 @@ export class PartySheetForm extends FormApplication {
       id: "totm-party-sheet",
       classes: ["form"],
       title: "Party Sheet",
+      // resizable: true,
       template: "modules/theater-of-the-mind/templates/party-sheet.hbs",
-      width: "auto",
-      height: "auto",
+      // @ts-ignore
+      width: "auto", // $(window).width() > 960 ? 960 : $(window).width() - 100,
+      height: "auto", //$(window).height() > 800 ? 800 : $(window).height() - 100,
     });
   }
 

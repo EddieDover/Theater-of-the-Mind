@@ -1,9 +1,12 @@
-## 1.4.8 (2023-12-28)
+#### 1.4.8 (2024-01-10)
 
 ##### New Features
 
-*  Plugin is now system agnostic and allows any user to create templates for their favorite systems. ([119b8a48](https://github.com/EddieDover/theater-of-the-mind/commit/119b8a4881a8e984e886efc94091998c0e9b4dae))
+*  Plugin is now system agnostic and allows any user to create templates for their favorite systems.
     * Documentation in [SYSTEMS.md]('https://github.com/EddieDover/theater-of-the-mind/SYSTEMS.md')
+
+*  Added support for Forge hosting ([3beb550d](https://github.com/EddieDover/theater-of-the-mind/commit/3beb550d62030cd96a04aae7f06d399cd914fbb1))
+
 
 ## 1.4.7 (2023-10-17)
 
