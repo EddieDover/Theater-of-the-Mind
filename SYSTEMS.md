@@ -313,7 +313,7 @@ Result:
 
 ## **Notes for inexperienced template creators:**
 
-  - use an editor, not a simple text editor like notepad
+  - A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested
   - the problem is usually your json
   - use the console
   - finding the values for your systems data
