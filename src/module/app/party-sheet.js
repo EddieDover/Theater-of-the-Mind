@@ -87,7 +87,7 @@ export class PartySheetForm extends FormApplication {
           if (data.offline_includes_property && data.offline_includes) {
             var propval = extractPropertyByString(actor, data.offline_includes_property);
             return data.offline_includes.includes(propval);
-          } else if (data.offline_excludes) {
+          } else if (excludeTypes) {
             var incpropval = actor.type;
             if (data.offline_excludes_property) {
               incpropval = extractPropertyByString(actor, data.offline_excludes_property);
@@ -104,6 +104,11 @@ export class PartySheetForm extends FormApplication {
       var finalActorList = actorList
         .map((character) => {
           const userChar = character;
+
+          // @ts-ignore
+          if (game.settings.get("theater-of-the-mind", "showDebugInfo")) {
+            console.log(userChar);
+          }
 
           var row_data = [];
 
@@ -294,7 +299,7 @@ export class PartySheetForm extends FormApplication {
           }deg);"/>`,
         );
       case "array-string-builder":
-        objName = value.split("=>")[0].trim;
+        objName = value.split("=>")[0].trim();
         outstr = value.split("=>")[1].trim();
 
         objData = extractPropertyByString(character, objName);
