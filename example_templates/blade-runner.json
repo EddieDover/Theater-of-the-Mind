@@ -46,7 +46,7 @@
         	"type": "direct",
 			"align": "left",
         	"coltype": "show",
-        	"value": "INT: D system.attributes.int {newline} Sco: D system.skills.medicalAid / D system.skills.medicalAid.value + D system.attributes.int {newline} Obs: D system.skills.observation / D system.skills.observation + D system.attributes.int {newline} Tech: D system.skills.tech / D system.skills.tech + D system.attributes.int {newline} {newline} {newline}"
+        	"value": "INT: D system.attributes.int {newline} Med: D system.skills.medicalAid / D system.skills.medicalAid.value + D system.attributes.int {newline} Obs: D system.skills.observation / D system.skills.observation + D system.attributes.int {newline} Tech: D system.skills.tech / D system.skills.tech + D system.attributes.int {newline} {newline} {newline}"
       	},
       	{
         	"name": "EMP Group",
