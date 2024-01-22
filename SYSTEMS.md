@@ -315,6 +315,6 @@ Result:
 
   - A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested
   - If your template fails to appear, then press F12 and check your console logs for errors. The plugin tries to let you know if there are issues with your JSON.
-  - use the console
+  - Use JSON Validation extensions for your editor of choice, or sites like https://jsonlint.com/ to validate your JSON.
   - Double check that property values you're using are correct for your selected system.
   - 
