@@ -314,7 +314,7 @@ Result:
 ## **Notes for inexperienced template creators:**
 
   - A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested
-  - the problem is usually your json
+  - If your template fails to appear, then press F12 and check your console logs for errors. The plugin tries to let you know if there are issues with your JSON.
   - use the console
   - finding the values for your systems data
   - 
