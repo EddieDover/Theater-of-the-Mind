@@ -56,7 +56,7 @@ The following properties are also available at the top level of the system struc
   }
   ```
 
-  **offline_includes_property** - string - This is optional but required both it and **offline_includes** are required to work, if used.It has no default property. It will be treated as if its parent object is the character. If you use this, offline_excludes_property/offline_excludes will be ignored. Example:
+  **offline_includes_property** - string - This is optional but required both it and **offline_includes** are required to work, if used. It has no default property. It will be treated as if its parent object is the character. If you use this, **offline_excludes_property**/**offline_excludes** will be ignored. Example:
   ```json
   {
     "name": "<YOUR_TEMPLATE_NAME>",
