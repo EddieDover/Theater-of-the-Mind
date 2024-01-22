@@ -1,0 +1,188 @@
+{
+	"name": "Dragonbane - No Name",
+	"system": "dragonbane",
+	"author": "Michael Card (Emo Cthulhu)",
+	"offline_excludes": [
+       	"npc",
+		"base",
+        "monster"],
+	"rows": [
+		[
+			{
+				"name": "Character Sheet",
+				"align": "center",
+				"type": "charactersheet",
+				"coltype": "skip",
+				"value": ""
+			},
+			{
+				"name": "Age & Kin",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "Age: system.age {newline} Kin: system.kin.name"
+			},
+			{
+				"name": "Hit Points",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.hitPoints / system.hitPoints.max"
+			},
+			{
+				"name": "STR",
+				"align": "center",
+				"type": "direct-complex",
+				"coltype": "show",
+				"value": [
+					{
+						"type": "match",
+						"match": true,
+						"value": "system.conditions.str",
+						"text": "system.attributes.str {newline} Exhaust",
+						"else": "system.attributes.str"
+					}
+				]
+			},
+			{
+				"name": "CON",
+				"align": "center",
+				"type": "direct-complex",
+				"coltype": "show",
+				"value": [
+					{
+						"type": "match",
+						"match": true,
+						"value": "system.conditions.con",
+						"text": "system.attributes.con {newline} Sickly",
+						"else": "system.attributes.con"
+					}
+				]
+			},
+			{
+				"name": "AGL",
+				"align": "center",
+				"type": "direct-complex",
+				"coltype": "show",
+				"value": [
+					{
+						"type": "match",
+						"match": true,
+						"value": "system.conditions.agl",
+						"text": "system.attributes.agl {newline} Dazed",
+						"else": "system.attributes.agl"
+					}
+				]
+			},
+			{
+				"name": "INT",
+				"align": "center",
+				"type": "direct-complex",
+				"coltype": "show",
+				"value": [
+					{
+						"type": "match",
+						"match": true,
+						"value": "system.conditions.int",
+						"text": "system.attributes.int {newline} Angry",
+						"else": "system.attributes.int"
+					}
+				]
+			},
+			{
+				"name": "WIL",
+				"align": "center",
+				"type": "direct-complex",
+				"coltype": "show",
+				"value": [
+					{
+						"type": "match",
+						"match": true,
+						"value": "system.conditions.wil",
+						"text": "system.attributes.wil {newline} Scared",
+						"else": "system.attributes.wil"
+					}
+				]
+			},
+			{
+				"name": "CHA",
+				"align": "center",
+				"type": "direct-complex",
+				"coltype": "show",
+				"value": [
+					{
+						"type": "match",
+						"match": true,
+						"value": "system.conditions.cha",
+						"text": "system.attributes.cha {newline} Disheart",
+						"else": "system.attributes.cha"
+					}
+				]
+			}
+		],
+		[   
+			{
+				"name": "",
+				"type": "direct",
+				"coltype": "skip",
+				"value": ""
+			},
+			{
+				"name": "Profession",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.profession.name"
+			},
+			{
+				"name": "Will Points",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.willPoints / system.willPoints.max"
+			},
+			{
+				"name": "DB-STR",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.damageBonus.str"
+			},
+			{
+				"name": "Move",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.movement"
+			},
+			{
+				"name": "DB-AGL",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.damageBonus.agl"
+			},
+			{
+				"name": "Copper",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.currency.cc"
+			},
+			{
+				"name": "Silver",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.currency.sc"
+			},
+			{
+				"name": "Gold",
+				"align": "center",
+				"type": "direct",
+				"coltype": "show",
+				"value": "system.currency.gc"
+			}
+		]
+	]
+}
