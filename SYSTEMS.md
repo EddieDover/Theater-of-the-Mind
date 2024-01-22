@@ -39,7 +39,7 @@ The following properties are also available at the top level of the system struc
   }
   ```
 
-  **offline_excludes** - array - This is optional and defaults to ["npc"]. Any object inside the exclusion list that matches the value of the offline_excludes_property will be excluded from showing in the party list. Example:
+  **offline_excludes** - array - This is optional and defaults to `["npc"]`. Any object inside the exclusion list that matches the value of the offline_excludes_property will be excluded from showing in the party list. Example:
   ```json
   {
     "name": "<YOUR_TEMPLATE_NAME>",
