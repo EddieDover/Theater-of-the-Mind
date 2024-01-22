@@ -316,5 +316,5 @@ Result:
   - A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested
   - If your template fails to appear, then press F12 and check your console logs for errors. The plugin tries to let you know if there are issues with your JSON.
   - use the console
-  - finding the values for your systems data
+  - Double check that property values you're using are correct for your selected system.
   - 
