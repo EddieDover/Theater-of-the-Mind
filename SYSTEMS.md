@@ -25,7 +25,7 @@ If using The Forge, <MODULE_NAME> will create a folder at the top level of your 
 
 The following properties are also available at the top level of the system structure.
 
-  **offline_excludes_property** - string - This is optional and defaults to the actor.type. Only override if needed. All overrides are treated as if their parent object is the character. Example:
+  **offline_excludes_property** - string - This is optional and defaults to the value of `actor.type`. Only override if needed. All overrides are treated as if their parent object is the character. Example:
   ```json
   {
     "name": "<YOUR_TEMPLATE_NAME>",
