@@ -189,7 +189,7 @@ export class PartySheetForm extends FormApplication {
           character.prototypeToken.rotation ?? 0
         }deg);"/>`,
       );
-      value = "<div class='flex-tc'>" + value + "</div>";
+      // value = "<div class='flex-tc'>" + value + "</div>";
     }
 
     value = parsePluses(value);
@@ -229,12 +229,10 @@ export class PartySheetForm extends FormApplication {
         var outputText = "";
         for (var item of value) {
           item = trimIfString(item);
-
           if (item.type === "exists") {
             var evalue = extractPropertyByString(character, item.value);
             if (evalue) {
-              item.text = item.text.replace(item.value, evalue);
-              outputText += item.text;
+              outputText += item.text.replaceAll(item.value, evalue);
             } else {
               if (item.else) {
                 var nvalue = extractPropertyByString(character, item.else);
@@ -300,7 +298,8 @@ export class PartySheetForm extends FormApplication {
         );
       case "array-string-builder":
         objName = value.split("=>")[0].trim();
-        outstr = value.split("=>")[1].trim();
+        outstr = value.split("=>")[1];
+        var finalstr = "";
 
         objData = extractPropertyByString(character, objName);
 
@@ -316,11 +315,19 @@ export class PartySheetForm extends FormApplication {
 
         for (const objSubData of objData) {
           for (const m of allmatches) {
+            if (m === "value") {
+              finalstr += outstr.replace(m, objSubData);
+              continue;
+            }
             outstr = outstr.replace(m, extractPropertyByString(objSubData, m));
           }
         }
-        outstr = this.cleanString(outstr);
-        return outstr === value ? "" : outstr;
+        if (finalstr === "") {
+          outstr = finalstr;
+        }
+        finalstr = finalstr.trim();
+        finalstr = this.cleanString(finalstr);
+        return finalstr === value ? "" : finalstr;
       case "string":
         return value;
       default:

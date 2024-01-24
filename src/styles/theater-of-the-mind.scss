@@ -81,7 +81,7 @@
 
     td {
       border: 1px solid darkgray;
-  }
+    }
 
     tbody {
       td {
@@ -96,6 +96,11 @@
       white-space: nowrap;
       padding-left:5px;
       padding-right:5px;
+    }
+
+    .totm-dc {
+      overflow-wrap: break-word;
+      word-break: normal;
     }
 
     .totm-ps-name-bar {

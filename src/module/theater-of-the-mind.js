@@ -89,7 +89,7 @@ Handlebars.registerHelper("getColSpan", function (row, key) {
 // @ts-ignore
 Handlebars.registerHelper("getMaxWidth", function (row, key) {
   var myoptions = row[key]?.options ?? {};
-  return myoptions?.maxwidth ? `${myoptions?.maxwidth}px` : "auto";
+  return myoptions?.maxwidth ? `${myoptions?.maxwidth}px` : "none";
 });
 
 // @ts-ignore
