@@ -5,7 +5,11 @@
             "race": "Raza",
             "senses": "Sentidos",
             "classes": "Clases",
-            "no-players": "Ningún jugador ha iniciado sesión actualmente."
+            "no-players": "Ningún jugador ha iniciado sesión actualmente.",
+            "no-systems": "La carpeta data/totm no contiene archivos JSON para este sistema. Necesitas agregar algunos para activar esta funcionalidad.",
+            "bugreport": "Dar retroalimentación",
+            "feedback": "Reportar un fallo",
+            "discord": "Discord"
         },
         "hide-sheet":{
           "button": "Configurar personajes ocultos",

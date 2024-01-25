@@ -9,6 +9,10 @@ import {
 } from "../utils.js";
 import { HiddenCharactersSettings } from "./hidden-characters-settings.js";
 
+const FEEDBACK_URL = "https://github.com/eddiedover/theater-of-the-mind/issues/new?template=feature_request.md";
+const BUGREPORT_URL = "https://github.com/eddiedover/theater-of-the-mind/issues/new?template=bug_report.md";
+const DISCORD_URL = "https://discord.gg/XuGx7zNMKZ";
+
 const NEWLINE_ELEMENTS = ["{newline}", "{nl}", ";"];
 const DEFAULT_EXCLUDES = ["npc"];
 // @ts-ignore
@@ -21,6 +25,7 @@ export class PartySheetForm extends FormApplication {
    * @typedef { 'direct' | 'math' | 'direct-complex' | 'string' | 'array-string-builder' } SystemDataColumnType
    * @typedef { 'show' | 'hide' | 'skip' } SystemDataColumnColType
    * @typedef { 'left' | 'center' | 'right' } SystemDataColumnAlignType
+   * @typedef { 'top' | 'bottom' } SystemDataColumnVAlignType
    */
 
   /**
@@ -28,7 +33,8 @@ export class PartySheetForm extends FormApplication {
    * @property {string} name - The name of the column.
    * @property {SystemDataColumnType} type - The type of data to display. See below for details.
    * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column.
-   * @property {SystemDataColumnAlignType} align - The alignment of the column.
+   * @property {SystemDataColumnAlignType} align - The horizontal alignment of the column.
+   * @property {SystemDataColumnVAlignType} valign - The vertical alignment of the column.
    * @property {number} colspan - The number of columns to span.
    * @property {number} maxwidth - The maximum width of the column in pixels.
    * @property {number} minwidth - The minimum width of the column in pixels.
@@ -38,7 +44,8 @@ export class PartySheetForm extends FormApplication {
   /**
    * @typedef ColOptions
    * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column.
-   * @property {SystemDataColumnAlignType} align - The alignment of the column.
+   * @property {SystemDataColumnAlignType} align - The horizontal alignment of the column.
+   * @property {SystemDataColumnVAlignType} valign - The vertical alignment of the column.
    * @property {number} colspan - The number of columns to span.
    * @property {number} maxwidth - The maximum width of the column in pixels.
    * @property {number} minwidth - The minimum width of the column in pixels.
@@ -68,6 +75,8 @@ export class PartySheetForm extends FormApplication {
    */
 
   getCustomPlayerData(data) {
+    //@ts-ignore
+    const showDebugOutput = game.settings.get("theater-of-the-mind", "showDebugInfo");
     const excludeTypes = data?.offline_excludes ? data.offline_excludes : DEFAULT_EXCLUDES;
 
     if (!data) {
@@ -79,11 +88,22 @@ export class PartySheetForm extends FormApplication {
     // @ts-ignore
     const hiddenCharacters = game.settings.get("theater-of-the-mind", "hiddenCharacters");
 
+    if (showDebugOutput) {
+      console.log("======= TOTM DEBUG ACTORS LIST ======= ");
+      console.log(
+        "These are all the actors in your game. They have not yet been filtered based on your inclusions/exclusions.",
+      );
+    }
+
     let actorList = showOnlyOnlineUsers
       ? // @ts-ignore
         game.users.filter((user) => user.active && user.character).map((user) => user.character)
       : // @ts-ignore
         game.actors.filter((actor) => {
+          // @ts-ignore
+          if (game.settings.get("theater-of-the-mind", "showDebugInfo")) {
+            console.log(actor);
+          }
           if (data.offline_includes_property && data.offline_includes) {
             var propval = extractPropertyByString(actor, data.offline_includes_property);
             return data.offline_includes.includes(propval);
@@ -96,11 +116,19 @@ export class PartySheetForm extends FormApplication {
           }
         });
 
+    if (showDebugOutput) {
+      console.log("====================================== ");
+    }
+
     if (!showOnlyOnlineUsers) {
       actorList = actorList.filter((player) => !hiddenCharacters.includes(player.uuid));
     }
 
     try {
+      if (showDebugOutput) {
+        console.log("======= TOTM DEBUG CHARACTER LIST ======= ");
+        console.log("These are all the actors your party sheet will display.");
+      }
       var finalActorList = actorList
         .map((character) => {
           const userChar = character;
@@ -121,6 +149,7 @@ export class PartySheetForm extends FormApplication {
                 text: this.getCustomData(userChar, colobj.type, colobj.value),
                 options: {
                   align: colobj.align,
+                  valign: colobj.valign,
                   colspan: colobj.colspan,
                   maxwidth: colobj.maxwidth,
                   minwidth: colobj.minwidth,
@@ -134,6 +163,9 @@ export class PartySheetForm extends FormApplication {
           return row_data;
         })
         .filter((player) => player);
+      if (showDebugOutput) {
+        console.log("========================================= ");
+      }
       return { name: data.name, author: data.author, players: finalActorList, rowcount: data.rows.length };
     } catch (ex) {
       console.log(ex);
@@ -323,7 +355,7 @@ export class PartySheetForm extends FormApplication {
           }
         }
         if (finalstr === "") {
-          outstr = finalstr;
+          finalstr = outstr;
         }
         finalstr = finalstr.trim();
         finalstr = this.cleanString(finalstr);
@@ -442,5 +474,29 @@ export class PartySheetForm extends FormApplication {
     $('input[name="totm-actorimage"]', html).click(this.openActorSheet.bind(this));
     // @ts-ignore
     $('select[name="totm-system"]', html).change(this.changeSystem.bind(this));
+    // @ts-ignore
+    $('button[name="feedback"]', html).click(this.onFeedback.bind(this));
+    // @ts-ignore
+    $('button[name="bugreport"]', html).click(this.onBugReport.bind(this));
+    // @ts-ignore
+    $('button[name="discord"]', html).click(this.onDiscord.bind(this));
+  }
+
+  async onFeedback(event) {
+    event.preventDefault();
+    const newWindow = window.open(FEEDBACK_URL, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = undefined;
+  }
+
+  async onBugReport(event) {
+    event.preventDefault();
+    const newWindow = window.open(BUGREPORT_URL, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = undefined;
+  }
+
+  async onDiscord(event) {
+    event.preventDefault();
+    const newWindow = window.open(DISCORD_URL, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = undefined;
   }
 }

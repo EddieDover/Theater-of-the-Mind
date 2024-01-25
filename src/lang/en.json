@@ -5,7 +5,11 @@
             "race": "Race",
             "senses": "Senses",
             "classes": "Classes",
-            "no-players": "No players are currently logged in."
+            "no-players": "No players are currently logged in.",
+            "no-systems": "You do not have any json files for this sytem in your data/totm folder. Please add some to enable this feature.",
+            "bugreport": "File a Bug Report",
+            "feedback": "Send Feedback",
+            "discord": "Discord"
         },
         "hide-sheet": {
           "button": "Configure Hidden Characters",

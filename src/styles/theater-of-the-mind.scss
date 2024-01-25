@@ -1,25 +1,22 @@
 #totm-system-select {
-  max-width: 400px;
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top:0.25rem;
+  margin-top: 0.25rem;
+  width: 100%;
 }
 
-#totm-dialog-darkmode {
-  background:none;
-  background-color:transparent;
-  color:white;
-
-  .dialog-button {
-    color:white;
-  }
+.totm-toprow {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
 }
 
-// #totm-party-sheet {
-//   width:fit-content !important;
-//   height:fit-content !important;
-// }
+.totm-options {
+  max-width: 400px;
+}
+
+.totm-ps-no-systems {
+  padding: 1rem;
+}
 
 .totm-hc-form {
   display: flex;

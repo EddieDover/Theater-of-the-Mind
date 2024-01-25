@@ -39,18 +39,18 @@ export const registerSettings = () => {
     "type": HiddenCharactersSettings,
   });
 
-  // @ts-ignore
-  game.settings.register("theater-of-the-mind", "enableDarkMode", {
-    "name": "theater-of-the-mind.settings.enable-dark-mode.name",
-    "hint": "theater-of-the-mind.settings.enable-dark-mode.hint",
-    "scope": "world",
-    "config": true,
-    "default": false,
-    "type": Boolean,
-    "onChange": () => {
-      // Hooks.call("renderSceneControls");
-    },
-  });
+  // // @ts-ignore
+  // game.settings.register("theater-of-the-mind", "enableDarkMode", {
+  //   "name": "theater-of-the-mind.settings.enable-dark-mode.name",
+  //   "hint": "theater-of-the-mind.settings.enable-dark-mode.hint",
+  //   "scope": "world",
+  //   "config": true,
+  //   "default": false,
+  //   "type": Boolean,
+  //   "onChange": () => {
+  //     // Hooks.call("renderSceneControls");
+  //   },
+  // });
 
   // @ts-ignore
   game.settings.register("theater-of-the-mind", "enableSounds", {
