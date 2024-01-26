@@ -1,7 +1,7 @@
   {
-  "name": "dnd5e - excludes",
+  "name": "dnd5e",
   "system": "dnd5e",
-  "author": "Emo Cthulhu",
+  "author": "Your Name Here",
 	"offline_excludes": [
     "npc",
     "base",
