@@ -3,9 +3,10 @@
 	"system": "dragonbane",
 	"author": "Michael Card (Emo Cthulhu)",
 	"offline_excludes": [
-       	"npc",
+		"npc",
 		"base",
-        "monster"],
+		"monster"
+	],
 	"rows": [
 		[
 			{
@@ -136,7 +137,7 @@
 				]
 			}
 		],
-		[   
+		[
 			{
 				"name": ".",
 				"align": "center",
@@ -145,12 +146,12 @@
 				"value": ""
 			},
 			{
-		        "name": "",
+				"name": "",
 				"align": "center",
 				"type": "direct",
 				"coltype": "show",
 				"value": ""
-	        },
+			},
 			{
 				"name": "Profession",
 				"align": "center",

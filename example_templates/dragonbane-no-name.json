@@ -3,9 +3,10 @@
 	"system": "dragonbane",
 	"author": "Michael Card (Emo Cthulhu)",
 	"offline_excludes": [
-       	"npc",
+		"npc",
 		"base",
-        "monster"],
+		"monster"
+	],
 	"rows": [
 		[
 			{
@@ -128,7 +129,7 @@
 				]
 			}
 		],
-		[   
+		[
 			{
 				"name": "",
 				"type": "direct",

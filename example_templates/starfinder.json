@@ -42,7 +42,7 @@
                 "align": "center",
                 "valign": "top",
                 "coltype": "show",
-                "value":"system.abilities.dex {newline} system.abilities.dex.mod"
+                "value": "system.abilities.dex {newline} system.abilities.dex.mod"
             },
             {
                 "name": "CON",
@@ -92,7 +92,7 @@
                 "coltype": "show",
                 "value": "system.attributes.eac"
             },
-            {   
+            {
                 "name": "BAB",
                 "type": "direct",
                 "align": "center",
@@ -161,7 +161,7 @@
                         "type": "exists",
                         "value": "system.details.level",
                         "text": "Level: system.details.level {newline}"
-                    },   
+                    },
                     {
                         "type": "exists",
                         "value": "system.classes.solarian.levels",
@@ -227,7 +227,6 @@
                         "value": "system.attributes.keyability",
                         "text": "KEY"
                     }
-
                 ]
             },
             {
@@ -241,7 +240,7 @@
                         "type": "match",
                         "match": "dex",
                         "value": "system.attributes.keyability",
-                        "text":"KEY"
+                        "text": "KEY"
                     }
                 ]
             },
@@ -398,7 +397,7 @@
                 "value": "system.attributes.arms"
             },
             {
-                "name":"Languages",
+                "name": "Languages",
                 "type": "array-string-builder",
                 "align": "left",
                 "valign": "top",
