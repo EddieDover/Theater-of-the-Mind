@@ -191,7 +191,6 @@ A direct complex object has three properties:
           "text": "Player is sick with system.attribute.sickness",
           "else": "Healthy for system.attribute.daysSinceSick days"
         },
-    // Again (see 5e senses example) added quotes and a comma after 3rd line
     ```
     - "match" - Checks for an additional **match** property. If the **value** matches the **match** property, then **text** is processed.
     - "match-all" - Same as match, but the **value** can be an array of properties to match against.
