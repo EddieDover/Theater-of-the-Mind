@@ -1,14 +1,26 @@
   {
-  "name": "dnd5e",
+  "name": "dnd5e - excludes",
   "system": "dnd5e",
-  "author": "Your Name Here",
+  "author": "Emo Cthulhu",
+	"offline_excludes": [
+    "npc",
+    "base",
+    "vehicle",
+    "group"
+    ],
   "rows": [
     [
+      {
+        "name": "Character Sheet",
+        "type": "charactersheet",
+        "coltype": "skip",
+        "value": ""
+      },
       {
         "name": "Name",
         "type": "direct",
         "coltype": "show",
-        "value": "{charactersheet} name {newline} system.details.race"
+        "value": "name {newline} system.details.race"
       },
       {
         "name": "STR",
