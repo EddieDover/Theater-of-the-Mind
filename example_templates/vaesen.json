@@ -4,24 +4,31 @@
   "author": "Michael Card (Emo Cthulhu)",
   "offline_excludes": [
        	"npc",
-	    "base",
+	      "base",
         "vaesen",
-  		"headquarter"],
+  		  "headquarter"],
   "rows": [
     [
-      {
-        "name": "Name & Archetype",
-        "type": "direct",
-		"align": "left",
-        "coltype": "show",
-        "value": "{charactersheet} name {newline} system.bio.archetype"
-      },
-	  {
-	  	"name": "Physical",
-		"type": "direct-complex",
-		"align": "center",
-		"coltype": "show",
-		"value": [
+      	{
+        	"name": "xx",
+        	"type": "charactersheet",
+        	"coltype": "skip",
+        	"value": ""
+      	},
+      	{
+        	"name": "Name & Archetype",
+        	"type": "direct",
+			    "align": "left",
+        	"coltype": "show",
+        	"value": "name {newline} system.bio.archetype"
+      	},
+	  	{
+	  		"name": "Physical",
+			"type": "direct-complex",
+			"align": "left",
+			"valign": "top",
+			"coltype": "show",
+			"value": [
 				{
 					"type": "match",
 					"match": true,
@@ -46,14 +53,15 @@
 					"value": "system.condition.physical.isBroken",
 					"text": "BROKEN"
 				}
-		]
-	  },
-	  {
-	  	"name": "Mental",
-		"type": "direct-complex",
-		"align": "center",
-		"coltype": "show",
-		"value": [
+			]
+	  	},
+	  	{
+	  		"name": "Mental",
+			"type": "direct-complex",
+			"align": "left",
+			"valign": "top",
+			"coltype": "show",
+			"value": [
 				{
 					"type": "match",
 					"match": true,
@@ -78,50 +86,56 @@
 					"value": "system.condition.mental.isBroken",
 					"text": "BROKEN"
 				}
-		]
-	  },
-      {
-        "name": "Physique",
-        "type": "direct",
-		"align": "left",
-        "coltype": "show",
-	    "value": "PHY: system.attribute.physique {newline} Agility: system.skill.agility / system.skill.agility {+} system.attribute.physique {newline} ClsCom: system.skill.closeCombat / system.skill.closeCombat {+} system.attribute.physique {newline} Force: system.skill.force / system.skill.force {+} system.attribute.physique"
-	  },
-      {
-        "name": "Precision",
-        "type": "direct",
-		"align": "left",
-        "coltype": "show",
-        "value": "PRE: system.attribute.precision {newline} Medic: system.skill.medicine / system.skill.medicine {+} system.attribute.precision {newline} RgCom: system.skill.rangedCombat / system.skill.rangedCombat {+} system.attribute.precision {newline} Stealth: system.skill.stealth / system.skill.stealth {+} system.attribute.precision"
-      },
-      {
-        "name": "Logic",
-        "type": "direct",
-		"align": "left",
-        "coltype": "show",
-        "value": "LOG: system.attribute.logic {newline} Invest: system.skill.investigation / system.skill.investigation {+} system.attribute.logic {newline} Learn: system.skill.learning / system.skill.learning {+} system.attribute.logic {newline} Vigil: system.skill.vigilance / system.skill.vigilance {+} system.attribute.logic"
-      },
-      {
-        "name": "Empathy",
-        "type": "direct",
-		"align": "left",
-        "coltype": "show",
-        "value": "EMP: system.attribute.empathy {newline} Inspir: system.skill.inspiration / system.skill.inspiration {+} system.attribute.empathy {newline} Manip: system.skill.manipulation / system.skill.manipulation {+} system.attribute.empathy {newline} Observ: system.skill.observation / system.skill.observation {+} system.attribute.empathy"
-      },
-	  {
-	  	"name": "Resources",
-		"type": "direct",
-		"align": "center",
-		"coltype": "show",
-		"value": "system.resources"
-	  },
-	  {
-	  	"name": "Capital",
-		"type": "direct",
-		"align": "center",
-		"coltype": "show",
-		"value": "system.capital"
-	  }
+			]
+	  	},
+      	{
+        	"name": "Physique",
+        	"type": "direct",
+			"align": "left",
+			"valign": "top",
+        	"coltype": "show",
+	    	"value": "PHY: system.attribute.physique {newline} Agility: system.skill.agility / system.skill.agility {+} system.attribute.physique {newline} ClsCom: system.skill.closeCombat / system.skill.closeCombat {+} system.attribute.physique {newline} Force: system.skill.force / system.skill.force {+} system.attribute.physique"
+	  	},
+      	{
+        	"name": "Precision",
+        	"type": "direct",
+			"align": "left",
+			"valign": "top",
+        	"coltype": "show",
+        	"value": "PRE: system.attribute.precision {newline} Medic: system.skill.medicine / system.skill.medicine {+} system.attribute.precision {newline} RgCom: system.skill.rangedCombat / system.skill.rangedCombat {+} system.attribute.precision {newline} Stealth: system.skill.stealth / system.skill.stealth {+} system.attribute.precision"
+      	},
+      	{
+        	"name": "Logic",
+        	"type": "direct",
+			"align": "left",
+			"valign": "top",
+        	"coltype": "show",
+        	"value": "LOG: system.attribute.logic {newline} Invest: system.skill.investigation / system.skill.investigation {+} system.attribute.logic {newline} Learn: system.skill.learning / system.skill.learning {+} system.attribute.logic {newline} Vigil: system.skill.vigilance / system.skill.vigilance {+} system.attribute.logic"
+      	},
+      	{
+        	"name": "Empathy",
+        	"type": "direct",
+			"align": "left",
+			"valign": "top",
+        	"coltype": "show",
+        	"value": "EMP: system.attribute.empathy {newline} Inspir: system.skill.inspiration / system.skill.inspiration {+} system.attribute.empathy {newline} Manip: system.skill.manipulation / system.skill.manipulation {+} system.attribute.empathy {newline} Observ: system.skill.observation / system.skill.observation {+} system.attribute.empathy"
+      	},
+	  	{
+	  		"name": "Resources",
+			"type": "direct",
+			"align": "center",
+			"valign": "top",
+			"coltype": "show",
+			"value": "system.resources"
+	  	},
+	  	{
+	  		"name": "Capital",
+			"type": "direct",
+			"align": "center",
+			"valign": "top",
+			"coltype": "show",
+			"value": "system.capital"
+	  	}
     ]
   ]
 }
