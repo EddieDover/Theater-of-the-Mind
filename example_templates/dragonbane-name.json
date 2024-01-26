@@ -9,15 +9,24 @@
 	"rows": [
 		[
 			{
+				"name": "Character Sheet",
+				"align": "center",
+				"type": "charactersheet",
+				"coltype": "skip",
+				"value": ""
+			},
+			{
 				"name": "Name",
 				"align": "left",
+				"maxwidth": 100,
 				"type": "direct",
 				"coltype": "show",
-				"value": "{charactersheet} name"
+				"value": "name"
 			},
 			{
 				"name": "Age & Kin",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "Age: system.age {newline} Kin: system.kin.name"
@@ -25,13 +34,15 @@
 			{
 				"name": "Hit Points",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct",
 				"coltype": "show",
-				"value": "system.hitPoints / system.hitPoints.max"
+				"value": "system.hitPoints / system.hitPoints.max {newline} {newline}"
 			},
 			{
 				"name": "STR",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct-complex",
 				"coltype": "show",
 				"value": [
@@ -40,13 +51,14 @@
 						"match": true,
 						"value": "system.conditions.str",
 						"text": "system.attributes.str {newline} Exhaust",
-						"else": "system.attributes.str"
+						"else": "system.attributes.str {newline} {newline}"
 					}
 				]
 			},
 			{
 				"name": "CON",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct-complex",
 				"coltype": "show",
 				"value": [
@@ -55,13 +67,14 @@
 						"match": true,
 						"value": "system.conditions.con",
 						"text": "system.attributes.con {newline} Sickly",
-						"else": "system.attributes.con"
+						"else": "system.attributes.con {newline} {newline}"
 					}
 				]
 			},
 			{
 				"name": "AGL",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct-complex",
 				"coltype": "show",
 				"value": [
@@ -70,13 +83,14 @@
 						"match": true,
 						"value": "system.conditions.agl",
 						"text": "system.attributes.agl {newline} Dazed",
-						"else": "system.attributes.agl"
+						"else": "system.attributes.agl {newline} {newline}"
 					}
 				]
 			},
 			{
 				"name": "INT",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct-complex",
 				"coltype": "show",
 				"value": [
@@ -85,13 +99,14 @@
 						"match": true,
 						"value": "system.conditions.int",
 						"text": "system.attributes.int {newline} Angry",
-						"else": "system.attributes.int"
+						"else": "system.attributes.int {newline} {newline}"
 					}
 				]
 			},
 			{
 				"name": "WIL",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct-complex",
 				"coltype": "show",
 				"value": [
@@ -100,13 +115,14 @@
 						"match": true,
 						"value": "system.conditions.wil",
 						"text": "system.attributes.wil {newline} Scared",
-						"else": "system.attributes.wil"
+						"else": "system.attributes.wil {newline} {newline}"
 					}
 				]
 			},
 			{
 				"name": "CHA",
 				"align": "center",
+				"valign": "bottom",
 				"type": "direct-complex",
 				"coltype": "show",
 				"value": [
@@ -115,12 +131,19 @@
 						"match": true,
 						"value": "system.conditions.cha",
 						"text": "system.attributes.cha {newline} Disheart",
-						"else": "system.attributes.cha"
+						"else": "system.attributes.cha {newline} {newline}"
 					}
 				]
 			}
 		],
 		[   
+			{
+				"name": ".",
+				"align": "center",
+				"type": "direct",
+				"coltype": "skip",
+				"value": ""
+			},
 			{
 		        "name": "",
 				"align": "center",
@@ -131,6 +154,7 @@
 			{
 				"name": "Profession",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.profession.name"
@@ -138,6 +162,7 @@
 			{
 				"name": "Will Points",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.willPoints / system.willPoints.max"
@@ -145,6 +170,7 @@
 			{
 				"name": "DB-STR",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.damageBonus.str"
@@ -152,6 +178,7 @@
 			{
 				"name": "Move",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.movement"
@@ -159,6 +186,7 @@
 			{
 				"name": "DB-AGL",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.damageBonus.agl"
@@ -166,6 +194,7 @@
 			{
 				"name": "Copper",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.currency.cc"
@@ -173,6 +202,7 @@
 			{
 				"name": "Silver",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.currency.sc"
@@ -180,6 +210,7 @@
 			{
 				"name": "Gold",
 				"align": "center",
+				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "system.currency.gc"
