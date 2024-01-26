@@ -4,9 +4,9 @@
   "author": "Michael Card (Emo Cthulhu)",
   "offline_excludes": [
        	"npc",
-	      "base",
+	    "base",
         "vaesen",
-  		  "headquarter"],
+  		"headquarter"],
   "rows": [
     [
       	{
@@ -18,7 +18,7 @@
       	{
         	"name": "Name & Archetype",
         	"type": "direct",
-			    "align": "left",
+			"align": "left",
         	"coltype": "show",
         	"value": "name {newline} system.bio.archetype"
       	},
