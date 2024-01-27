@@ -1,8 +1,6 @@
 # Template System JSON Documentation
 
-Examples can be found in the [example_templates](https://github.com/EddieDover/Theater-of-the-Mind/example_templates) folder. As well, several systems other than 5e have been made, and are in the <FOUNDRY_VTT/Data/totm> folder in native Foundry, or the [totm] folder at the top of your Assets Library if you are using The Forge.
-
-On The Forge if you use Filepicker+ you can access the read-only [example_templates] folder under the User Data tab, then [modules], then [module-name/example_templates]. Otherwise you won't be able to see the [example_templates] folder, but you can view the [totm] folder for templates of several systems that have already been created.
+Examples can be found in the [example_templates](https://github.com/EddieDover/Theater-of-the-Mind/example_templates) folder. As well, several systems other than 5e have been made, and are in the [example_templates] folder in native Foundry. If using the Forge, install the module on your local Foundry installation to have access to the [example_templates] folder, and to upload any you would like to use to your Assets Library in the <totm> folder at the top level. Or, if you haven't installed Foundry and only used the license key on The Forge, us the GitHub link above. In this case, you will have to download the file to your computer, then upload it to The Forge. If you create a template, please submit it via email, Discord or GitHub, and we will include it in future updates with full credit.
 
 If using native Foundry, place your templates in the <FOUNDRY_VTT/Data/totm/> folder. 
 
@@ -133,7 +131,7 @@ You can have more than two rows.
 __Each item corresponds to a single column on the sheet. If you have multiple rows, then each row must have the same number of columns.__ See the below Examples section for more examples (and note, in the above structure example, the two row example has 2 columns in each). In order to achieve this, you may have to make empty columns:
 ```json
   {
-    "name": "",
+    "name": ".",
     "type": "direct",
     "coltype": "skip",
     "value:" ""
@@ -160,14 +158,16 @@ Note that you can't name all your empty columns the same. Try ".", "..", "...", 
 
 **minwidth** - This _optional_ property controls the minimum width of the column. Value must be a number that represents the width in pixels. `"minwidth": 100,`
 
+**valign** - This _optional_ property controls the vertical alignment of the cells. It only accepts 'top' and 'bottom' any other css property will make it go middle. If left out, the default is inherit, so it will use whatever css the game system provides as some systems alreay override the table css and set the whole table to top, or middle. However, if your system has css code to set valign on table properties, using valign will override the system's value. 
+
 **value** - This property is either a **string** or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
 
 ### Value - accepted values
-  - boolean: no quotes, simply false, or true,
-  - numbers: no quotes
-  - numbers: with quotes
-  - text: quotes
-  - data strings: 
+  * boolean: no quotes: simply false, or true, i.e. `"match": true,`
+  * numbers: no quotes: always examine your systems numeric values to see if they are strings or plain numbers, if they are plain numbers do not include quotes around the value, i.e. `"match": 23,`
+  * numbers: with quotes: if they turn out to be strings (and most of the time they will), include quotes around the value, i.e. `"match:" "23",`
+  * text: you can include text of your writing in your output values. Simply make sure they are within the quotes for the `"value:"` or `"text":` you are creating, i.e. `"value:" "name has system.criticalInjury.time days left before system.criticalInjury.name heals.`
+  * data objects: several things must be adhered to in order to avoid a .json showing a really nasty table. If there is text inside a value, there must be a space separating the text and the data string. When using special keywords (see below) they must be surrounded by spaces, and enclosed by { } marks. The entire output line must be enclosed by one set of quotes, and the module parses it to see if it finds any data objects.
 
 ### Value - Special Keywords
 
@@ -175,7 +175,7 @@ There are a few special keywords that must be surrounded by { } marks, to allow 
 
   * {newline} - Adds a linebreak to the text rendered.
   * {charactersheet} - Inserts a clickable image of the character that will open their character sheet.
-  * {+} - Adds the values of two objects and outputs the result, i.e. system.attributes.str {+} system.attributes.wis will output the character's str and wis added together.
+  * {+} - Adds the values of two objects and outputs the result, i.e. `system.attributes.str {+} system.attributes.wis` will output the character's str and wis added together.
 
 ### Direct-Complex Object
 
@@ -229,10 +229,10 @@ A direct complex object has three properties:
       "text": "Special: system.attributes.senses.special"
     }
   ]
-} // Hey, I entered quotes around type value and text, but 5e is built in to the .js right? sorry if it's wrong
+}
 ```
 
-In this example, the system will contain one column named Senses, but the column name will be hidden (skipped). It will then loop through each item in the **value** field. In this case, it will check each of the dnd5e system senses. If they exist on the character, then the text will be displayed, formatted as a **direct** line, and all appended together at the end. ***Note*** All values that exist will be displayed. You can additionally follow the **text** with **else**, and if the contents of **value** DO NOT exist the value in **else** will be displayed instead.
+In this example, the table will contain one column named Senses, but the column name will be hidden (skipped). It will then loop through each item in the **value** field. In this case, it will check each of the dnd5e system senses. If they exist on the character, then the text will be displayed, formatted as a **direct** line, and all appended together at the end. ***Note*** All values that exist will be displayed. You can additionally follow the **text** with **else**, and if the contents of **value** DO NOT exist the value in **else** will be displayed instead.
 
 In this example, the following character only has one sense that exists, so it's the only one displayed:
 
@@ -273,7 +273,6 @@ Here's an example of how to use **match**:
 				}
 			]
 		},
-// Note: you had "hide" in coltype
 ```
 In this example, the system will contain a column named Career, but the column name will be hidden (skipped). It will then loop through each item in the **value** field. In this system `Alien RPG`, the player's career is a number, stored in `system.general.career`. In this example, if the value in `system.general.career` matches `1` then the value `Colonial Marine` is output, otherwise, if the career matches `2` then the value `Colonial Marshall`, if `3`, `Company Agent` is output and so on. All values that match will be displayed. Any items who's **match** is the same as the contents of **value** will display the value in **text**. You can additionally follow the **text** with **else**, and if the contents of **value** DO NOT match the value in **match** the value in **else** will be displayed instead.
 
@@ -306,14 +305,17 @@ Result:
 ![Basic Example](doc_images/ex1.png)
 
 ## **Notes for Forge Users:**
-  - best to use native Foundry until you are 100% certain you are happy with your template 
-  - uploads need to be a different file name every time
-  - 
+  * It is best to use native Foundry for testing until you are 100% certain you are happy with your template. 
+  * Between The Forge's upload system, where if it sees a file exists, it won't upload it again, and browsers caching files, you will find that if you upload a changed .json, it will appear the same as before the edits. This is why testing is best on Foundry where you can just save the file, then F5 your game, and uploads are instantaneous. It is highly recommended that multiple edited uploads be a different file name every time, to avoid this issue.
+  * The Forge does not allow read or write access to text based files in the Core Data systems or modules, only images which are read-only. Thus to grab the example .json files use the methods described at the top of this document.
 
 ## **Notes for inexperienced template creators:**
 
-  - A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested
-  - If your template fails to appear, then press F12 and check your console logs for errors. The plugin tries to let you know if there are issues with your JSON.
-  - Use JSON Validation extensions for your editor of choice, or sites like https://jsonlint.com/ to validate your JSON.
-  - Double check that property values you're using are correct for your selected system.
-  - 
+  * A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested. They show you with instant feedback if you put or forget a comma where you shouldn't, etc. VSCode is particularily nice and it creates a list of things you type very often, and gives you a box to autocomplete your entries.
+  * Many problems are simply with your JSON file. A missed comma there, a comma that shouldn't exist here.
+  * If your template fails to appear, then press F12 and check your console logs for errors. The module tries to let you know if there are issues with your JSON, it will be early on in the console, you'll see a list of JSONs loaded, and if they are valid, it will say Loaded vaesen.json - good json.
+  * Use JSON Validation extensions for your editor of choice, or sites like https://jsonlint.com/ to validate your JSON.
+  * Double check that property values you're using are correct for your selected system.
+  * The first great way to do this, is to click the debugger for the module on. Then when the party sheet is rendered, you can go into the console and you will see a list of Actors. Clicking the side arrow down will show the name so you can narrow down whichever actor/actors are acting up. Opening the entire entry will show all the values for that Actor.
+  * Another way is to install Illandril's Token Tooltips. Place some actors on the scene, off to the left side. Then go in to Configure Settings > Illandril's Token Tooltips > Configure Tooltip Values. At the bottom left is a button that says "Enable Data Key Debugger." Once clicked you can hover over a token, and all the values in that token will be displayed. You can ignore all the ones about prototype.token, and look for system.attributes.whatever/system.abilities.whatever, etc.
+  * At the very bottom is type, and you only want to show PC's, so check to see if type is character. You may want to drag some tokens like vehicles, animals and monsters onto the scene so you can see what their type is listed as, and exclude that type using the offline_excludes array detailed above. 

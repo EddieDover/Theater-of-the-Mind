@@ -4,8 +4,9 @@
 [![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Ftheater-of-the-mind%2Fshield%2Fendorsements)](https://www.foundryvtt-hub.com/package/theater-of-the-mind/)
 [![Foundry Hub Comments](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Ftheater-of-the-mind%2Fshield%2Fcomments)](https://www.foundryvtt-hub.com/package/theater-of-the-mind/)
 
+This module will provide a GM with a table of characters, online only, or all, configurable in settings, in order to quickly see important stats, traits, abilites, etc. of all characters. Originally 5e only, it is now system agnostic and you can create easy to make .json templates for your system. It supports native Foundry and The Forge. Complete instructions for creating templates and placing them in the right folder on Foundry and Forge are included in the [SYSTEMS.MD] file.
 
-The original intent of this module was to provide a 'party view' feature that I found missing when I first started using [FoundryVTT](https://www.foundryvtt.com) instead of [Fantasy Grounds](https://www.fantasygrounds.com). It will be updated with features that I personally want or need, or are requested of me by some poor soul.
+The original intent of this module was to provide a 'party view' feature that I found missing when I first started using [FoundryVTT](https://www.foundryvtt.com) instead of [Fantasy Grounds](https://www.fantasygrounds.com). It will be updated with features that I personally want or need, or are requested of me by some poor soul. While originally only supporting 5e, I have now set it up so that anyone can create a template for any system, and it is now system agnostic. Several other systems have already been created, and more are already in the works and even more are planned. If you create a template, please submit it via email, Discord or GitHub, and we will include it in future updates with full credit.
 
 ## Features
 - Adds a 'Party Sheet' similar to that provided by Fantasy Grounds. Just click the Party Sheet icon on the Tokens Controls sub-menu.
@@ -41,3 +42,21 @@ Specific Characters
 
 ![Preview of Plugin Party Sheet - Specific Actors](images/preview2.png)
 
+# Supported Systems
+
+Built in (by Eddie Dover):
+  - DnD5e
+
+Templates by Michael Card (Emo Cthulhu):
+  - Alien RPG "alienrpg"
+  - Blade Runner RPG "blade-runner"
+  - Dragonbane "dragonbane"
+  - Starfinder "sfrpg"
+  - The Walking Dead Universe RPG "twdu"
+  - Vaesen "vaesen"
+
+  - In Progress: Coriolis "yzecoriolis", Fallout 2d20 "fallout", Cyberpunk RED "cyberpunk-red-core"
+
+  - Planned: Pathfinder 1e, Pathfinder 2e
+
+Please see the [SYSTEMS.md] file for how to use the provided templates and install them in the correct directory. Theater of the Mind supports Forge installations, and information in these documents will let you know what you have to do differently on native Foundry and The Forge.
