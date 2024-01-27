@@ -4,7 +4,7 @@ Examples can be found in the [example_templates](https://github.com/EddieDover/T
 
 If using native Foundry, place your templates in the <FOUNDRY_VTT/Data/totm/> folder. 
 
-If using The Forge, <MODULE_NAME> will create a folder at the top level of your Assets Library named [totm]. Place your templates in this folder.
+If using The Forge, this module will create a folder at the top level of your Assets Library named `totm`. Place your templates in this folder.
 
 ## Required Minimal Top Level Structure
 
