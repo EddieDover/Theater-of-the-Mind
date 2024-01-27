@@ -158,16 +158,18 @@ Note that you can't name all your empty columns the same. Try ".", "..", "...", 
 
 **minwidth** - This _optional_ property controls the minimum width of the column. Value must be a number that represents the width in pixels. `"minwidth": 100,`
 
-**valign** - This _optional_ property controls the vertical alignment of the cells. It only accepts 'top' and 'bottom' any other css property will make it go middle. If left out, the default is inherit, so it will use whatever css the game system provides as some systems alreay override the table css and set the whole table to top, or middle. However, if your system has css code to set valign on table properties, using valign will override the system's value. 
+**valign** - This _optional_ property controls the vertical alignment of the cells. It only accepts 'top' and 'bottom'. If left out, or if an improper value is used, the setting will be ignored and will use whatever css the game system provides, since as some systems already override the table css and set the whole table to top, or middle. However, if your system has css code to set valign on table properties, using valign should override the system's value. 
 
 **value** - This property is either a **string** or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
 
 ### Value - accepted values
-  * boolean: no quotes: simply false, or true, i.e. `"match": true,`
-  * numbers: no quotes: always examine your systems numeric values to see if they are strings or plain numbers, if they are plain numbers do not include quotes around the value, i.e. `"match": 23,`
-  * numbers: with quotes: if they turn out to be strings (and most of the time they will), include quotes around the value, i.e. `"match:" "23",`
-  * text: you can include text of your writing in your output values. Simply make sure they are within the quotes for the `"value:"` or `"text":` you are creating, i.e. `"value:" "name has system.criticalInjury.time days left before system.criticalInjury.name heals.`
-  * data objects: several things must be adhered to in order to avoid a .json showing a really nasty table. If there is text inside a value, there must be a space separating the text and the data string. When using special keywords (see below) they must be surrounded by spaces, and enclosed by { } marks. The entire output line must be enclosed by one set of quotes, and the module parses it to see if it finds any data objects.
+  * boolean - Quotes are not needed, simply use `false`, or `true`, i.e. `"match": true,`
+  * numbers - Always examine your systems values to see if they are strings or plain numbers, if they are plain numbers do not include quotes around the value, i.e. `"match": 23,` If they are actually strings, then you will need to surround the number with quotes to make it a string as well, i.e. `"match:" "23",`
+  * text:  You can include arbitrary text in your output values. Simply make sure they are within the quotes for the `"value:"` or `"text":` you are creating, i.e. `"value:" "name has system.criticalInjury.time days left before system.criticalInjury.name heals.`
+  * Due to the way things are parsed by the plugin there are a few very important caveats you must keep in mind:
+      1. If you are using a data string like "system.attributes.str", or a keyword (see below) like `{newline}`, along with custom text, such as "STR: system.attributes.str" as an output, there **must** be spaces around the data string,
+          - INCORRECT - "STR:system.attributes.str/system.attributes.maxstr"
+          - CORRECT     - "STR: system.attributes.str / system.attributes.maxstr"
 
 ### Value - Special Keywords
 
@@ -306,7 +308,7 @@ Result:
 
 ## **Notes for Forge Users:**
   * It is best to use native Foundry for testing until you are 100% certain you are happy with your template. 
-  * Between The Forge's upload system, where if it sees a file exists, it won't upload it again, and browsers caching files, you will find that if you upload a changed .json, it will appear the same as before the edits. This is why testing is best on Foundry where you can just save the file, then F5 your game, and uploads are instantaneous. It is highly recommended that multiple edited uploads be a different file name every time, to avoid this issue.
+  * Between The Forge's upload system that will not upload a file again if it sees the file already exists, and various browsers caching files, you may find that if you upload a changed .json, the changes will not appear. This is why testing is best on Foundry where you can just save the file, then refresh your client (F5), and changes should be instantaneous. If you can only use Forge then It is highly recommended that multiple edited uploads be a different file name every time, to avoid this issue, until your template is complete.
   * The Forge does not allow read or write access to text based files in the Core Data systems or modules, only images which are read-only. Thus to grab the example .json files use the methods described at the top of this document.
 
 ## **Notes for inexperienced template creators:**
