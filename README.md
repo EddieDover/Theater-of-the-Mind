@@ -13,7 +13,7 @@ If you create a template, please submit it via email, Discord or GitHub as a Pul
 ## Features
 - Adds a 'Party Sheet' similar to that provided by Fantasy Grounds. Just click the Party Sheet icon on the Tokens Controls sub-menu.
 
-  - The Party Sheet can be configured via the options to either display only currently connected players, or all non-npc characters. When using the all-characters display, there is a separate dialog to allow hiding of any characters the DM doesn't need to worry about. See the [SYSTEMS.md] file for how to create a json file for your own system.
+  - The Party Sheet can be configured via the options to either display only currently connected players, or all non-npc characters. When using the all-characters display, there is a separate dialog to allow hiding of any characters the DM doesn't need to worry about. See the [SYSTEMS.md] file for instructions on how to create a json file for your own system.
 
   - Clicking a character portrait will open their sheet.
 
