@@ -27,7 +27,6 @@
 			{
 				"name": "Age & Kin",
 				"align": "center",
-				"valign": "top",
 				"type": "direct",
 				"coltype": "show",
 				"value": "Age: system.age {newline} Kin: system.kin.name"

@@ -45,7 +45,7 @@ Specific Characters
 # Supported Systems
 
 Built in (by Eddie Dover):
-  - DnD5e
+  - DnD5e "dnd5e" - Note: this does not require any upload of a .json, but you can make your own or edit the example in the [example_templates] folder to your liking and it will show up in the dropdown of available .json files
 
 Templates by Michael Card (Emo Cthulhu):
   - Alien RPG "alienrpg"

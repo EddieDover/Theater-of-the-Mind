@@ -318,4 +318,13 @@ Result:
   * Double check that property values you're using are correct for your selected system.
   * The first great way to do this, is to click the debugger for the module on. Then when the party sheet is rendered, you can go into the console and you will see a list of Actors. Clicking the side arrow down will show the name so you can narrow down whichever actor/actors are acting up. Opening the entire entry will show all the values for that Actor.
   * Another way is to install Illandril's Token Tooltips. Place some actors on the scene, off to the left side. Then go in to Configure Settings > Illandril's Token Tooltips > Configure Tooltip Values. At the bottom left is a button that says "Enable Data Key Debugger." Once clicked you can hover over a token, and all the values in that token will be displayed. You can ignore all the ones about prototype.token, and look for system.attributes.whatever/system.abilities.whatever, etc.
-  * At the very bottom is type, and you only want to show PC's, so check to see if type is character. You may want to drag some tokens like vehicles, animals and monsters onto the scene so you can see what their type is listed as, and exclude that type using the offline_excludes array detailed above. 
+  * At the very bottom is type, and you only want to show PC's, so check to see if type is character. You may want to drag some tokens like vehicles, animals and monsters onto the scene so you can see what their type is listed as, and exclude that type using the offline_excludes array detailed above.
+
+## **Other Notes:**
+
+  * Module Conflicts: 
+    - Arius Planeswalker's Stylish Journal for Monk's Enhanced Journal - changes the CSS so dramatically that tables will not render correctly.
+    - Possible issues with Token Attacher tokens - in testing some MAD Cartographer maps caused the tokens that come with the map modules would show up in the Party Sheet, despite having proper excludes in the header of the .json. It is not an issue with MAD Cartographer maps or their dependencies, it seems to be another module that causes these Actors not to import properly. As soon as the offending module is found it will be listed here.
+  * CSS:
+    - Some system developers are bound and determined to change everything about default Foundry css just because they can (I'm looking at you, Free League Publishing), so while every effort has been made to make the tables look the same between systems, you may see some that are quite different (I'm looking at you, Vaesen).
+    - That said, the module can only accomodate some minimal alignment and visual improvements. To try and override every system out there would be impossible. There is no intention to allow more than minwidth/maxwidth, align and valign.

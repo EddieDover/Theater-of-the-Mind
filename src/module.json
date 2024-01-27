@@ -1,7 +1,7 @@
 {
   "id": "theater-of-the-mind",
   "title": "Theater of the Mind - DM Tool",
-  "description": "This system agnostic module will provide a GM with a table of characters, online only, or all, configurable in settings, in order to quickly see important stats, traits, abilites, etc. of all characters. It's a fantastic tool for GMs running token/map games or Theater of the Mind style game.",
+  "description": "This system agnostic module will provide a GM with a 'party view' feature similar to that of Fantasy Grounds, online characters only, or all characters, configurable in settings, in order to quickly see important stats, traits, abilites, etc. It's a great tool for GMs running token/map games or Theater of the Mind style games.",
   "url": "https://github.com/EddieDover/theater-of-the-mind",
   "bugs": "https://github.com/EddieDover/theater-of-the-mind/issues",
   "changelog": "https://github.com/EddieDover/theater-of-the-mind/releases",
