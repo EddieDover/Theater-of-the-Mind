@@ -137,7 +137,7 @@ __Each item corresponds to a single column on the sheet. If you have multiple ro
     "value:" ""
   }, // no comma if the last column
 ```
-Note that you can't even empty columns need unique names. Feel free to be as descriptive as necessary, since the column **name** will not be displayed if the `coltype` is `skip`.  **No two columns can have the same `name` value.**
+Note that even empty columns need unique names. Feel free to be as descriptive as necessary, since the column **name** will not be displayed if the `coltype` is `skip`.  **No two columns can have the same `name` value.**
 
 ### Primary Property Specifics
 
