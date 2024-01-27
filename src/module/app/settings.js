@@ -20,6 +20,16 @@ export const registerSettings = () => {
   });
 
   // @ts-ignore
+  game.settings.register("theater-of-the-mind", "showDebugInfo", {
+    "name": "theater-of-the-mind.settings.show-debug-info.name",
+    "hint": "theater-of-the-mind.settings.show-debug-info.hint",
+    "scope": "world",
+    "config": true,
+    "default": false,
+    "type": Boolean,
+  });
+
+  // @ts-ignore
   game.settings.registerMenu("theater-of-the-mind", "configureHiddenCharacters", {
     "name": "",
     "label": "theater-of-the-mind.hide-sheet.button",
@@ -29,18 +39,18 @@ export const registerSettings = () => {
     "type": HiddenCharactersSettings,
   });
 
-  // @ts-ignore
-  game.settings.register("theater-of-the-mind", "enableDarkMode", {
-    "name": "theater-of-the-mind.settings.enable-dark-mode.name",
-    "hint": "theater-of-the-mind.settings.enable-dark-mode.hint",
-    "scope": "world",
-    "config": true,
-    "default": false,
-    "type": Boolean,
-    "onChange": () => {
-      // Hooks.call("renderSceneControls");
-    },
-  });
+  // // @ts-ignore
+  // game.settings.register("theater-of-the-mind", "enableDarkMode", {
+  //   "name": "theater-of-the-mind.settings.enable-dark-mode.name",
+  //   "hint": "theater-of-the-mind.settings.enable-dark-mode.hint",
+  //   "scope": "world",
+  //   "config": true,
+  //   "default": false,
+  //   "type": Boolean,
+  //   "onChange": () => {
+  //     // Hooks.call("renderSceneControls");
+  //   },
+  // });
 
   // @ts-ignore
   game.settings.register("theater-of-the-mind", "enableSounds", {

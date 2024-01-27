@@ -81,6 +81,16 @@ Handlebars.registerHelper("getAlignment", function (row, key) {
 });
 
 // @ts-ignore
+Handlebars.registerHelper("getVAlignment", function (row, key) {
+  var myoptions = row[key]?.options ?? {};
+  if (myoptions.valign === "top" || myoptions.valign === "bottom") {
+    return myoptions.valign;
+  } else {
+    return "inherit";
+  }
+});
+
+// @ts-ignore
 Handlebars.registerHelper("getColSpan", function (row, key) {
   var myoptions = row[key]?.options ?? {};
   return myoptions?.colspan ?? 1;
@@ -89,7 +99,7 @@ Handlebars.registerHelper("getColSpan", function (row, key) {
 // @ts-ignore
 Handlebars.registerHelper("getMaxWidth", function (row, key) {
   var myoptions = row[key]?.options ?? {};
-  return myoptions?.maxwidth ? `${myoptions?.maxwidth}px` : "auto";
+  return myoptions?.maxwidth ? `${myoptions?.maxwidth}px` : "none";
 });
 
 // @ts-ignore

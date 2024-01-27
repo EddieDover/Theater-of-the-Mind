@@ -58,7 +58,7 @@ export function getCustomSystems() {
  * extractPropertyByString({a: {b: 2}}, "a.b");
  */
 export function extractPropertyByString(obj, path) {
-  if (typeof path === "boolean") {
+  if (typeof path === "boolean" || typeof path === "number") {
     return path;
   }
 
