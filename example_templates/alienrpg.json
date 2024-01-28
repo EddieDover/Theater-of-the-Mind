@@ -162,7 +162,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "STR: system.attributes.str {newline} CC: system.skills.closeCbt / system.skills.closeCbt {+} system.attributes.str {newline} HM: system.skills.heavyMach / system.skills.heavyMach {+} system.attributes.str {newline} Sta: system.skills.stamina / system.skills.stamina {+} system.attributes.str"
+				"value": "STR: system.attributes.str {newline} {newline} CC: system.skills.closeCbt / system.skills.closeCbt {+} system.attributes.str {newline} HM: system.skills.heavyMach / system.skills.heavyMach {+} system.attributes.str {newline} Sta: system.skills.stamina / system.skills.stamina {+} system.attributes.str"
 			},
 			{
 				"name": "Agility Group",
@@ -171,7 +171,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "AGL: system.attributes.agl {newline} RC: system.skills.rangedCbt / system.skills.rangedCbt {+} system.attributes.agl {newline} Mob: system.skills.mobility / system.skills.mobility {+} system.attributes.agl {newline} Pilot: system.skills.piloting / system.skills.piloting {+} system.attributes.agl"
+				"value": "AGL: system.attributes.agl {newline} {newline} RC: system.skills.rangedCbt / system.skills.rangedCbt {+} system.attributes.agl {newline} Mob: system.skills.mobility / system.skills.mobility {+} system.attributes.agl {newline} Pilot: system.skills.piloting / system.skills.piloting {+} system.attributes.agl"
 			},
 			{
 				"name": "Empathy Group",
@@ -180,7 +180,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "EMP: system.attributes.emp {newline} Com: system.skills.command / system.skills.command {+} system.attributes.emp {newline} Man: system.skills.manipulation / system.skills.manipulation {+} system.attributes.emp {newline} Med: system.skills.medicalAid / system.skills.medicalAid {+} system.attributes.emp"
+				"value": "EMP: system.attributes.emp {newline} {newline} Com: system.skills.command / system.skills.command {+} system.attributes.emp {newline} Man: system.skills.manipulation / system.skills.manipulation {+} system.attributes.emp {newline} Med: system.skills.medicalAid / system.skills.medicalAid {+} system.attributes.emp"
 			},
 			{
 				"name": "Wits Group",
@@ -189,7 +189,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "WIT: system.attributes.wit {newline} Obs: system.skills.observation / system.skills.observation {+} system.attributes.wit {newline} Sur: system.skills.survival / system.skills.survival {+} system.attributes.wit {newline} CT: system.skills.comtech / system.skills.comtech {+} system.attributes.wit"
+				"value": "WIT: system.attributes.wit {newline} {newline} Obs: system.skills.observation / system.skills.observation {+} system.attributes.wit {newline} Sur: system.skills.survival / system.skills.survival {+} system.attributes.wit {newline} CT: system.skills.comtech / system.skills.comtech {+} system.attributes.wit"
 			}
 		]
 	]

@@ -95,7 +95,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "PHY: system.attribute.physique {newline} Agility: system.skill.agility / system.skill.agility {+} system.attribute.physique {newline} ClsCom: system.skill.closeCombat / system.skill.closeCombat {+} system.attribute.physique {newline} Force: system.skill.force / system.skill.force {+} system.attribute.physique"
+				"value": "PHY: system.attribute.physique {newline} {newline} Agility: system.skill.agility / system.skill.agility {+} system.attribute.physique {newline} ClsCom: system.skill.closeCombat / system.skill.closeCombat {+} system.attribute.physique {newline} Force: system.skill.force / system.skill.force {+} system.attribute.physique"
 			},
 			{
 				"name": "Precision",
@@ -103,7 +103,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "PRE: system.attribute.precision {newline} Medic: system.skill.medicine / system.skill.medicine {+} system.attribute.precision {newline} RgCom: system.skill.rangedCombat / system.skill.rangedCombat {+} system.attribute.precision {newline} Stealth: system.skill.stealth / system.skill.stealth {+} system.attribute.precision"
+				"value": "PRE: system.attribute.precision {newline} {newline} Medic: system.skill.medicine / system.skill.medicine {+} system.attribute.precision {newline} RgCom: system.skill.rangedCombat / system.skill.rangedCombat {+} system.attribute.precision {newline} Stealth: system.skill.stealth / system.skill.stealth {+} system.attribute.precision"
 			},
 			{
 				"name": "Logic",
@@ -111,7 +111,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "LOG: system.attribute.logic {newline} Invest: system.skill.investigation / system.skill.investigation {+} system.attribute.logic {newline} Learn: system.skill.learning / system.skill.learning {+} system.attribute.logic {newline} Vigil: system.skill.vigilance / system.skill.vigilance {+} system.attribute.logic"
+				"value": "LOG: system.attribute.logic {newline} {newline} Invest: system.skill.investigation / system.skill.investigation {+} system.attribute.logic {newline} Learn: system.skill.learning / system.skill.learning {+} system.attribute.logic {newline} Vigil: system.skill.vigilance / system.skill.vigilance {+} system.attribute.logic"
 			},
 			{
 				"name": "Empathy",
@@ -119,7 +119,7 @@
 				"align": "left",
 				"valign": "top",
 				"coltype": "show",
-				"value": "EMP: system.attribute.empathy {newline} Inspir: system.skill.inspiration / system.skill.inspiration {+} system.attribute.empathy {newline} Manip: system.skill.manipulation / system.skill.manipulation {+} system.attribute.empathy {newline} Observ: system.skill.observation / system.skill.observation {+} system.attribute.empathy"
+				"value": "EMP: system.attribute.empathy {newline} {newline} Inspir: system.skill.inspiration / system.skill.inspiration {+} system.attribute.empathy {newline} Manip: system.skill.manipulation / system.skill.manipulation {+} system.attribute.empathy {newline} Observ: system.skill.observation / system.skill.observation {+} system.attribute.empathy"
 			},
 			{
 				"name": "Resources",
