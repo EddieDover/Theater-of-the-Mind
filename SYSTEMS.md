@@ -170,6 +170,7 @@ Note that even empty columns need unique names. Feel free to be as descriptive a
       1. If you are using a data string like "system.attributes.str", or a keyword (see below) like `{newline}`, along with custom text, such as "STR: system.attributes.str" as an output, there **must** be spaces around the data string,
           - INCORRECT - "STR:system.attributes.str/system.attributes.maxstr"
           - CORRECT     - "STR: system.attributes.str / system.attributes.maxstr"
+  * The more astute among you may notice that in the example templates, ".value" is often left out. To save your poor typing muscles, even if the value you find for a piece of character data is "system.attributes.str.value" the module parses data in the following way. Entering "system.attributes.str" will make the module look for "system.attributes.str.value" and display that if it finds it. If not found, it will display "system.attributes.str" as is.
 
 ### Value - Special Keywords
 
@@ -330,3 +331,92 @@ Result:
   * CSS:
     - Some system developers are bound and determined to change everything about default Foundry css just because they can (I'm looking at you, Free League Publishing), so while every effort has been made to make the tables look the same between systems, you may see some that are quite different (I'm looking at you, Vaesen).
     - That said, the module can only accomodate some minimal alignment and visual improvements. To try and override every system out there would be impossible. There is no intention to allow more than minwidth/maxwidth, align and valign.
+
+## **Still not sure where to start? _Look no further!_**
+  * First jot down the values you think you want to display from one of your character's character sheets.
+  * Decide if you want one row, or need 2 because you have a lot of information to display. Or do both!
+  * Choose one of the following .json examples, and make sure you have the name you want displayed, the exact name of your system, and your name added.
+  * Open your editor of choice and paste the example into it. You've created your first template!
+  * Save it in the proper [totm] folder as described at the top of this document.
+  * Enable the module, and refresh.
+  * In the module settings, turn on the debugger and turn off show only online players.
+  * Now, when you click the Party Sheet icon in your token controls, you will get a thin table with the characters in the system and their clickable Actor Portraits, and their name.
+  * Open the console, and scroll for the listings that say "SystemActor" beneath a line that says "These are all the actors in your game. They have not yet been filtered based on your inclusions/exclusions." It has a header "TOTM DEBUG CHARACTER LIST." Click the arrow to open an Actor, then click the arrow to open system. Most of your values will be here. Some good detective work will help you find the values you want. Remember that you will have to assemble them, starting with system, then, for instance, attributes, then the name of the attribute, ending up with "system.attribute.str" as a typical example. 
+  * Start adding them to further columns, and you'll be done in no time if you've read these instructions thoroughly.
+
+One row:
+
+```json
+{
+    "name": "Some System - 1 Row",
+    "system": "some-system",
+    "author": "Your Name Here",
+    "offline_excludes": [
+        "npc",
+        "base"
+    ],
+    "rows": [
+        [
+            {
+                "name": "Character Sheet",
+                "type": "charactersheet",
+                "align": "center",
+                "coltype": "skip",
+                "value": ""
+            },
+            {
+                "name": "Name",
+                "type": "direct",
+                "align": "center",
+                "coltype": "show",
+                "value": "name" 
+            }
+        ]
+    ]
+}
+```
+
+Two Rows:
+```json
+{
+    "name": "Some System - Two Rows",
+    "system": "some-system",
+    "author": "Your Name Here",
+    "offline_excludes": [
+        "npc",
+        "base"
+    ],
+    "rows": [
+        [
+            {
+                "name": "Character Sheet",
+                "type": "charactersheet",
+                "align": "center",
+                "coltype": "skip",
+                "value": ""
+            },
+            {
+                "name": "Name",
+                "type": "direct",
+                "align": "center",
+                "coltype": "show",
+                "value": "name"
+            }
+        ],
+        [
+            {
+                "name": ".",
+                "type": "direct",
+                "coltype": "skip",
+                "value": ""
+            },
+            {
+                "name": "..",
+                "type": "direct",
+                "coltype": "skip",
+                "value": ""
+            }
+        ]
+    ]
+}
+```

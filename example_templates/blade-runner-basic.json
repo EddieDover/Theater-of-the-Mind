@@ -68,7 +68,7 @@
 				"value": "EMP: d system.attributes.emp {newline} {newline} Con: d system.skills.connections / d system.skills.connections.value + d system.attributes.emp.value {newline} Ins: d system.skills.insight / d system.skills.insight + d system.attributes.emp {newline} Man: d system.skills.manipulation / d system.skills.manipulation + d system.attributes.emp"
 			},
 			{
-				"name": "Chinyen",
+				"name": "Chin",
 				"type": "direct",
 				"align": "center",
 				"valign": "top",
@@ -76,7 +76,7 @@
 				"value": "system.metaCurrencies.chinyen"
 			},
 			{
-				"name": "Humanity",
+				"name": "Hum",
 				"type": "direct",
 				"align": "center",
 				"valign": "top",
@@ -84,7 +84,7 @@
 				"value": "system.metaCurrencies.humanity"
 			},
 			{
-				"name": "Promotion",
+				"name": "Promo",
 				"type": "direct",
 				"align": "center",
 				"valign": "top",
