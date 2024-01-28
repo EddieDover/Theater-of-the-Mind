@@ -1,22 +1,22 @@
 export /** @type {SystemData} */
 const DND5E = {
-  name: "dnd5e",
-  author: "Built-In",
-  system: "dnd5e",
-  rows: [
+  "name": "dnd5e",
+  "system": "dnd5e",
+  "author": "Built-In",
+  "offline_excludes": ["npc", "base", "vehicle", "group"],
+  "rows": [
     [
-      // {
-      //   "name": "Sheet",
-      //   "type": "charactersheet",
-      //   "coltype": "hide",
-      //   "value": "",
-      // },
+      {
+        "name": "Character Sheet",
+        "type": "charactersheet",
+        "coltype": "skip",
+        "value": "",
+      },
       {
         "name": "Name",
         "type": "direct",
         "coltype": "show",
-        "align": "left",
-        "value": "{charactersheet} name {newline} system.details.race",
+        "value": "name {newline} system.details.race",
       },
       {
         "name": "STR",
@@ -75,18 +75,17 @@ const DND5E = {
     ],
     [
       {
+        "name": "Spacer1",
+        "type": "",
+        "coltype": "skip",
+        "value": "",
+      },
+      {
         "name": "Classes",
         "type": "array-string-builder",
         "coltype": "show",
         "value": "classes => name - system.levels",
       },
-      // Empty Column
-      // {
-      //   "name": "",
-      //   "type": "span",
-      //   "coltype": "show",
-      //   "value": "",
-      // },
       {
         "name": "STR Mod",
         "type": "direct",
@@ -141,29 +140,29 @@ const DND5E = {
         "coltype": "skip",
         "value": [
           {
-            type: "exists",
-            value: "system.attributes.senses.darkvision",
-            text: "Darkvision: system.attributes.senses.darkvision",
+            "type": "exists",
+            "value": "system.attributes.senses.darkvision",
+            "text": "Darkvision: system.attributes.senses.darkvision",
           },
           {
-            type: "exists",
-            value: "system.attributes.senses.blindsight",
-            text: "Blindsight: system.attributes.senses.blindsight",
+            "type": "exists",
+            "value": "system.attributes.senses.blindsight",
+            "text": "Blindsight: system.attributes.senses.blindsight",
           },
           {
-            type: "exists",
-            value: "system.attributes.senses.tremorsense",
-            text: "Tremorsense: system.attributes.senses.tremorsense",
+            "type": "exists",
+            "value": "system.attributes.senses.tremorsense",
+            "text": "Tremorsense: system.attributes.senses.tremorsense",
           },
           {
-            type: "exists",
-            value: "system.attributes.senses.truesight",
-            text: "Truesight: system.attributes.senses.truesight",
+            "type": "exists",
+            "value": "system.attributes.senses.truesight",
+            "text": "Truesight: system.attributes.senses.truesight",
           },
           {
-            type: "exists",
-            value: "system.attributes.senses.special",
-            text: "Special: system.attributes.senses.special",
+            "type": "exists",
+            "value": "system.attributes.senses.special",
+            "text": "Special: system.attributes.senses.special",
           },
         ],
       },

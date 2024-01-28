@@ -1,0 +1,1120 @@
+{
+    "name": "Blade Runner: The Roleplaying Game - Expanded",
+    "system": "blade-runner",
+    "author": "Michael Card (Emo Cthulhu)",
+    "offline_includes_property": "system.subtype",
+    "offline_includes": [
+        "pc"
+    ],
+    "rows": [
+        [
+            {
+                "name": "xx",
+                "type": "charactersheet",
+                "coltype": "skip",
+                "value": ""
+            },
+            {
+                "name": "Name - Archetype - Nature",
+                "maxwidth": 100,
+                "type": "direct",
+                "align": "left",
+                "coltype": "show",
+                "value": "name {newline} Archetype: system.archetype {newline} Nature: system.nature"
+            },
+            {
+                "name": "Health & Resolve",
+                "maxwidth": 70,
+                "type": "direct",
+                "align": "center",
+                "valign": "top",
+                "coltype": "show",
+                "value": "H: system.health.value / system.health.max {newline} R: system.resolve.value / system.resolve.max"
+            },
+            {
+                "name": "STR Group",
+                "type": "direct-complex",
+                "minwidth": 80,
+                "align": "left",
+                "valign": "top",
+                "coltype": "show",
+                "value": [
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.attributes.str",
+                        "text": "STR: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.attributes.str",
+                        "text": "STR: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.attributes.str",
+                        "text": "STR: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.attributes.str",
+                        "text": "STR: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.attributes.str",
+                        "text": "STR: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.attributes.str",
+                        "text": "STR: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.attributes.str",
+                        "text": "STR: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.attributes.str",
+                        "text": "STR: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.attributes.str",
+                        "text": "STR: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.attributes.str",
+                        "text": "STR: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.closeCombat",
+                        "text": "H2H: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.force",
+                        "text": "Force: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.force",
+                        "text": "Force: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.force",
+                        "text": "Force: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.force",
+                        "text": "Force: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.force",
+                        "text": "Force: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.force",
+                        "text": "Force: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.force",
+                        "text": "Force: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.force",
+                        "text": "Force: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.force",
+                        "text": "Force: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.force",
+                        "text": "Force: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.stamina",
+                        "text": "Stamina: A (d12)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.stamina",
+                        "text": "Stamina : A (d12)"
+                    }
+                ]
+            },
+            {
+                "name": "AGI Group",
+                "type": "direct-complex",
+                "minwidth": 80,
+                "align": "left",
+                "valign": "top",
+                "coltype": "show",
+                "value": [
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.attributes.agi",
+                        "text": "AGI: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.attributes.agi",
+                        "text": "AGI: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.attributes.agi",
+                        "text": "AGI: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.attributes.agi",
+                        "text": "AGI: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.attributes.agi",
+                        "text": "AGI: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.attributes.agi",
+                        "text": "AGI: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.attributes.agi",
+                        "text": "AGI: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.attributes.agi",
+                        "text": "AGI: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.attributes.agi",
+                        "text": "AGI: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.attributes.agi",
+                        "text": "AGI: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.firearms",
+                        "text": "Firearms: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.mobility",
+                        "text": "Mob: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.mobility",
+                        "text": "Mob: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.mobility",
+                        "text": "Force: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.mobility",
+                        "text": "Mob: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.mobility",
+                        "text": "Mob: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.mobility",
+                        "text": "Mob: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.mobility",
+                        "text": "Mob: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.mobility",
+                        "text": "Mob: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.mobility",
+                        "text": "Mob: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.mobility",
+                        "text": "Mob: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.stealth",
+                        "text": "Stealth: A (d12)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.stealth",
+                        "text": "Stealth : A (d12)"
+                    }
+                ]
+            },
+            {
+                "name": "INT Group",
+                "type": "direct-complex",
+                "minwidth": 80,
+                "align": "left",
+                "valign": "top",
+                "coltype": "show",
+                "value": [
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.attributes.int",
+                        "text": "INT: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.attributes.int",
+                        "text": "INT: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.attributes.int",
+                        "text": "INT: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.attributes.int",
+                        "text": "INT: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.attributes.int",
+                        "text": "INT: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.attributes.int",
+                        "text": "INT: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.attributes.int",
+                        "text": "INT: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.attributes.int",
+                        "text": "INT: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.attributes.int",
+                        "text": "INT: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.attributes.int",
+                        "text": "INT: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.medicalAid",
+                        "text": "MedAid: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.observation",
+                        "text": "Observ: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.observation",
+                        "text": "Observ: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.observation",
+                        "text": "Observ: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.observation",
+                        "text": "Observ: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.observation",
+                        "text": "Observ: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.observation",
+                        "text": "Observ: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.observation",
+                        "text": "Observ: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.observation",
+                        "text": "Observ: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.observation",
+                        "text": "Observ: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.observation",
+                        "text": "Observ: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.tech",
+                        "text": "Tech: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.tech",
+                        "text": "Tech: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.tech",
+                        "text": "Tech: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.tech",
+                        "text": "Tech: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.tech",
+                        "text": "Tech: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.tech",
+                        "text": "Tech: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.tech",
+                        "text": "Tech: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.tech",
+                        "text": "Tech: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.tech",
+                        "text": "Tech: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.tech",
+                        "text": "Tech: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.driving",
+                        "text": "Driving*: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.driving",
+                        "text": "Driving*: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.driving",
+                        "text": "Driving*: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.driving",
+                        "text": "Driving*: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.driving",
+                        "text": "Driving*: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.driving",
+                        "text": "Driving*: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.driving",
+                        "text": "Driving*: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.driving",
+                        "text": "Driving*: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.driving",
+                        "text": "Driving*: A (d12)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.driving",
+                        "text": "Driving*: A (d12)"
+                    }
+                ]
+            },
+            {
+                "name": "EMP Group",
+                "type": "direct-complex",
+                "minwidth": 80,
+                "align": "left",
+                "valign": "top",
+                "coltype": "show",
+                "value": [
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.attributes.emp",
+                        "text": "EMP: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.attributes.emp",
+                        "text": "EMP: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.attributes.emp",
+                        "text": "EMP: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.attributes.emp",
+                        "text": "EMP: D (d6) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.attributes.emp",
+                        "text": "EMP: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.attributes.emp",
+                        "text": "EMP: C (d8) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.attributes.emp",
+                        "text": "EMP: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.attributes.emp",
+                        "text": "EMP: B (d10) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.attributes.emp",
+                        "text": "EMP: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.attributes.emp",
+                        "text": "EMP: A (d12) {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.connections",
+                        "text": "Conn: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.connections",
+                        "text": "Conn: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.connections",
+                        "text": "Conn: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.connections",
+                        "text": "Conn: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.connections",
+                        "text": "Conn: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.connections",
+                        "text": "Conn: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.connections",
+                        "text": "Conn: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.connections",
+                        "text": "Conn: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.connections",
+                        "text": "Conn: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.connections",
+                        "text": "Conn: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.insight",
+                        "text": "Insight: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.insight",
+                        "text": "Insight: -- {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.insight",
+                        "text": "Insight: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.insight",
+                        "text": "Insight: D (d6) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.insight",
+                        "text": "Insight: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.insight",
+                        "text": "Insight: C (d8) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.insight",
+                        "text": "Insight: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.insight",
+                        "text": "Insight: B (d10) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.insight",
+                        "text": "Insight: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.insight",
+                        "text": "Insight: A (d12) {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": "0",
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: -- {newline} {newline}"
+                    },
+                    {
+                        "type": "match",
+                        "match": 0,
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: --"
+                    },
+                    {
+                        "type": "match",
+                        "match": 6,
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "6",
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: D (d6)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 8,
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "8",
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: C (d8)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 10,
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "10",
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: B (d10)"
+                    },
+                    {
+                        "type": "match",
+                        "match": 12,
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: A (d12)"
+                    },
+                    {
+                        "type": "match",
+                        "match": "12",
+                        "value": "system.skills.manipulation",
+                        "text": "Manip: A (d12)"
+                    }
+                ]
+            },
+            {
+                "name": "Chin",
+                "type": "direct",
+                "align": "center",
+                "valign": "top",
+                "coltype": "show",
+                "value": "system.metaCurrencies.chinyen"
+            },
+            {
+                "name": "Hum",
+                "type": "direct",
+                "align": "center",
+                "valign": "top",
+                "coltype": "show",
+                "value": "system.metaCurrencies.humanity"
+            },
+            {
+                "name": "Pro",
+                "type": "direct",
+                "align": "center",
+                "valign": "top",
+                "coltype": "show",
+                "value": "system.metaCurrencies.promotion"
+            }
+        ]
+    ]
+}
