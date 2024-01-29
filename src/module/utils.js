@@ -88,14 +88,14 @@ export function extractPropertyByString(obj, path) {
  * @returns {*}  - The item with trimmed strings.
  */
 export function trimIfString(item) {
-  if (item.value && typeof item.value === "string") {
-    item.value = item.value.trim();
+  if (item.text && typeof item.text === "string") {
+    item.text = item.text.trim();
   }
   if (item.else && typeof item.else === "string") {
     item.else = item.else.trim();
   }
-  if (item.match && typeof item.match === "string") {
-    item.match = item.match.trim();
+  if (item.matches && typeof item.matches === "string") {
+    item.matches = item.matches.trim();
   }
 
   return item;

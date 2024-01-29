@@ -89,7 +89,7 @@ async function cleanDist() {
  */
 function copyDist() {
   // Take everything inside the dist folder and zip it into a subfolder named totm.zip
-  return gulp.src(`${distDirectory}/**/*`).pipe(gulp.dest(`${distDirectory}/theater-of-them-mind`));
+  return gulp.src(`${distDirectory}/**/*`).pipe(gulp.dest(`${distDirectory}/theater-of-the-mind`));
 }
 
 /**
@@ -98,7 +98,7 @@ function copyDist() {
  */
 function zipDist() {
   return gulp
-    .src(`${distDirectory}/theater-of-them-mind/**/*`, { base: `${distDirectory}` })
+    .src(`${distDirectory}/theater-of-the-mind/**/*`, { base: `${distDirectory}` })
     .pipe(zip(`${packageId}.zip`))
     .pipe(gulp.dest(`${distDirectory}`));
 }
