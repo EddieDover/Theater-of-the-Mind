@@ -173,7 +173,7 @@
           },
           {
             "type": "match",
-            "ifdta": "system.skills.force",
+            "ifdata": "system.skills.force",
             "matches": 6,
             "text": "Force: D (d6) {newline}"
           },
