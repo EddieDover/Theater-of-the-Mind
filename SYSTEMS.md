@@ -2,7 +2,7 @@
 
 Examples can be found in the [example_templates](https://github.com/EddieDover/Theater-of-the-Mind/example_templates) folder. As well, several systems other than 5e have been made, and are in the [example_templates] folder in native Foundry. If using the Forge, install the module on your local Foundry installation to have access to the [example_templates] folder, and to upload any you would like to use to your Assets Library in the <totm> folder at the top level. Or, if you haven't installed Foundry and only used the license key on The Forge, use the GitHub link above. In this case, you will have to download the file to your computer, then upload it to The Forge. If you create a template, please submit it via email, Discord or GitHub, and we will include it in future updates with full credit.
 
-If using native Foundry, place your templates in the <FOUNDRY_VTT/Data/totm/> folder. 
+If using native Foundry, place your templates in the <FOUNDRY_VTT/Data/totm/> folder.
 
 If using The Forge, this module will create a folder at the top level of your Assets Library named `totm`. Place your templates in this folder.
 
@@ -17,7 +17,7 @@ If using The Forge, this module will create a folder at the top level of your As
 }
 ```
 
-***Note**: Templates will be displayed to the user as 'YOUR_TEMPLATE_NAME - YOUR_NAME' and only if the system matches the current system in use.*
+**Note: Templates will be displayed to the user as 'YOUR_TEMPLATE_NAME - YOUR_NAME' and only if the system matches the current system in use.**
 
 ### Optional Top Level Properties
 
@@ -85,7 +85,7 @@ Inside the row array, the plugin expects items in the following format:
 {
   "name": "<COLUMN_NAME>",
   "type": "<DATA_TYPE>",
-  "coltype": "<COLUMN_TYPE>",
+  "header": "<COLUMN_TYPE>",
   "value": "<DATA_VALUE>"
 }
 ```
@@ -101,7 +101,7 @@ Therefore, a one row array should look like:
 
   }
   ]
-] 
+]
 ```
 
 Two rows should look like:
@@ -123,7 +123,7 @@ Two rows should look like:
 
     }
   ]
-] 
+]
 ```
 
 You can have more than two rows.
@@ -133,15 +133,15 @@ __Each item corresponds to a single column on the sheet. If you have multiple ro
   {
     "name": ".",
     "type": "direct",
-    "coltype": "skip",
+    "header": "hide",
     "value:" ""
   }, // no comma if the last column
 ```
-Note that even empty columns need unique names. Feel free to be as descriptive as necessary, since the column **name** will not be displayed if the `coltype` is `skip`.  **No two columns can have the same `name` value.**
+Note that even empty columns need unique names. Feel free to be as descriptive as necessary, since the column **name** will not be displayed if the `header` is `skip`.  **No two columns can have the same `name` value.**
 
 ### Primary Property Specifics
 
-**name** - This can be any value you wish. If the coltype is "show" then it will be displayed as the column header.
+**name** - This can be any value you wish. If the header is "show" then it will be displayed as the column header.
 
 **type** - This is the type of data being displayed, possible choices are:
   * **direct** - This will process the text in the **value** property and parse out any string sections to see if they are properties of the character.
@@ -150,7 +150,7 @@ Note that even empty columns need unique names. Feel free to be as descriptive a
   * **array-string-builder** - This will accept a **value** property in the following format: **<array_object> => <sub_property_string>** See examples below for more information
   * **charactersheet** - This will display the character sheet in the column, ignoring anything in the **value** property.
 
-**coltype** - This property controls if the column text is displayed as a header in the generated table. It accepts either 'show' or 'skip'.
+**header** - This property controls if the column text is displayed as a header in the generated table. It accepts either 'show' or 'skip'.
   * **show** - Show the column as a **header** column.
   * **skip** - Do NOT Show the column as a **header** column.
 
@@ -158,25 +158,25 @@ Note that even empty columns need unique names. Feel free to be as descriptive a
 
 **minwidth** - This _optional_ property controls the minimum width of the column. Value must be a number that represents the width in pixels. `"minwidth": 100,`
 
-**valign** - This _optional_ property controls the vertical alignment of the cells. It only accepts 'top' and 'bottom'. If left out, or if an improper value is used, the setting will be ignored and will use whatever css the game system provides, since as some systems already override the table css and set the whole table to top, or middle. However, if your system has css code to set valign on table properties, using valign should override the system's value. 
+**valign** - This _optional_ property controls the vertical alignment of the cells. It only accepts 'top' and 'bottom'. If left out, or if an improper value is used, the setting will be ignored and will use whatever css the game system provides, since as some systems already override the table css and set the whole table to top, or middle. However, if your system has css code to set valign on table properties, using valign should override the system's value.
 
-**value** - This property is either a **string** or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
+**value** - This property is either a **string**, **boolean**, or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
 
 ### Value - accepted values
   * boolean - Quotes are not needed, simply use `false`, or `true`, i.e. `"match": true,`
   * numbers - Always examine your systems values to see if they are strings or plain numbers, if they are plain numbers do not include quotes around the value, i.e. `"match": 23,` If they are actually strings, then you will need to surround the number with quotes to make it a string as well, i.e. `"match:" "23",`
   * text:  You can include arbitrary text in your output values. Simply make sure they are within the quotes for the `"value:"` or `"text":` you are creating, i.e. `"value:" "name has system.criticalInjury.time days left before system.criticalInjury.name heals.`
   * Due to the way things are parsed by the plugin there are a few very important caveats you must keep in mind:
-      1. If you are using a data string like "system.attributes.str", or a keyword (see below) like `{newline}`, along with custom text, such as "STR: system.attributes.str" as an output, there **must** be spaces around the data string,
-          - INCORRECT - "STR:system.attributes.str/system.attributes.maxstr"
-          - CORRECT     - "STR: system.attributes.str / system.attributes.maxstr"
-  * The more astute among you may notice that in the example templates, ".value" is often left out. To save your poor typing muscles, even if the value you find for a piece of character data is "system.attributes.str.value" the module parses data in the following way. Entering "system.attributes.str" will make the module look for "system.attributes.str.value" and display that if it finds it. If not found, it will display "system.attributes.str" as is.
+    1. If you are using a data string like "system.attributes.str", or a keyword (see below) like `{newline}`, along with custom text, such as `STR: system.attributes.str` as an output, there **must** be spaces around the data string,
+          - INCORRECT - `STR:system.attributes.str/system.attributes.maxstr`
+          - CORRECT     - `STR: system.attributes.str / system.attributes.maxstr`
+  * The more astute among you may notice that in the example templates, `.value` is often left out. To save your poor typing muscles, even if the value you find for a piece of character data is `system.attributes.str.value` the module parses data in the following way. Entering `system.attributes.str` will make the module look for `system.attributes.str.value` and display that if it finds it. If not found, it will display `system.attributes.str` as is.
 
 ### Value - Special Keywords
 
 There are a few special keywords that must be surrounded by { } marks, to allow easier formatting, note that they must be surrounded by spaces unless they are next to the opening or closing quotes. They are as follows:
 
-  * {newline} - Adds a linebreak to the text rendered.
+  * {newline} - Adds a line break to the text rendered.
   * {charactersheet} - Inserts a clickable image of the character that will open their character sheet.
   * {+} - Adds the values of two objects and outputs the result, i.e. `system.attributes.str {+} system.attributes.wis` will output the character's str and wis added together.
 
@@ -204,7 +204,7 @@ A direct complex object has three properties:
 {
   "name": "Senses",
   "type": "direct-complex",
-  "coltype": "skip",
+  "header": "hide",
   "value": [
     {
       "type": "exists",
@@ -248,7 +248,7 @@ Here's an example of how to use **match**:
 		 	"name": "Career",
 			"align": "center",
 			"type": "direct-complex",
-			"coltype": "skip",
+			"header": "hide",
 			"value": [
 				{
 					"type": "match",
@@ -294,7 +294,7 @@ Code:
             {
                 "name": "Name",
                 "type": "direct",
-                "coltype": "show",
+                "header": "show",
                 "value": "{charactersheet} name {newline} system.details.race"
             }
         ]
@@ -308,13 +308,13 @@ Result:
 ![Basic Example](doc_images/ex1.png)
 
 ## **Notes for Forge Users:**
-  * It is best to use native Foundry for testing until you are 100% certain you are happy with your template. 
+  * It is best to use native Foundry for testing until you are 100% certain you are happy with your template.
   * Between The Forge's upload system that will not upload a file again if it sees the file already exists, and various browsers caching files, you may find that if you upload a changed .json, the changes will not appear. This is why testing is best on Foundry where you can just save the file, then refresh your client (F5), and changes should be instantaneous. If you can only use Forge then It is highly recommended that multiple edited uploads be a different file name every time, to avoid this issue, until your template is complete.
   * The Forge does not allow read or write access to text based files in the Core Data systems or modules, only images which are read-only. Thus to grab the example .json files use the methods described at the top of this document.
 
 ## **Notes for inexperienced template creators:**
 
-  * A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested. They show you with instant feedback if you put or forget a comma where you shouldn't, etc. VSCode is particularily nice and it creates a list of things you type very often, and gives you a box to autocomplete your entries.
+  * A JSON friendly editor like VSCode, Notepad++, etc., is highly suggested. They show you with instant feedback if you put or forget a comma where you shouldn't, etc. VSCode is particularly nice and it creates a list of things you type very often, and gives you a box to autocomplete your entries.
   * Many problems are simply with your JSON file. A missed comma there, a comma that shouldn't exist here.
   * If your template fails to appear, then press F12 and check your console logs for errors. The module tries to let you know if there are issues with your JSON, it will be early on in the console, you'll see a list of JSONs loaded, and if they are valid, it will say Loaded vaesen.json - good json.
   * Use JSON Validation extensions for your editor of choice, or sites like https://jsonlint.com/ to validate your JSON.
@@ -325,12 +325,12 @@ Result:
 
 ## **Other Notes:**
 
-  * Module Conflicts: 
+  * Module Conflicts:
     - Arius Planeswalker's Stylish Journal for Monk's Enhanced Journal - changes the CSS so dramatically that tables will not render correctly.
     - Possible issues with Token Attacher tokens - in testing some MAD Cartographer maps caused the tokens that come with the map modules would show up in the Party Sheet, despite having proper excludes in the header of the .json. It is not an issue with MAD Cartographer maps or their dependencies, it seems to be another module that causes these Actors not to import properly. As soon as the offending module is found it will be listed here.
   * CSS:
     - Some system developers are bound and determined to change everything about default Foundry css just because they can (I'm looking at you, Free League Publishing), so while every effort has been made to make the tables look the same between systems, you may see some that are quite different (I'm looking at you, Vaesen).
-    - That said, the module can only accomodate some minimal alignment and visual improvements. To try and override every system out there would be impossible. There is no intention to allow more than minwidth/maxwidth, align and valign.
+    - That said, the module can only accommodate some minimal alignment and visual improvements. To try and override every system out there would be impossible. There is no intention to allow more than minwidth/maxwidth, align and valign.
 
 ## **Still not sure where to start? _Look no further!_**
   * First jot down the values you think you want to display from one of your character's character sheets.
@@ -341,7 +341,7 @@ Result:
   * Enable the module, and refresh.
   * In the module settings, turn on the debugger and turn off show only online players.
   * Now, when you click the Party Sheet icon in your token controls, you will get a thin table with the characters in the system and their clickable Actor Portraits, and their name.
-  * Open the console, and scroll for the listings that say "SystemActor" beneath a line that says "These are all the actors in your game. They have not yet been filtered based on your inclusions/exclusions." It has a header "TOTM DEBUG CHARACTER LIST." Click the arrow to open an Actor, then click the arrow to open system. Most of your values will be here. Some good detective work will help you find the values you want. Remember that you will have to assemble them, starting with system, then, for instance, attributes, then the name of the attribute, ending up with "system.attribute.str" as a typical example. 
+  * Open the console, and scroll for the listings that say "SystemActor" beneath a line that says "These are all the actors in your game. They have not yet been filtered based on your inclusions/exclusions." It has a header "TOTM DEBUG CHARACTER LIST." Click the arrow to open an Actor, then click the arrow to open system. Most of your values will be here. Some good detective work will help you find the values you want. Remember that you will have to assemble them, starting with system, then, for instance, attributes, then the name of the attribute, ending up with "system.attribute.str" as a typical example.
   * Start adding them to further columns, and you'll be done in no time if you've read these instructions thoroughly.
 
 One row:
@@ -361,15 +361,15 @@ One row:
                 "name": "Character Sheet",
                 "type": "charactersheet",
                 "align": "center",
-                "coltype": "skip",
+                "header": "hide",
                 "value": ""
             },
             {
                 "name": "Name",
                 "type": "direct",
                 "align": "center",
-                "coltype": "show",
-                "value": "name" 
+                "header": "show",
+                "value": "name"
             }
         ]
     ]
@@ -392,14 +392,14 @@ Two Rows:
                 "name": "Character Sheet",
                 "type": "charactersheet",
                 "align": "center",
-                "coltype": "skip",
+                "header": "hide",
                 "value": ""
             },
             {
                 "name": "Name",
                 "type": "direct",
                 "align": "center",
-                "coltype": "show",
+                "header": "show",
                 "value": "name"
             }
         ],
@@ -407,13 +407,13 @@ Two Rows:
             {
                 "name": ".",
                 "type": "direct",
-                "coltype": "skip",
+                "header": "hide",
                 "value": ""
             },
             {
                 "name": "..",
                 "type": "direct",
-                "coltype": "skip",
+                "header": "hide",
                 "value": ""
             }
         ]

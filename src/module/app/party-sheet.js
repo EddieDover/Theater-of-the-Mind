@@ -23,7 +23,7 @@ export class PartySheetForm extends FormApplication {
 
   /**
    * @typedef { 'direct' | 'math' | 'direct-complex' | 'string' | 'array-string-builder' } SystemDataColumnType
-   * @typedef { 'show' | 'hide' | 'skip' } SystemDataColumnColType
+   * @typedef { 'show' | 'hide' | 'skip' } SystemDataColumnHeader
    * @typedef { 'left' | 'center' | 'right' } SystemDataColumnAlignType
    * @typedef { 'top' | 'bottom' } SystemDataColumnVAlignType
    */
@@ -32,18 +32,18 @@ export class PartySheetForm extends FormApplication {
    * @typedef SystemDataColumn
    * @property {string} name - The name of the column.
    * @property {SystemDataColumnType} type - The type of data to display. See below for details.
-   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column.
+   * @property {SystemDataColumnHeader} header - Whether to show, hide, or skip the column.
    * @property {SystemDataColumnAlignType} align - The horizontal alignment of the column.
    * @property {SystemDataColumnVAlignType} valign - The vertical alignment of the column.
    * @property {number} colspan - The number of columns to span.
    * @property {number} maxwidth - The maximum width of the column in pixels.
    * @property {number} minwidth - The minimum width of the column in pixels.
-   * @property {string} value - The value to display. See below for details.
+   * @property {string} text - The value to display. See below for details.
    */
 
   /**
    * @typedef ColOptions
-   * @property {SystemDataColumnColType} coltype - Whether to show, hide, or skip the column.
+   * @property {SystemDataColumnHeader} header - Whether to show, hide, or skip the column.
    * @property {SystemDataColumnAlignType} align - The horizontal alignment of the column.
    * @property {SystemDataColumnVAlignType} valign - The vertical alignment of the column.
    * @property {number} colspan - The number of columns to span.
@@ -146,14 +146,14 @@ export class PartySheetForm extends FormApplication {
             row_obj.forEach((colobj) => {
               var colname = colobj.name;
               customData[colname] = {
-                text: this.getCustomData(userChar, colobj.type, colobj.value),
+                text: this.getCustomData(userChar, colobj.type, colobj.text),
                 options: {
                   align: colobj.align,
                   valign: colobj.valign,
                   colspan: colobj.colspan,
                   maxwidth: colobj.maxwidth,
                   minwidth: colobj.minwidth,
-                  coltype: colobj.coltype,
+                  header: colobj.header,
                 },
               };
             });
@@ -276,8 +276,8 @@ export class PartySheetForm extends FormApplication {
               }
             }
           } else if (item.type === "match") {
-            var mvalue = extractPropertyByString(character, item.value);
-            var match_value = extractPropertyByString(character, item.match) ?? item.match;
+            var mvalue = extractPropertyByString(character, item.ifdata);
+            var match_value = extractPropertyByString(character, item.matches) ?? item.matches;
             if (mvalue === match_value) {
               outputText += extractPropertyByString(character, item.text) ?? item.text;
             } else {

@@ -67,7 +67,7 @@ Handlebars.registerHelper("hcifhidden", function (row, options) {
   var key = options.hash["key"];
   var myoptions = row[key]?.options ?? {};
 
-  if (myoptions?.coltype === "show") {
+  if (myoptions?.header === "show") {
     return options.inverse(this);
   } else {
     return options.fn(this);
