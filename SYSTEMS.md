@@ -134,7 +134,7 @@ __Each item corresponds to a single column on the sheet. If you have multiple ro
     "name": ".",
     "type": "direct",
     "header": "hide",
-    "value:" ""
+    "text:" ""
   }, // no comma if the last column
 ```
 Note that even empty columns need unique names. Feel free to be as descriptive as necessary, since the column **name** will not be displayed if the `header` is `skip`.  **No two columns can have the same `name` value.**
@@ -160,19 +160,19 @@ Note that even empty columns need unique names. Feel free to be as descriptive a
 
 **valign** - This _optional_ property controls the vertical alignment of the cells. It only accepts 'top' and 'bottom'. If left out, or if an improper value is used, the setting will be ignored and will use whatever css the game system provides, since as some systems already override the table css and set the whole table to top, or middle. However, if your system has css code to set valign on table properties, using valign should override the system's value.
 
-**value** - This property is either a **string**, **boolean**, or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
+**text** - This property is either a **string**, **boolean**, or an **array** of objects based on if you're using **direct-complex** or not. See examples below.
 
-### Value - accepted values
+### Text - accepted values
   * boolean - Quotes are not needed, simply use `false`, or `true`, i.e. `"match": true,`
   * numbers - Always examine your systems values to see if they are strings or plain numbers, if they are plain numbers do not include quotes around the value, i.e. `"match": 23,` If they are actually strings, then you will need to surround the number with quotes to make it a string as well, i.e. `"match:" "23",`
-  * text:  You can include arbitrary text in your output values. Simply make sure they are within the quotes for the `"value:"` or `"text":` you are creating, i.e. `"value:" "name has system.criticalInjury.time days left before system.criticalInjury.name heals.`
+  * string:  You can include arbitrary text in your output values. Simply make sure they are within the quotes for the text you are creating, i.e. `"text": "name has system.criticalInjury.time days left before system.criticalInjury.name heals.`
   * Due to the way things are parsed by the plugin there are a few very important caveats you must keep in mind:
     1. If you are using a data string like "system.attributes.str", or a keyword (see below) like `{newline}`, along with custom text, such as `STR: system.attributes.str` as an output, there **must** be spaces around the data string,
           - INCORRECT - `STR:system.attributes.str/system.attributes.maxstr`
           - CORRECT     - `STR: system.attributes.str / system.attributes.maxstr`
   * The more astute among you may notice that in the example templates, `.value` is often left out. To save your poor typing muscles, even if the value you find for a piece of character data is `system.attributes.str.value` the module parses data in the following way. Entering `system.attributes.str` will make the module look for `system.attributes.str.value` and display that if it finds it. If not found, it will display `system.attributes.str` as is.
 
-### Value - Special Keywords
+### Text - Special Keywords
 
 There are a few special keywords that must be surrounded by { } marks, to allow easier formatting, note that they must be surrounded by spaces unless they are next to the opening or closing quotes. They are as follows:
 
@@ -249,35 +249,35 @@ Here's an example of how to use **match**:
 			"align": "center",
 			"type": "direct-complex",
 			"header": "hide",
-			"value": [
+			"text": [
 				{
 					"type": "match",
-					"match": "1",
-					"value": "system.general.career",
+					"ifdata": "system.general.career",
+					"matches": "1",
 					"text": "Colonial Marine"
 				},
 				{
 					"type": "match",
-					"match": "2",
-					"value": "system.general.career",
+					"ifdata": "system.general.career",
+					"matches": "2",
 					"text": "Career: Colonial Marshall"
 				},
 				{
 					"type": "match",
-					"match": "3",
-					"value": "system.general.career",
+					"ifdata": "system.general.career",
+					"matches": "3",
 					"text": "Career: Company Agent"
 				},
 				{
 					"type": "match",
-					"match": "8",
-					"value": "system.general.career",
+					"ifdata": "system.general.career",
+					"matchse": "8",
 					"text": "Pilot"
 				}
 			]
 		},
 ```
-In this example, the system will contain a column named Career, but the column name will be hidden (skipped). It will then loop through each item in the **value** field. In this system `Alien RPG`, the player's career is a number, stored in `system.general.career`. In this example, if the value in `system.general.career` matches `1` then the value `Colonial Marine` is output, otherwise, if the career matches `2` then the value `Colonial Marshall`, if `3`, `Company Agent` is output and so on. All values that match will be displayed. Any items who's **match** is the same as the contents of **value** will display the value in **text**. You can additionally follow the **text** with **else**, and if the contents of **value** DO NOT match the value in **match** the value in **else** will be displayed instead.
+In this example, the system will contain a column named Career, but the column name will be hidden. It will then loop through each item in the **text** field. In this system `Alien RPG`, the player's career is a number, stored in `system.general.career`. In this example, if the value in `system.general.career` matches `1` then the text `Colonial Marine` is output, otherwise, if the career matches `2` then the text is `Colonial Marshall`, if `3`, `Company Agent` is output and so on. All values that match will be displayed. Any items where **matches** is the same as the contents of **ifdata** will display the value in **text**. You can additionally follow the **text** with **else**, and if the contents of **ifdata** DO NOT match the value in **matches** the value in **else** will be displayed instead.
 
 
 ## Examples
@@ -295,7 +295,7 @@ Code:
                 "name": "Name",
                 "type": "direct",
                 "header": "show",
-                "value": "{charactersheet} name {newline} system.details.race"
+                "text": "{charactersheet} name {newline} system.details.race"
             }
         ]
     ]
@@ -362,14 +362,14 @@ One row:
                 "type": "charactersheet",
                 "align": "center",
                 "header": "hide",
-                "value": ""
+                "text": ""
             },
             {
                 "name": "Name",
                 "type": "direct",
                 "align": "center",
                 "header": "show",
-                "value": "name"
+                "text": "name"
             }
         ]
     ]
@@ -393,14 +393,14 @@ Two Rows:
                 "type": "charactersheet",
                 "align": "center",
                 "header": "hide",
-                "value": ""
+                "text": ""
             },
             {
                 "name": "Name",
                 "type": "direct",
                 "align": "center",
                 "header": "show",
-                "value": "name"
+                "text": "name"
             }
         ],
         [
@@ -408,13 +408,13 @@ Two Rows:
                 "name": ".",
                 "type": "direct",
                 "header": "hide",
-                "value": ""
+                "text": ""
             },
             {
                 "name": "..",
                 "type": "direct",
                 "header": "hide",
-                "value": ""
+                "text": ""
             }
         ]
     ]
