@@ -159,57 +159,57 @@
         "text": [
           {
             "type": "exists",
-            "text": "system.details.level",
+            "value": "system.details.level",
             "text": "Level: system.details.level {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.solarian.levels",
+            "value": "system.classes.solarian.levels",
             "text": "Solarian system.classes.solarian.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.soldier.levels",
+            "value": "system.classes.soldier.levels",
             "text": "Soldier system.classes.soldier.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.operative.levels",
+            "value": "system.classes.operative.levels",
             "text": "Operative system.classes.operative.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.mechanic.levels",
+            "value": "system.classes.mechanic.levels",
             "text": "Mechanic system.classes.mechanic.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.mystic.levels",
+            "value": "system.classes.mystic.levels",
             "text": "Mystic system.classes.mystic.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.technomancer.levels",
+            "value": "system.classes.technomancer.levels",
             "text": "Technomancer system.classes.technomancer.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.envoy.levels",
+            "value": "system.classes.envoy.levels",
             "text": "Envoy system.classes.envoy.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.witchwarper.levels",
+            "value": "system.classes.witchwarper.levels",
             "text": "Witchwarper system.classes.witchwarper.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.vanguard.levels",
+            "value": "system.classes.vanguard.levels",
             "text": "Vanguard system.classes.vanguard.levels {newline}"
           },
           {
             "type": "exists",
-            "text": "system.classes.biohacker.levels",
+            "value": "system.classes.biohacker.levels",
             "text": "Biohacker system.classes.biohacker.levels"
           }
         ]

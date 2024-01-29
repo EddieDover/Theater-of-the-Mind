@@ -53,12 +53,12 @@
           "text": [
             {
               "type": "exists",
-              "text": "system.pcAnchor",
+              "value": "system.pcAnchor",
               "text": "PC: {newline} system.pcAnchor {newline} {newline}"
             },
             {
               "type": "exists",
-              "text": "system.npcAnchor",
+              "value": "system.npcAnchor",
               "text": "NPC: {newline} system.npcAnchor"
             }
           ]

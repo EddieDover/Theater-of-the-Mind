@@ -45,7 +45,7 @@
           "text": [
             {
               "type": "exists",
-              "text": "system.pcAnchor",
+              "value": "system.pcAnchor",
               "text": "PC: {newline} system.pcAnchor"
             }
           ]
@@ -60,7 +60,7 @@
           "text": [
             {
               "type": "exists",
-              "text": "system.npcAnchor",
+              "value": "system.npcAnchor",
               "text": "NPC: {newline} system.npcAnchor"
             }
           ]
