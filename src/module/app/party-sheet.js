@@ -291,7 +291,7 @@ export class PartySheetForm extends FormApplication {
               }
             }
           } else if (item.type === "match-any") {
-            var mavalues = (Array.isArray(item.value) ? item.value : [item.value]).map((val) =>
+            var mavalues = (Array.isArray(item.text) ? item.text : [item.text]).map((val) =>
               extractPropertyByString(character, val),
             );
             var maatch_value = extractPropertyByString(character, item.match) ?? item.match;
