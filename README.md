@@ -13,12 +13,12 @@ If you create a template, please submit it via email, Discord or GitHub as a Pul
 ## Features
 - Adds a 'Party Sheet' similar to that provided by Fantasy Grounds. Just click the Party Sheet icon on the Tokens Controls sub-menu.
 
-  - The Party Sheet can be configured via the options to either display only currently connected players, or all non-npc characters. When using the all-characters display, there is a separate dialog to allow hiding of any characters the DM doesn't need to worry about. See the [SYSTEMS.md] file for instructions on how to create a json file for your own system.
+  - The Party Sheet can be configured via the options to either display only currently connected players, or all non-npc characters. When using the all-characters display, there is a separate dialog to allow hiding of any characters the DM doesn't need to worry about. See the [SYSTEMS.md](SYSTEMS.md) file for instructions on how to create a json file for your own system.
 
   - Clicking a character portrait will open their sheet.
 
-  - The Party Sheet is no longer bound to simply the built-in dnd5e system. Additional systems can be supported by writing a JSON file following the guidelines in SYSTEMS.md and placing it in either:
-  
+  - The Party Sheet is no longer bound to simply the built-in dnd5e system. Additional systems can be supported by writing a JSON file following the guidelines in [SYSTEMS.md](SYSTEMS.md) and placing it in either:
+
     - Native Foundry: your <FOUNDRY_VTT/Data/totm/> folder.
     - The Forge: the folder named [totm] at the top level of your assets library (created by the module).
 
@@ -61,4 +61,4 @@ Templates by Michael Card (Emo Cthulhu):
 
   - Planned: Pathfinder 1e, Pathfinder 2e
 
-Please see the [SYSTEMS.md] file for how to use the provided templates and install them in the correct directory. Theater of the Mind supports Forge installations, and information in these documents will let you know what you have to do differently on native Foundry and The Forge.
+Please see the [SYSTEMS.md](SYSTEMS.md) file for how to use the provided templates and install them in the correct directory. Theater of the Mind supports Forge installations, and information in these documents will let you know what you have to do differently on native Foundry and The Forge.
