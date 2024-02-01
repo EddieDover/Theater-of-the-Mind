@@ -335,7 +335,7 @@ export class PartySheetForm extends FormApplication {
 
         objData = extractPropertyByString(character, objName);
 
-        if (!Array.isArray(objData)) {
+        if (!Array.isArray(objData) && objData instanceof Set === false) {
           objData = Object.keys(objData).map((key) => {
             return objData[key];
           });
@@ -345,14 +345,18 @@ export class PartySheetForm extends FormApplication {
         var reg = new RegExp(regValue);
         var allmatches = Array.from(outstr.matchAll(reg), (match) => match[0]);
 
-        for (const objSubData of objData) {
-          for (const m of allmatches) {
-            if (m === "value") {
-              finalstr += outstr.replace(m, objSubData);
-              continue;
+        if (objData.size ?? objData.length !== 0) {
+          for (const objSubData of objData) {
+            for (const m of allmatches) {
+              if (m === "value") {
+                finalstr += outstr.replace(m, objSubData);
+                continue;
+              }
+              outstr = outstr.replace(m, extractPropertyByString(objSubData, m));
             }
-            outstr = outstr.replace(m, extractPropertyByString(objSubData, m));
           }
+        } else {
+          return "";
         }
         if (finalstr === "") {
           finalstr = outstr;
