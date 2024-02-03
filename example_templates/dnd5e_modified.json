@@ -1,7 +1,7 @@
 {
-  "name": "dnd5e",
+  "name": "dnd5e - with status effects",
   "system": "dnd5e",
-  "author": "Your Name Here",
+  "author": "Edited by Emo Cthulhu",
   "offline_excludes": [
     "npc",
     "base",
