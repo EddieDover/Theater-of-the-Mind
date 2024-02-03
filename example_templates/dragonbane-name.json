@@ -134,6 +134,13 @@
             "else": "system.attributes.cha {newline} {newline}"
           }
         ]
+      },
+      {
+        "name": "Statuses",
+        "type": "direct",
+        "maxwidth": 70,
+        "header": "show",
+        "text": ""
       }
     ],
     [
@@ -214,6 +221,15 @@
         "type": "direct",
         "header": "show",
         "text": "system.currency.gc"
+      },
+      {
+        "name": "Status",
+        "type": "array-string-builder",
+        "align": "left",
+        "valign": "top",
+        "maxwidth": 70,
+        "header": "hide",
+        "text": "statuses => value, "
       }
     ]
   ]
