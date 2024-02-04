@@ -22,7 +22,7 @@ If you create a template, please submit it via email, Discord or GitHub as a Pul
     - Native Foundry: your <FOUNDRY_VTT/Data/totm/> folder.
     - The Forge: the folder named [totm] at the top level of your assets library (created by the module).
 
-- Sound effects support if you have Syrinscape ([fvtt-syrin-control](https://github.com/frondeus/fvtt-syrin-control)) and Midi QOL ([midi-qol](https://gitlab.com/tposney/midi-qol/)) installed, and stay on dnd5e v2.4.1. **NOTE: If you have updated your dnd5e system to v3.0.0 this WILL NOT WORK, so sounds are unavailable for now, unless you stay on v2.4.1, and Theater of the Mind - DM Tool will not work properly if you still have MidiQOL and Dynamic Active Effects active.** The author of those two modules has marked both as incompatible with 3.0.0 as of 3 February 2024, so you can't activate them anymore.
+- Sound effects support if you have Syrinscape ([fvtt-syrin-control](https://github.com/frondeus/fvtt-syrin-control)) and Midi QOL ([midi-qol](https://gitlab.com/tposney/midi-qol/)) installed.
 
 ## Supported Systems
 
