@@ -1,23 +1,3 @@
-## 2.0.1
-
-#### New Features
-
-* 
-
-#### Game Systems and Template Changes
-
-* Added Fallout 2d20 "fallout".
-* Added a DnD5e .json that has some modifications, just to show what a different template looks like in the options dropdown.
-* Since the module is now capable of parsing the array for Active Status Effects (ASE), this has been added to following templates:
-    * alienrpg
-    * blade-runner-basic and blade-runner-expanded
-    * dnd5e_modified
-    * dragonbane-name and dragonbane-no-name
-    * fallout
-    * starfinder (along with alignment and deity)
-    * twdu-anchors, twdu-no-anchors and twdu-two-rows
-
-
 ## 2.0.0 (2024-01-29)
 
 ##### New Features
