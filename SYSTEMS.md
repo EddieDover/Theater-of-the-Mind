@@ -341,7 +341,7 @@ Result:
 
   * Module Conflicts:
     - Arius Planeswalker's Stylish Journal for Monk's Enhanced Journal - changes the CSS so dramatically that tables will not render correctly.
-    - An issue with MAD Cartographer map modules. Due to sloppy data on the part of those at The MAD Cartographer, some of their modules have the `type` set to character for map actor tokens. These will show up in your player sheet, and you have to manually hide them. It varies from module to module. Deserts is one, luckily you only have to hide 4 actors by using the [Configure Hidden Actors] button, or doing it in setttings.
+    - An issue with MAD Cartographer map modules. Due to sloppy data on the part of those at The MAD Cartographer, some of their modules have the `type` set to character for map actor tokens. These will show up in your player sheet, and you have to manually hide them. It varies from module to module. Deserts is one, luckily you only have to hide 4 actors by using the [Configure Hidden Actors] button, or doing it in settings.
     - dnd5e system v3.0.0: sounds are unavaible currently due to the massive system overhaul breaking Dynamic Active Efects and thus MidiQoL. TotM will not render a table properly in v3.0.0 if Dynamic Active Effects is active. The author has recently made them unavailable in v3.0.0, but has not mentioned any timeline for making these modules compatible with 3.0.0.
   * CSS:
     - Some system developers are bound and determined to change everything about default Foundry css just because they can (I'm looking at you, Free League Publishing), so while every effort has been made to make the tables look the same between systems, you may see some that are quite different (I'm looking at you, Vaesen).
