@@ -24,6 +24,26 @@ If you create a template, please submit it via email, Discord or GitHub as a Pul
 
 - Sound effects support if you have Syrinscape ([fvtt-syrin-control](https://github.com/frondeus/fvtt-syrin-control)) and Midi QOL ([midi-qol](https://gitlab.com/tposney/midi-qol/)) installed.
 
+## Supported Systems
+
+Built in (by Eddie Dover):
+  - DnD5e "dnd5e" - Note: this does not require any upload of a .json, but you can make your own or edit the examples in the [example_templates] folder to your liking and it will show up in the dropdown of available .json files
+
+Templates by Michael Card (Emo Cthulhu):
+  - Alien RPG "alienrpg" _Note: any changes needed for Building Better Worlds will be available in next update._ 
+  - Blade Runner RPG "blade-runner"
+  - Dragonbane "dragonbane"
+  - Fallout 2d20 "fallout" _Note: to read the injuries cells, a 2 means injured, a 1 means treated and 0 means uninjured._
+  - Starfinder "sfrpg"
+  - The Walking Dead Universe RPG "twdu"
+  - Vaesen "vaesen"
+
+  - In Progress: Coriolis "yzecoriolis", Dragon AGE "dragon-age", Cyberpunk RED "cyberpunk-red-core"
+
+  - Planned: Pathfinder 1e, Pathfinder 2e, possibly Starfinder2E Playtest (expected August 2024 at GenCon) but definitely Starfinder2E after GenCon 2025!
+
+Please see the [SYSTEMS.md](SYSTEMS.md) file for how to use the provided templates and install them in the correct directory. Theater of the Mind supports Forge installations, and information in these documents will let you know what you have to do differently on native Foundry and The Forge.
+
 # Support
 
 Feel free to file a Bug Report / Feature Request under the Issues tab of Github.
@@ -42,23 +62,4 @@ Only Connected Players:
 
 Specific Characters
 
-![Preview of Plugin Party Sheet - Specific Actors](images/preview2.png)
-
-# Supported Systems
-
-Built in (by Eddie Dover):
-  - DnD5e "dnd5e" - Note: this does not require any upload of a .json, but you can make your own or edit the example in the [example_templates] folder to your liking and it will show up in the dropdown of available .json files
-
-Templates by Michael Card (Emo Cthulhu):
-  - Alien RPG "alienrpg"
-  - Blade Runner RPG "blade-runner"
-  - Dragonbane "dragonbane"
-  - Starfinder "sfrpg"
-  - The Walking Dead Universe RPG "twdu"
-  - Vaesen "vaesen"
-
-  - In Progress: Coriolis "yzecoriolis", Fallout 2d20 "fallout", Cyberpunk RED "cyberpunk-red-core"
-
-  - Planned: Pathfinder 1e, Pathfinder 2e
-
-Please see the [SYSTEMS.md](SYSTEMS.md) file for how to use the provided templates and install them in the correct directory. Theater of the Mind supports Forge installations, and information in these documents will let you know what you have to do differently on native Foundry and The Forge.
+![Preview of Plugin Party Sheet - Specific Actors](images/preview2.png
