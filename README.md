@@ -28,7 +28,7 @@ If you create a template, please submit it via email, Discord or GitHub as a Pul
 
 ### Template Examples
 
-For a comprehensive list of the pre-made templates provided by this module and screenshots of each, please see **[TEMPLATE_LIST.md](TEMPLATE_LIST.md)** or examine the contents of the [example_templates](https://github.com/EddieDover/Theater-of-the-Mind/example_templates) folder.
+For a comprehensive list of the pre-made templates provided by this module and screenshots of each, please see **[TEMPLATE_LIST.md](TEMPLATE_LIST.md)** or examine the contents of the [example_templates](https://github.com/EddieDover/Theater-of-the-Mind/tree/main/example_templates) folder.
 
 ### Making your own system template
 
