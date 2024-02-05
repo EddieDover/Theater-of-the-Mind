@@ -81,7 +81,6 @@
         "type": "direct",
         "align": "left",
         "valign": "top",
-        "maxwidth": 125,
         "header": "show",
         "text": ""
       }
@@ -184,7 +183,6 @@
         "type": "array-string-builder",
         "align": "left",
         "valign": "top",
-        "maxwidth": 70,
         "header": "hide",
         "text": "statuses => value, "
       }
