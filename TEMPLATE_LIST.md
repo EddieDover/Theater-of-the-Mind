@@ -54,7 +54,7 @@ alienrpg.json - Michael Card (Emo Cthulhu)<br/>_Note: any changes needed for Bui
 
 <details>
 
-![](./example_templates/dragonsbane/dragonbane-no-name.jpg)
+![](./example_templates/dragonbane/dragonbane-no-name.jpg)
 
 <summary>dragonsbane-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
 
@@ -80,19 +80,19 @@ alienrpg.json - Michael Card (Emo Cthulhu)<br/>_Note: any changes needed for Bui
 
 ![](./example_templates/thewalkingdead/twdu-anchors.jpg)
 
-<summary>blade-runner-basic.json - Michael Card (Emo Cthulhu)</summary></details>
+<summary>twdu-anchors.json - Michael Card (Emo Cthulhu)</summary></details>
 
 <details>
 
 ![](./example_templates/thewalkingdead/twdu-no-anchors.jpg)
 
-<summary>blade-runner-basic.json - Michael Card (Emo Cthulhu)</summary></details>
+<summary>twdu-no-anchors.json - Michael Card (Emo Cthulhu)</summary></details>
 
 <details>
 
 ![](./example_templates/thewalkingdead/twdu-two-rows.jpg)
 
-<summary>blade-runner-basic.json - Michael Card (Emo Cthulhu)</summary></details>
+<summary>twdu-two-rows.json - Michael Card (Emo Cthulhu)</summary></details>
 
 ## Vaesen "vaesen"
 
