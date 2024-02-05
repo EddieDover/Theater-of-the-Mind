@@ -48,15 +48,15 @@ alienrpg.json - Michael Card (Emo Cthulhu)<br/>_Note: any changes needed for Bui
 
 <details>
 
-![](./example_templates/dragonsbane/dragonbane-name.jpg)
+![](./example_templates/dragonbane/dragonbane-name.jpg)
 
-<summary>dragonsbane-name.json - Michael Card (Emo Cthulhu)</summary></details>
+<summary>dragonbane-name.json - Michael Card (Emo Cthulhu)</summary></details>
 
 <details>
 
 ![](./example_templates/dragonbane/dragonbane-no-name.jpg)
 
-<summary>dragonsbane-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
+<summary>dragonbane-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
 
 ## Fallout 2d20 "fallout"
 
