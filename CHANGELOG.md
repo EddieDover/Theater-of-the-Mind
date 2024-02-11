@@ -1,3 +1,13 @@
+## 2.0.1 (2024-02-11)
+
+##### New Features
+
+*  added Savage Worlds template by Mestre Digital ([#42](https://github.com/EddieDover/theater-of-the-mind/pull/42)) ([c0679ea5](https://github.com/EddieDover/theater-of-the-mind/commit/c0679ea50a75c93f951e7f685edac6d6732cf4c3))
+
+##### Bug Fixes
+
+*  corrected invalid property names in template_readme ([2924e651](https://github.com/EddieDover/theater-of-the-mind/commit/2924e6511863d6a9b1f7823667e94350a0b8cc2a))
+
 ## 2.0.0 (2024-01-29)
 
 ##### New Features
