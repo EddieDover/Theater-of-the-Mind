@@ -73,5 +73,11 @@
   "dependencies": {
     "eslint-plugin-jsdoc": "^46.9.1",
     "typescript": "^5.3.3"
+  },
+  "commit-and-tag-version": {
+    "skip": {
+      "commit": true,
+      "tag": true
+    }
   }
 }
