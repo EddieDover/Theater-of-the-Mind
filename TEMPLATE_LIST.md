@@ -144,6 +144,10 @@ alienrpg.json - Michael Card (Emo Cthulhu)</summary>
 
 <summary>starfinder.json - Michael Card (Emo Cthulhu)</summary></details>
 
+![](./example_templates/starfinder/starfinder-statuses.jpg)
+
+<summary>starfinder-statuses.json - Michael Card (Emo Cthulhu)</summary></details>
+
 ## Savage Worlds "swade"
 
 <details>
