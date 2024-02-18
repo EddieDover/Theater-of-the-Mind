@@ -2,9 +2,6 @@
 
 Please unfold any entry to see a screenshot.
 
-New in 2.0.3:
-  - Added Coriolis
-
 ## DnD5e "dnd5e"
 
 <details>
