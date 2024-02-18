@@ -4,7 +4,8 @@ Please unfold any entry to see a screenshot.
 
 New in 2.0.3:
   * Coriolis System "yzecoriolis"
-  * New version of Fallout 2d20 "fallout" by request.
+  * New versions of Fallout 2d20 "fallout". See the Fallout section for details.
+  * Alien RPG has been updated to include building better worlds Careers.
   * Added the special statuses from the Starfinder "sfrpg" system.
   * Note from Michael Card: I have added versions without a name column to all my templates, not just Dragonbane. Why?
     1. Since hovering over the actor portrait shows the name, it's nice to have a smaller, more compact table.
@@ -46,7 +47,7 @@ Cities Without Number "wwn"
 ![](./example_templates/alienrpg/alienrpg.jpg)
 
 <summary>
-alienrpg.json - Michael Card (Emo Cthulhu)<br/>_Note: any changes needed for Building Better Worlds will be available in next update._</summary>
+alienrpg.json - Michael Card (Emo Cthulhu)</summary>
 </details>
 
 ## Blade Runner RPG "blade-runner"
@@ -83,7 +84,7 @@ alienrpg.json - Michael Card (Emo Cthulhu)<br/>_Note: any changes needed for Bui
 
 ![](./example_templates/fallout/fallout.jpg)
 
-<summary>fallout.json - Michael Card (Emo Cthulhu)</summary></details>
+<summary>fallout.json - Michael Card (Emo Cthulhu)</br>Notes: fallout.json and fallout-trimmed.json do not have Movement Speeds. This is because the versions with movement speeds require you to configure the actor templates in the fallout system files to include a key called "unofficialspeed". They won't show anything on basic vanilla Fallout. The trimmed templates were requested by a GM currently running a massive Fallout campaign, so I've included them as it seems likely many GMs will not need all the info in the base versions.</summary></details>
 
 ## Starfinder "sfrpg"
 
