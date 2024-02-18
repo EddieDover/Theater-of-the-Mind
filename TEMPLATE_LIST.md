@@ -158,6 +158,8 @@ alienrpg-no-name.json - Michael Card (Emo Cthulhu)</summary>
 
 <summary>starfinder.json - Michael Card (Emo Cthulhu)</summary></details>
 
+<details>
+
 ![](./example_templates/starfinder/starfinder-statuses.jpg)
 
 <summary>starfinder-statuses.json - Michael Card (Emo Cthulhu)</summary></details>
