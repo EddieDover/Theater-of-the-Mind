@@ -50,6 +50,14 @@ Cities Without Number "wwn"
 alienrpg.json - Michael Card (Emo Cthulhu)</summary>
 </details>
 
+<details>
+
+![](./example_templates/alienrpg/alienrpg-no-name.jpg)
+
+<summary>
+alienrpg-no-name.json - Michael Card (Emo Cthulhu)</summary>
+</details>
+
 ## Blade Runner RPG "blade-runner"
 
 <details>
@@ -197,3 +205,9 @@ alienrpg.json - Michael Card (Emo Cthulhu)</summary>
 ![](./example_templates/vaesen/vaesen.jpg)
 
 <summary>vaesen.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+![](./example_templates/vaesen/vaesen-no-name.jpg)
+
+<summary>vaesen-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
