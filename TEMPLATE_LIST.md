@@ -140,21 +140,15 @@ alienrpg-no-name.json - Michael Card (Emo Cthulhu)</summary>
 
 <details>
 
-<details>
-
 ![](./example_templates/fallout/fallout-trimmed.jpg)
 
 <summary>fallout-trimmed.json - Michael Card (Emo Cthulhu)</summary></details>
 
 <details>
 
-<details>
-
 ![](./example_templates/fallout/fallout-trimmed-move.jpg)
 
 <summary>fallout-trimmed-move.json - Michael Card (Emo Cthulhu)</summary></details>
-
-<details>
 
 ## Starfinder "sfrpg"
 
