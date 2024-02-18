@@ -68,8 +68,6 @@ alienrpg-no-name.json - Michael Card (Emo Cthulhu)</summary>
 
 <details>
 
-<details>
-
 ![](./example_templates/blade-runner/blade-runner-basic-no-name.jpg)
 
 <summary>blade-runner-basic-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
