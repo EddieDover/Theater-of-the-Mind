@@ -2,25 +2,8 @@
 
 Please unfold any entry to see a screenshot.
 
-New in 2.0.3:
-  * Coriolis System "yzecoriolis"
-  * New versions of Fallout 2d20 "fallout". See the Fallout section for details.
-  * Alien RPG has been updated to include Building Better Worlds Careers.
-  * Added the special statuses from the Starfinder "sfrpg" system.
-  * Note from Michael Card (Emo Cthulhu): I have added versions without Character Names to most of my templates, not just Dragonbane. Why?
-    - Since hovering over the actor portrait shows the name, it's nice to have a smaller, more compact table.
-    -  As a GM I know my players and what character they are portraying, so it's not needed. I thought other GMs might feel the same way. I see the portrait and that's enough. On the rare occasion that I'm running a game for unkown people, the name can be seen via hovering over the portrait.
-    -  I have not touched templates submitted by others or that were done by request (so far, SWADE, and Fallout 2d20), this includes the 5e templates.
-    -  I did not change the Starfinder templates, as there's a lot of other info in that column.
-    -  Have a look at the example images and pick the one you want to put in your `totm` folder.
-
-# Coming Soon:
-  - Star Trek Adventures "sta"
-  - Cyberpunk RED "cyberpunk-red-core"
-  - Dragon AGE "dragon-age"
-  - PF1E "pf1"
-  - PF2E "pf2e"
-  - Cities Without Number "wwn"
+# New in 2.0.3:
+  - Added Coriolis
 
 ## DnD5e "dnd5e"
 
