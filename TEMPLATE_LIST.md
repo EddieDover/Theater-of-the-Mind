@@ -5,12 +5,12 @@ Please unfold any entry to see a screenshot.
 New in 2.0.3:
   * Coriolis System "yzecoriolis"
   * New versions of Fallout 2d20 "fallout". See the Fallout section for details.
-  * Alien RPG has been updated to include building better worlds Careers.
+  * Alien RPG has been updated to include Building Better Worlds Careers.
   * Added the special statuses from the Starfinder "sfrpg" system.
-  * Note from Michael Card: I have added versions without a name column to all my templates, not just Dragonbane. Why?
+  * Note from Michael Card (Emo Cthulhu): I have added versions without a name column to most of my templates, not just Dragonbane. Why?
     1. Since hovering over the actor portrait shows the name, it's nice to have a smaller, more compact table.
-    2. As a GM I know my players and what Character they are portraying, so it's not needed. I thought other GMs might feel the same way. I see the portrait and that's enough. On the rare occasion that I'm running a game for unkown people, the name can be seen via hovering over the portrait.
-    3. I have not touched templates submitted by others or that were done by request (so far, SWADE, and Fallout 2d20).
+    2. As a GM I know my players and what character they are portraying, so it's not needed. I thought other GMs might feel the same way. I see the portrait and that's enough. On the rare occasion that I'm running a game for unkown people, the name can be seen via hovering over the portrait.
+    3. I have not touched templates submitted by others or that were done by request (so far, SWADE, and Fallout 2d20), this includes the 5e templates.
     4. I did not change the Starfinder templates, as there's a lot of other info in that column.
     5. Have a look at the example images and pick the one you want to put in your `totm` folder.
 
@@ -68,6 +68,32 @@ alienrpg.json - Michael Card (Emo Cthulhu)</summary>
 
 <details>
 
+![](./example_templates/coriolis/coriolis.jpg)
+
+<summary>coriolis.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+![](./example_templates/coriolis/coriolis-no-name.jpg)
+
+<summary>coriolis-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+![](./example_templates/coriolis/coriolis-compact.jpg)
+
+<summary>coriolis-compact.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+![](./example_templates/coriolis/coriolis-compact-no-name.jpg)
+
+<summary>coriolis-compact-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
+
+## Dragonbane "dragonbane"
+
+<details>
+
 ![](./example_templates/dragonbane/dragonbane-name.jpg)
 
 <summary>dragonbane-name.json - Michael Card (Emo Cthulhu)</summary></details>
@@ -85,6 +111,30 @@ alienrpg.json - Michael Card (Emo Cthulhu)</summary>
 ![](./example_templates/fallout/fallout.jpg)
 
 <summary>fallout.json - Michael Card (Emo Cthulhu)</br>Notes: fallout.json and fallout-trimmed.json do not have Movement Speeds. This is because the versions with movement speeds require you to configure the actor templates in the fallout system files to include a key called "unofficialspeed". They won't show anything on basic vanilla Fallout. The trimmed templates were requested by a GM currently running a massive Fallout campaign, so I've included them as it seems likely many GMs will not need all the info in the base versions.</summary></details>
+
+<details>
+
+![](./example_templates/fallout/fallout-move.jpg)
+
+<summary>fallout-move.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+<details>
+
+![](./example_templates/fallout/fallout-trimmed.jpg)
+
+<summary>fallout-trimmed.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+<details>
+
+![](./example_templates/fallout/fallout-trimmed-move.jpg)
+
+<summary>fallout-trimmed-move.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
 
 ## Starfinder "sfrpg"
 
