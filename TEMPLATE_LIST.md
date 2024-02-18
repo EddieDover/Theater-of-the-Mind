@@ -188,15 +188,33 @@ alienrpg-no-name.json - Michael Card (Emo Cthulhu)</summary>
 
 <details>
 
+![](./example_templates/thewalkingdead/twdu-anchors-no-name.jpg)
+
+<summary>twdu-anchors-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
 ![](./example_templates/thewalkingdead/twdu-no-anchors.jpg)
 
 <summary>twdu-no-anchors.json - Michael Card (Emo Cthulhu)</summary></details>
 
 <details>
 
+![](./example_templates/thewalkingdead/twdu-no-anchors-no-name.jpg)
+
+<summary>twdu-no-anchors-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
 ![](./example_templates/thewalkingdead/twdu-two-rows.jpg)
 
 <summary>twdu-two-rows.json - Michael Card (Emo Cthulhu)</summary></details>
+
+<details>
+
+![](./example_templates/thewalkingdead/twdu-two-rows-no-name.jpg)
+
+<summary>twdu-two-rows-no-name.json - Michael Card (Emo Cthulhu)</summary></details>
 
 ## Vaesen "vaesen"
 
