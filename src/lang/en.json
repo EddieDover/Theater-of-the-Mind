@@ -9,7 +9,8 @@
       "no-systems": "You do not have any json files for this system in your data/totm folder. Please add some to enable this feature.",
       "bugreport": "File a Bug Report",
       "feedback": "Send Feedback",
-      "discord": "Discord"
+      "discord": "Discord",
+      "depmsg": "Theater Of the Mind has renamed to fvtt-party-sheet. <br/><br/> Please search the new module under <b>\"Party Sheet\"</b> with the package name </b>`fvtt-party-sheet`</b>. </br><br/> I apologize but settings will not be transferred over, and if you have configured hidden characters, you will have to reconfigure them. <br/><br/> This module will no longer be updated. <br/><br/> Thank you for your support. <br/>"
     },
     "hide-sheet": {
       "button": "Configure Hidden Characters",

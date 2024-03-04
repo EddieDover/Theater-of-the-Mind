@@ -9,7 +9,8 @@
       "no-systems": "La carpeta data/totm no contiene archivos JSON para este sistema. Necesitas agregar algunos para activar esta funcionalidad.",
       "bugreport": "Dar retroalimentación",
       "feedback": "Reportar un fallo",
-      "discord": "Discord"
+      "discord": "Discord",
+      "depmsg": "Theatre Of the Mind ha cambiado de nombre a fvtt-party-sheet. <br/><br/> Busque el nuevo módulo en <b>\"Party Sheet\"</b> con el nombre del paquete </b>`fvtt-party-sheet`</b>. </br><br/> Pido disculpas, pero la configuración no se transferirá y, si ha configurado caracteres ocultos, tendrá que volver a configurarlos. <br/>><br/> Este módulo ya no se actualizará. <br/>><br/> Gracias por su apoyo. <br/>"
     },
     "hide-sheet": {
       "button": "Configurar personajes ocultos",

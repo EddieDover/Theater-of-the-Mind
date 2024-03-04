@@ -329,9 +329,7 @@ Hooks.on("ready", async () => {
   new Dialog({
     title: "Theater of the Mind - Important Message",
     // @ts-ignore
-    content: new Handlebars.SafeString(
-      'Theater Of the Mind has renamed to fvtt-party-sheet. <br/><br/> Please search the new module under <b>"Party Sheet"</b> with the package name </b>`fvtt-party sheet`</b>. </br><br/> This module will no longer be updated. <br/><br/> Thank you for your support.',
-    ),
+    content: new Handlebars.SafeString(game.i18n.localize("theater-of-the-mind.party-sheet.depmsg")),
     buttons: {
       update: {
         label: "Get the new module",
