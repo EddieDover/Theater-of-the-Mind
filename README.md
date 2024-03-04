@@ -4,6 +4,8 @@
 [![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Ftheater-of-the-mind%2Fshield%2Fendorsements)](https://www.foundryvtt-hub.com/package/theater-of-the-mind/)
 [![Foundry Hub Comments](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Ftheater-of-the-mind%2Fshield%2Fcomments)](https://www.foundryvtt-hub.com/package/theater-of-the-mind/)
 
+# This module has been moved/renamed to fvtt-party-sheet. See [fvtt-party-sheet](https://www.github.com/EddieDover/fvtt-party-sheet).
+
 This module provides a GM with a table of characters, online only, or all, configurable in settings, in order to quickly see important stats, traits, abilites, etc. of all characters. Originally 5e only, it is now system agnostic and you can create easy to make .json templates for your system. It supports native Foundry and The Forge. Complete instructions for creating templates and placing them in the right folder on Foundry and Forge are included in the [TEMPLATE_README.md](TEMPLATE_README.md) file.
 
 The original intent of this module was to provide a 'party view' feature that I found missing when I first started using [FoundryVTT](https://www.foundryvtt.com) instead of [Fantasy Grounds](https://www.fantasygrounds.com). It will be updated with features that I personally want or need, or are requested of me by some poor soul. Several templates for various systems have been created, and more are already in the works with even more planned.

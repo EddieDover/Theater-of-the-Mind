@@ -1,6 +1,11 @@
 
-## [2.1.0](https://github.com/EddieDover/Theater-Of-The-Mind/compare/v2.0.3...v2.1.0) (2024-02-25)
+## [2.1.1](https://github.com/EddieDover/Theater-Of-The-Mind/compare/v2.1.0...v2.1.1) (2024-03-04)
 
+# MOVED TO "Party Sheet" aka [fvtt-party-sheet](https://www.github.com/EddieDover/fvtt-party-sheet).
+
+This repository/module are now depreciated in favor of the renamed version. Please search for and download it when possible.
+
+## [2.1.0](https://github.com/EddieDover/Theater-Of-The-Mind/compare/v2.0.3...v2.1.0) (2024-02-25)
 
 ### Features
 

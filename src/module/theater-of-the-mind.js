@@ -326,6 +326,26 @@ Hooks.on("ready", async () => {
   log("Ready");
 
   // @ts-ignore
+  new Dialog({
+    title: "Theater of the Mind - Important Message",
+    // @ts-ignore
+    content: new Handlebars.SafeString(
+      'Theater Of the Mind has renamed to fvtt-party-sheet. <br/><br/> Please search the new module under <b>"Party Sheet"</b> with the package name </b>`fvtt-party sheet`</b>. </br><br/> This module will no longer be updated. <br/><br/> Thank you for your support.',
+    ),
+    buttons: {
+      update: {
+        label: "Get the new module",
+        callback: () => {
+          window.open("https://foundryvtt.com/packages/fvtt-party-sheet", "_blank");
+        },
+      },
+      ok: {
+        label: "Ok",
+      },
+    },
+  }).render(true);
+
+  // @ts-ignore
   isSyrinscapeInstalled = game.modules.get("fvtt-syrin-control")?.active || false;
   log(`Syrinscape is installed: ${isSyrinscapeInstalled}`);
 
